@@ -19,4 +19,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::match(['get', 'post'], '/admin/login', [App\Http\Controllers\LoginController::class, 'login'])->name('login')->middleware('alreadyLoggedIn');
+Route::get('/logout', [\App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
+
+
+// ADMİN
+Route::prefix('/admin')->middleware(['is_admin', 'role:Admin'])->group(function () {
+    Route::get('/home', [\App\Http\Controllers\Admin\AdminController::class, 'adminIndex'])->name('admin.index');
+
+});
