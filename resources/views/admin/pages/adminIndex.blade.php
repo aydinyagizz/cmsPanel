@@ -27,21 +27,22 @@
         <!--end::Heading-->
 
         <!--begin::Breadcrumb-->
-        {{--        <ul class="breadcrumb fw-semibold fs-base mb-1">--}}
-        {{--            <li class="breadcrumb-item text-muted">--}}
-        {{--                <a href="index708f.html?page=index" class="text-muted text-hover-primary">--}}
-        {{--                    Home </a>--}}
-        {{--            </li>--}}
+                <ul class="breadcrumb fw-semibold fs-base mb-1">
+{{--                    <li class="breadcrumb-item text-muted">--}}
+{{--                        <a href="index708f.html?page=index" class="text-muted text-hover-primary">--}}
+{{--                            Home </a>--}}
+{{--                    </li>--}}
 
-        {{--            <li class="breadcrumb-item text-muted">--}}
-        {{--                Dashboards--}}
-        {{--            </li>--}}
+{{--                    <li class="breadcrumb-item text-muted">--}}
+{{--                        <a href="index708f.html?page=index" class="text-muted text-hover-primary">--}}
+{{--                        Dashboards </a>--}}
+{{--                    </li>--}}
 
-        {{--            <li class="breadcrumb-item text-dark">--}}
-        {{--                Logistics--}}
-        {{--            </li>--}}
+{{--                    <li class="breadcrumb-item text-dark">--}}
+{{--                        Logistics--}}
+{{--                    </li>--}}
 
-        {{--        </ul>--}}
+                </ul>
         <!--end::Breadcrumb-->
     </div>
 @endsection

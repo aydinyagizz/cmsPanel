@@ -1,22 +1,8 @@
 
 <!DOCTYPE html>
-<!--
-Author: Keenthemes
-Product Name: Rider
-Product Version: 1.1.2
-Purchase: https://keenthemes.com/products/rider-html-pro
-Website: http://www.keenthemes.com
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
--->
-<html lang="en">
-<!--begin::Head-->
 
-<!-- Mirrored from preview.keenthemes.com/rider-html-pro/?page=index by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Feb 2023 10:01:35 GMT -->
-<!-- Added by HTTrack -->
+<html lang="en">
+
 <meta http-equiv="content-type" content="text/html;charset=UTF-8"/><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8"/>
@@ -189,6 +175,25 @@ License: For each use you must have a valid license purchased only from above li
 
                                  </span>
                                 <span class="menu-title">Dashboards
+                                </span>
+                                <span class=""></span></span>
+
+
+                            </div>
+                        </a>
+
+
+
+
+                        <a href="{{ route('admin.blog.category.list') }}">
+                            <div
+                                class="menu-item   {{ Route::is('admin.blog.category.list') ? 'show' : '' }} menu-accordion mb-1">
+                            <span class="menu-link"><span class="menu-icon">
+
+                                    <i class="fa fa-list-alt fa-3x" aria-hidden="true"></i>
+
+                                 </span>
+                                <span class="menu-title">Blog Category
                                 </span>
                                 <span class=""></span></span>
 
@@ -7469,9 +7474,11 @@ License: For each use you must have a valid license purchased only from above li
 
 
 
-<script src="{{ asset('public/admin/assets/js/company-add.js') }}"></script>
-<script src="{{ asset('public/admin/assets/js/company-list.js') }}"></script>
+{{--<script src="{{ asset('public/admin/assets/js/company-add.js') }}"></script>--}}
+{{--<script src="{{ asset('public/admin/assets/js/admin-company-add-team.js') }}"></script>--}}
 
+<script src="{{ asset('public/admin/assets/js/blog-category-list.js') }}"></script>
+<script src="{{ asset('public/admin/assets/js/blog-category-add.js') }}"></script>
 
 
 {{--<script src="{{ asset('public/admin/assets/js/custom/apps/user-management/users/list/table.js') }}"></script>--}}
@@ -7481,7 +7488,7 @@ License: For each use you must have a valid license purchased only from above li
 <script src="{{ asset('public/admin/assets/js/custom/apps/chat/chat.js') }}"></script>
 <script src="{{ asset('public/admin/assets/js/custom/utilities/modals/users-search.js') }}"></script>
 
-<script src="{{ asset('public/admin/assets/js/admin-company-add-team.js') }}"></script>
+
 
 
 @yield('js')

@@ -1,8 +1,8 @@
 "use strict";
 
-var KTCompanyList = function () {
+var KTBlogCategoryList = function () {
     // Define shared variables
-    var table = document.getElementById('kt_table_company');
+    var table = document.getElementById('kt_table_blog_category');
     var datatable;
     var toolbarBase;
     var toolbarSelected;
@@ -37,15 +37,12 @@ var KTCompanyList = function () {
             //     timeFormat = 'weeks';
             // }
 
-            // Subtract date/time from today -- more info on moment datetime subtraction: https://momentjs.com/docs/#/durations/subtract/
-            const realDate = moment().subtract(timeCount, timeFormat).format();
-
-            // Insert real date to last login attribute
-            dateRow[5].setAttribute('data-order', realDate);
-
-            // Set real date for joined column
-            const joinedDate = moment(dateRow[5].innerHTML, "DD MMM YYYY, LT").format(); // select date from 5th column in table
-            dateRow[5].setAttribute('data-order', joinedDate);
+            // const realDate = moment().subtract(timeCount, timeFormat).format();
+            //
+            // dateRow[4].setAttribute('data-order', realDate);
+            //
+            // const joinedDate = moment(dateRow[4].innerHTML, "DD MMM YYYY, LT").format();
+            // dateRow[4].setAttribute('data-order', joinedDate);
         });
 
         // Init datatable --- more info on datatables: https://datatables.net/manual/
@@ -71,7 +68,7 @@ var KTCompanyList = function () {
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
-        const filterSearch = document.querySelector('[data-kt-company-table-filter="search"]');
+        const filterSearch = document.querySelector('[data-kt-blog-category-table-filter="search"]');
         filterSearch.addEventListener('keyup', function (e) {
             datatable.search(e.target.value).draw();
         });
@@ -108,12 +105,12 @@ var KTCompanyList = function () {
     // Reset Filter
     var handleResetForm = () => {
         // Select reset button
-        const resetButton = document.querySelector('[data-kt-user-table-filter="reset"]');
+        const resetButton = document.querySelector('[data-kt-blog-category-table-filter="reset"]');
 
         // Reset datatable
         resetButton.addEventListener('click', function () {
             // Select filter options
-            const filterForm = document.querySelector('[data-kt-user-table-filter="form"]');
+            const filterForm = document.querySelector('[data-kt-blog-category-table-filter="form"]');
             const selectOptions = filterForm.querySelectorAll('select');
 
             // Reset select2 values -- more info: https://select2.org/programmatic-control/add-select-clear-items
@@ -130,7 +127,7 @@ var KTCompanyList = function () {
     // Delete subscirption
     var handleDeleteRows = () => {
         // Select all delete buttons
-        const deleteButtons = table.querySelectorAll('[data-kt-users-table-filter="delete_row"]');
+        const deleteButtons = table.querySelectorAll('[data-kt-blog-category-table-filter="delete_row"]');
 
         deleteButtons.forEach(d => {
             // Delete button on click
@@ -145,7 +142,7 @@ var KTCompanyList = function () {
 
                 // TODO: company list tablosunda tekli silme işlemi burada olacak
 
-                const userId = parent.querySelectorAll('td')[1].querySelectorAll('a')[0].getAttribute('data-id');
+                const blogCategoryId = parent.querySelectorAll('td')[1].querySelectorAll('a')[0].getAttribute('data-id');
                 //TODO: idsini aldık ajax ile silme işlemi kaldı.
 
                 // console.log('user ıd ' + userId);
@@ -192,12 +189,12 @@ var KTCompanyList = function () {
                                 }
                             });
 
-                            var deleteUrl = document.getElementById('delete-url').value;
+                            var deleteUrl = document.getElementById('delete-url-blog-category').value;
 
                             $.ajax({
                                 url: deleteUrl,
                                 type: 'POST',
-                                data: { userId: userId},
+                                data: { blogCategoryId: blogCategoryId},
                                 success: function(response){
                                     // Silme işlemi tamamlandıktan sonra yapılacaklar
                                    // alert("Silme tamam!");
@@ -257,7 +254,7 @@ var KTCompanyList = function () {
         deleteSelected.addEventListener('click', function () {
             // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
             Swal.fire({
-                text: "Are you sure you want to delete selected customers?",
+                text: "Are you sure you want to delete selected categories?",
                 icon: "warning",
                 showCancelButton: true,
                 buttonsStyling: false,
@@ -301,7 +298,7 @@ var KTCompanyList = function () {
                                         }
                                     });
 
-                                    var deleteUrl = document.getElementById('delete-url').value;
+                                    var deleteUrl = document.getElementById('delete-url-blog-category').value;
 
                                     $.ajax({
                                         url: deleteUrl,
@@ -397,5 +394,5 @@ var KTCompanyList = function () {
 
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
-    KTCompanyList.init();
+    KTBlogCategoryList.init();
 });
