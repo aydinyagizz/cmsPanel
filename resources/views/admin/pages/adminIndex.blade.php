@@ -1,7 +1,7 @@
 @extends('admin.layout.adminLayout')
 
 @section('title')
-    Admin
+    Home
 @endsection
 
 @section('css')

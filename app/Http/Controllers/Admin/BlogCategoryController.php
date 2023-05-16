@@ -26,7 +26,7 @@ class BlogCategoryController extends Controller
 
     public function blogCategoryAdd(Request $request, FlasherInterface $flasher)
     {
-
+// TODO: buaraya name için validate eklenecek
         $data = [
             //'user' => User::where('id', Session::get('adminId'))->first(),
             'admin' => User::where('id', Session::get('adminId'))->first(),

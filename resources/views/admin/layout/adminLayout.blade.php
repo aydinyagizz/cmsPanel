@@ -202,6 +202,23 @@
                         </a>
 
 
+                        <a href="{{ route('admin.blog.list') }}">
+                            <div
+                                class="menu-item   {{ Route::is('admin.blog.list') ? 'show' : '' }} menu-accordion mb-1">
+                            <span class="menu-link"><span class="menu-icon">
+
+                                    <i class="fa fa-images fa-3x" aria-hidden="true"></i>
+
+                                 </span>
+                                <span class="menu-title">Blog
+                                </span>
+                                <span class=""></span></span>
+
+
+                            </div>
+                        </a>
+
+
 
 
 
@@ -2555,9 +2572,9 @@
             <div class="content d-flex flex-column flex-column-fluid fs-6" id="kt_content">
 
                 <div class=" container-xxl " id="kt_content_container">
-                    <!--begin::Row-->
+
                     <div class="row gy-5 g-xl-10">
-                        <!--begin::Col-->
+
 
 
 
@@ -2576,30 +2593,28 @@
             <div class="footer py-4 d-flex flex-lg-column " id="kt_footer">
                 <!--begin::Container-->
                 <div class=" container-fluid  d-flex flex-column flex-md-row flex-stack">
-                    <!--begin::Copyright-->
-                    <div class="text-dark order-2 order-md-1">
-                        <span class="text-gray-400 fw-semibold me-1">Created by</span>
-                        <a href="https://keenthemes.com/" target="_blank"
-                           class="text-muted text-hover-primary fw-semibold me-2 fs-6">Keenthemes</a>
-                    </div>
-                    <!--end::Copyright-->
 
-                    <!--begin::Menu-->
-                    <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
-                        <li class="menu-item"><a href="https://keenthemes.com/" target="_blank" class="menu-link px-2">About</a>
-                        </li>
+{{--                    <div class="text-dark order-2 order-md-1">--}}
+{{--                        <span class="text-gray-400 fw-semibold me-1">Created by</span>--}}
+{{--                        <a href="https://keenthemes.com/" target="_blank"--}}
+{{--                           class="text-muted text-hover-primary fw-semibold me-2 fs-6">Keenthemes</a>--}}
+{{--                    </div>--}}
+{{--                   --}}
+{{--                    <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">--}}
+{{--                        <li class="menu-item"><a href="https://keenthemes.com/" target="_blank" class="menu-link px-2">About</a>--}}
+{{--                        </li>--}}
 
-                        <li class="menu-item"><a href="https://devs.keenthemes.com/" target="_blank"
-                                                 class="menu-link px-2">Support</a></li>
+{{--                        <li class="menu-item"><a href="https://devs.keenthemes.com/" target="_blank"--}}
+{{--                                                 class="menu-link px-2">Support</a></li>--}}
 
-                        <li class="menu-item">
-                            <a href="https://keenthemes.com/products/rider-html-pro" target="_blank"
-                               class="menu-link px-2">
-                                Purchase
-                            </a>
-                        </li>
-                    </ul>
-                    <!--end::Menu-->
+{{--                        <li class="menu-item">--}}
+{{--                            <a href="https://keenthemes.com/products/rider-html-pro" target="_blank"--}}
+{{--                               class="menu-link px-2">--}}
+{{--                                Purchase--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+
                 </div>
                 <!--end::Container-->
             </div>
@@ -4920,7 +4935,7 @@
 
                         <!--begin::Select2-->
                         <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
-                                name="currency_type" data-placeholder="Select a Currency Type" name="currency_type">
+                                name="currency_type" data-placeholder="Select a Currency Type" >
                             <option value=""></option>
                             <option value="dollar" selected>Dollar</option>
                             <option value="crypto">Crypto</option>
@@ -7479,6 +7494,9 @@
 
 <script src="{{ asset('public/admin/assets/js/blog-category-list.js') }}"></script>
 <script src="{{ asset('public/admin/assets/js/blog-category-add.js') }}"></script>
+
+<script src="{{ asset('public/admin/assets/js/blog-list.js') }}"></script>
+<script src="{{ asset('public/admin/assets/js/blog-add.js') }}"></script>
 
 
 {{--<script src="{{ asset('public/admin/assets/js/custom/apps/user-management/users/list/table.js') }}"></script>--}}

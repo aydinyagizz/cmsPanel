@@ -16,8 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('blog_categories')->onDelete('cascade');
             $table->string('title')->nullable();
-            $table->string('image')->nullable();
+            $table->longText('image')->nullable();
             $table->longText('content')->nullable();
+            $table->tinyText('status')->default(1);
             $table->string('slug')->nullable();
             $table->timestamps();
         });
