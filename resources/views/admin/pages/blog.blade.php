@@ -139,7 +139,7 @@
                                     <!--begin::Checkbox-->
                                     <td>
                                         <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="   id    "/>
+                                            <input class="form-check-input" type="checkbox" value="{{ $item->id }}"/>
                                         </div>
                                     </td>
                                     <!--end::Checkbox-->
@@ -150,16 +150,20 @@
 
                                         <div class="d-flex">
                                             <!--begin::Thumbnail-->
-                                            <a href="#" class="symbol symbol-50px" data-id="{{ $item->id }}">
-                                                <img src="data:image/jpeg;base64,{{ $item->image }}" alt="Resim">
+                                            <a href="#" class="symbol symbol-70px" data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable{{ $item->id }}">
+                                                @if($item->image)
+                                                <img src="data:image/jpeg;base64,{{ $item->image }}" alt="{{ $item->title }}">
+                                                @else
+                                                    <img src="{{ asset('admin/assets/media/sabit/blog.jpg') }}" alt="{{ $item->title }}">
+                                                @endif
 
                                             </a>
                                             <!--end::Thumbnail-->
 
                                             <div class="ms-5">
                                                 <!--begin::Title-->
-                                                <div class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1"
-                                                     data-kt-ecommerce-category-filter="category_name">{{ $item->title }}</div>
+                                                <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1"
+                                                     data-kt-ecommerce-category-filter="category_name"  data-bs-toggle="modal" data-bs-target="#exampleModalScrollable{{ $item->id }}">{{ $item->title }}</a>
                                                 <!--end::Title-->
 
                                                 <!--begin::Description-->
@@ -233,6 +237,60 @@
                                     </td>
                                     <!--end::Action--->
                                 </tr>
+
+
+
+
+{{--                                TODO: Modal Başlangıcı    --}}
+
+                                <div class="modal fade" id="exampleModalScrollable{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>
+
+
+
+
+
+                                                <div
+                                                     class="btn btn-icon btn-sm btn-active-icon-primary close"  data-bs-dismiss="modal" aria-label="Close">
+
+                                <span class="svg-icon svg-icon-1">
+                                    <svg width="24" height="24"
+                                         viewBox="0 0 24 24"
+                                         fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                              transform="rotate(-45 6 17.3137)"
+                                              fill="currentColor"/>
+                                        <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                              transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                    </svg>
+
+                                </span>
+                                                </div>
+
+
+
+
+
+                                            </div>
+                                            <div class="modal-body">
+                                                ...
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+{{--                                TODO: Modal Bitişi     --}}
+
+
                             @endforeach
 
                             </tbody>
@@ -315,7 +373,7 @@
                                         }
                                     </style>
 
-                                    <div
+                                    <div style="margin-left: 15px"
                                         class="image-input image-input-outline image-input-empty image-input-placeholder "
                                         data-kt-image-input="true">
 

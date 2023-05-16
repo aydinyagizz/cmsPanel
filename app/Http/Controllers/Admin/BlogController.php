@@ -63,6 +63,8 @@ class BlogController extends Controller
 
         if (!empty($request->file('blog_image'))) {
 
+//            TODO: fotoğraf kontrolü yap validate
+
             $image = base64_encode(file_get_contents($request->file('blog_image')->path()));
 
 //            $file = $request->file('blog_image');

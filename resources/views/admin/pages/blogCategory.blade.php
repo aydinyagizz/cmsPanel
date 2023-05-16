@@ -223,10 +223,10 @@
                                     <!--end::Checkbox-->
 
                                     <!--begin::User--->
-                                    <td class="d-flex align-items-center">
+                                    <td class=" align-items-center">
 
 
-                                        <div class="d-flex flex-column">
+                                        <div class="flex-column">
                                             <a href="#" data-id="{{ $item->id }}"
                                                class="text-gray-800 text-hover-primary mb-1">{{ $item->name }} </a>
                                         </div>
