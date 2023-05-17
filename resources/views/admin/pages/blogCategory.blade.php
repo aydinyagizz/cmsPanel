@@ -24,19 +24,19 @@
 
         <!--begin::Breadcrumb-->
         <ul class="breadcrumb fw-semibold fs-base mb-1">
-            {{--                    <li class="breadcrumb-item text-muted">--}}
-            {{--                        <a href="index708f.html?page=index" class="text-muted text-hover-primary">--}}
-            {{--                            Home </a>--}}
-            {{--                    </li>--}}
+            {{--                                <li class="breadcrumb-item text-muted">--}}
+            {{--                                    <a href="index708f.html?page=index" class="text-muted text-hover-primary">--}}
+            {{--                                        Home </a>--}}
+            {{--                                </li>--}}
 
-            {{--                    <li class="breadcrumb-item text-muted">--}}
-            {{--                        <a href="index708f.html?page=index" class="text-muted text-hover-primary">--}}
-            {{--                        Dashboards </a>--}}
-            {{--                    </li>--}}
+            <li class="breadcrumb-item text-muted">
+                <a href="{{ route('admin.index') }}" class="text-muted text-hover-primary">
+                    Dashboard </a>
+            </li>
 
-            {{--                    <li class="breadcrumb-item text-dark">--}}
-            {{--                        Logistics--}}
-            {{--                    </li>--}}
+            <li class="breadcrumb-item text-dark">
+                Blog Categories
+            </li>
 
         </ul>
         <!--end::Breadcrumb-->
@@ -334,7 +334,8 @@
 
                                             </div>
 
-                                            <form action="{{ route('admin.blog.category.update', [$item->id]) }}" method="POST">
+                                            <form action="{{ route('admin.blog.category.update', [$item->id]) }}"
+                                                  method="POST">
                                                 @csrf
 
                                                 <div class="modal-body">
@@ -362,7 +363,8 @@
                                                                 class="form-select mb-2"
                                                                 data-control="select2"
                                                                 data-hide-search="true"
-                                                                data-placeholder="Select category" id="status{{ $item->id }}">
+                                                                data-placeholder="Select category"
+                                                                id="status{{ $item->id }}">
                                                             @if($item->status)
                                                                 <option value="1">Active</option>
                                                                 <option value="0">Pending</option>
@@ -376,8 +378,6 @@
                                                     </div>
 
 
-
-
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
@@ -386,7 +386,7 @@
                                                     </button>
 
                                                     <button type="submit" class="btn btn-primary">
-                                                       Update
+                                                        Update
                                                     </button>
 
                                                 </div>

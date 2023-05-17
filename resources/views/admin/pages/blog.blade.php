@@ -24,19 +24,19 @@
 
         <!--begin::Breadcrumb-->
         <ul class="breadcrumb fw-semibold fs-base mb-1">
-            {{--                    <li class="breadcrumb-item text-muted">--}}
-            {{--                        <a href="index708f.html?page=index" class="text-muted text-hover-primary">--}}
-            {{--                            Home </a>--}}
-            {{--                    </li>--}}
+{{--            <li class="breadcrumb-item text-muted">--}}
+{{--                <a href="index708f.html?page=index" class="text-muted text-hover-primary">--}}
+{{--                    Home </a>--}}
+{{--            </li>--}}
 
-            {{--                    <li class="breadcrumb-item text-muted">--}}
-            {{--                        <a href="index708f.html?page=index" class="text-muted text-hover-primary">--}}
-            {{--                        Dashboards </a>--}}
-            {{--                    </li>--}}
+            <li class="breadcrumb-item text-muted">
+                <a href="{{ route('admin.index') }}" class="text-muted text-hover-primary">
+                    Dashboard </a>
+            </li>
 
-            {{--                    <li class="breadcrumb-item text-dark">--}}
-            {{--                        Logistics--}}
-            {{--                    </li>--}}
+            <li class="breadcrumb-item text-dark">
+                Blogs
+            </li>
 
         </ul>
 
