@@ -7457,7 +7457,7 @@
 <!--begin::Vendors Javascript(used for this page only)-->
 <script src="{{ asset('public/admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 
-{{--<script src="{{ asset('public/admin/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>--}}
+<script src="{{ asset('public/admin/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
 
 
 <script src="{{ asset('public/admin/assets/plugins/custom/vis-timeline/vis-timeline.bundle.js') }}"></script>
@@ -7502,6 +7502,11 @@
 {{--<script src="{{ asset('public/admin/assets/js/custom/apps/user-management/users/list/table.js') }}"></script>--}}
 {{--<script src="{{ asset('public/admin/assets/js/custom/apps/user-management/users/list/export-users.js') }}"></script>--}}
 {{--<script src="{{ asset('public/admin/assets/js/custom/apps/user-management/users/list/add.js') }}"></script>--}}
+
+
+<script src="{{ asset('public/admin/assets/js/custom/apps/ecommerce/catalog/save-product.js') }}"></script>
+
+
 <script src="{{ asset('public/admin/assets/js/widgets.bundle.js') }}"></script>
 <script src="{{ asset('public/admin/assets/js/custom/apps/chat/chat.js') }}"></script>
 <script src="{{ asset('public/admin/assets/js/custom/utilities/modals/users-search.js') }}"></script>

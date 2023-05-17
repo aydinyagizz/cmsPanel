@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class BlogController extends Controller
@@ -51,9 +52,6 @@ class BlogController extends Controller
 
 
 
-
-
-
         $blog = new Blog();
         $blog->category_id = $request->blog_category;
         $blog->title = $request->title;
@@ -63,7 +61,16 @@ class BlogController extends Controller
 
         if (!empty($request->file('blog_image'))) {
 
-//            TODO: fotoğraf kontrolü yap validate
+            $this->validate($request, [
+                'blog_image' => 'mimes:jpeg,jpg,png', 'max:4096',
+            ], [
+                'blog_image.mimes' => ' Blog image should be in jpg, jpeg, png format.',
+                'blog_image.max' => 'Blog photo cannot be larger than 4 MB.',
+            ]);
+
+
+
+
 
             $image = base64_encode(file_get_contents($request->file('blog_image')->path()));
 
@@ -92,5 +99,83 @@ class BlogController extends Controller
         return Redirect::route('admin.blog.list');
 
        // return view('admin.pages.blog', $data);
+    }
+
+    public function blogDelete(Request $request)
+    {
+        if ($request->input('IDs')){
+            $IDs = $request->input('IDs');
+            Blog::whereIn('id', $IDs)->delete();
+        }
+        if ($request->input('blogId')){
+            $blogCategoryId = $request->input('blogId');
+            Blog::find($blogCategoryId)->delete();
+        }
+
+        return response()->json(['success'=>'Selected blog have been deleted.']);
+    }
+
+
+    public function blogUpdate(Request $request, FlasherInterface $flasher)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'blog_content' => 'required',
+            'status' => 'required',
+            'blog_category' => 'required',
+        ], [
+            'title.required' => 'Title is required',
+            'blog_content.required' => 'Content is required',
+            'blog_category.required' => 'Category is required',
+            'status.required' => 'Status is required',
+
+        ]);
+
+        if ($validator->fails()) {
+            foreach ($validator->errors()->all() as $error) {
+                $flasher->addError($error);
+            }
+            // Hata oluştuğunda yapılması gereken diğer işlemler...
+            return Redirect::route('admin.blog.list');
+        }
+
+        $id = $request->id;
+
+        //$blogCategory = BlogCategory::where('id', $id)->first();
+        $blog = Blog::findOrFail($id);
+        $blog->title = $request->title;
+        $blog->content = $request->blog_content;
+        $blog->status = $request->status;
+        $blog->category_id = $request->blog_category;
+        $blog->slug = null;
+
+
+        if (!empty($request->file('blog_image'))) {
+
+            $this->validate($request, [
+                'blog_image' => 'mimes:jpeg,jpg,png', 'max:4096',
+            ], [
+                'blog_image.mimes' => ' Blog image should be in jpg, jpeg, png format.',
+                'blog_image.max' => 'Blog photo cannot be larger than 4 MB.',
+            ]);
+
+            $image = base64_encode(file_get_contents($request->file('blog_image')->path()));
+
+            $blog->image = $image;
+        }
+
+        if (empty($request->file('blog_image')) && $request->avatar_remove == 1) {
+            $blog->image = null;
+        }
+
+
+
+        $blog->save();
+
+
+        $flasher->addSuccess('Blog Update Success');
+        return Redirect::route('admin.blog.list');
+
     }
 }

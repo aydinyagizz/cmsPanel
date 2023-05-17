@@ -125,7 +125,31 @@ var KTBlogList = function () {
     }
 
 
-    // Delete subscirption
+    $(document).ready(function() {
+        var handleDeleteRowss = () => {
+            // Select all delete buttons
+            const deleteButtons = table.querySelectorAll('[data-kt-blog-table-filter="delete_row"]');
+
+            deleteButtons.forEach(d => {
+                // Delete button on click
+                d.addEventListener('click', function (e) {
+                   // alert('clisk');
+                    // Delete işlemiyle ilgili kodlar...
+                });
+            });
+        }
+
+        handleDeleteRows();
+    });
+
+
+
+
+
+
+
+
+        // Delete subscirption
     var handleDeleteRows = () => {
         // Select all delete buttons
         const deleteButtons = table.querySelectorAll('[data-kt-blog-table-filter="delete_row"]');
@@ -133,17 +157,20 @@ var KTBlogList = function () {
         deleteButtons.forEach(d => {
             // Delete button on click
             d.addEventListener('click', function (e) {
+
                 e.preventDefault();
 
                 // Select parent row
                 const parent = e.target.closest('tr');
+
+
 
                 // Get user name
                 const userName = parent.querySelectorAll('td')[1].querySelectorAll('a')[0].innerText;
 
                 // TODO: company list tablosunda tekli silme işlemi burada olacak
 
-                const blogCategoryId = parent.querySelectorAll('td')[1].querySelectorAll('a')[0].getAttribute('data-id');
+                const blogId = parent.querySelectorAll('td')[1].querySelectorAll('a')[0].getAttribute('data-id');
                 //TODO: idsini aldık ajax ile silme işlemi kaldı.
 
                 // console.log('user ıd ' + userId);
@@ -152,6 +179,7 @@ var KTBlogList = function () {
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
                     text: "Are you sure you want to delete " + userName + "?",
+                    // text: "Are you sure you want to delete ?",
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: false,
@@ -165,6 +193,7 @@ var KTBlogList = function () {
                     if (result.value) {
                         Swal.fire({
                             text: "You have deleted " + userName + "!.",
+                            //text: "You have deleted !.",
                             icon: "success",
                             buttonsStyling: false,
                             confirmButtonText: "Ok, got it!",
@@ -175,8 +204,6 @@ var KTBlogList = function () {
 
                         }).then(function () {
                             //TODO: company tekli silme işlemi için
-
-
 
                             // Remove current row
                             datatable.row($(parent)).remove().draw();
@@ -195,7 +222,7 @@ var KTBlogList = function () {
                             $.ajax({
                                 url: deleteUrl,
                                 type: 'POST',
-                                data: { blogCategoryId: blogCategoryId},
+                                data: { blogId: blogId},
                                 success: function(response){
                                     // Silme işlemi tamamlandıktan sonra yapılacaklar
                                    // alert("Silme tamam!");
@@ -278,6 +305,8 @@ var KTBlogList = function () {
                     }).then(function () {
                         // Remove all selected customers
                         var IDs = [];
+
+
                         checkboxes.forEach(c => {
                             if (c.checked) {
                             //if (c.value) {

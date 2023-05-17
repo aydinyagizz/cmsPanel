@@ -50,7 +50,7 @@ var KTBlogCategoryList = function () {
             "info": false,
             'order': [],
             "pageLength": 10,
-            "lengthChange": false,
+           // "lengthChange": false,
             'columnDefs': [
                 { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
                 // TODO: tabloda sayısını eklediğimiz değere göre düzelt
