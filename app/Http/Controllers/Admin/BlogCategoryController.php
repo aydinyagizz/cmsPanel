@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\BlogCategory;
+use App\Models\AdminBlogCategory;
 use App\Models\User;
 use Flasher\Prime\FlasherInterface;
 use Illuminate\Http\Request;
@@ -20,7 +20,7 @@ class BlogCategoryController extends Controller
     {
         $data = [
             'admin' => User::where('id', Session::get('adminId'))->first(),
-            'blog_category' => BlogCategory::all(),
+            'blog_category' => AdminBlogCategory::all(),
         ];
 
         return view('admin.pages.blogCategory', $data);
@@ -28,13 +28,28 @@ class BlogCategoryController extends Controller
 
     public function blogCategoryAdd(Request $request, FlasherInterface $flasher)
     {
-// TODO: buaraya name için validate eklenecek
         $data = [
             //'user' => User::where('id', Session::get('adminId'))->first(),
             'admin' => User::where('id', Session::get('adminId'))->first(),
         ];
 
-        $blogCategory = new BlogCategory();
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ], [
+            'name.required' => 'Name is required',
+        ]);
+
+        if ($validator->fails()) {
+            foreach ($validator->errors()->all() as $error) {
+                $flasher->addError($error);
+            }
+            // Hata oluştuğunda yapılması gereken diğer işlemler...
+            return Redirect::route('admin.blog.category.list');
+        }
+
+
+
+        $blogCategory = new AdminBlogCategory();
         $blogCategory->name = $request->name;
         $blogCategory->save();
 
@@ -48,11 +63,11 @@ class BlogCategoryController extends Controller
     {
         if ($request->input('IDs')){
             $IDs = $request->input('IDs');
-            BlogCategory::whereIn('id', $IDs)->delete();
+            AdminBlogCategory::whereIn('id', $IDs)->delete();
         }
         if ($request->input('blogCategoryId')){
             $blogCategoryId = $request->input('blogCategoryId');
-            BlogCategory::find($blogCategoryId)->delete();
+            AdminBlogCategory::find($blogCategoryId)->delete();
         }
 
 
@@ -89,7 +104,7 @@ class BlogCategoryController extends Controller
         $id = $request->id;
 
         //$blogCategory = DB::table('blog_categories')->where('id', $id)->first();
-        $blogCategory = BlogCategory::where('id', $id)->first();
+        $blogCategory = AdminBlogCategory::where('id', $id)->first();
         $blogCategory->name = $request->name;
         $blogCategory->status = $request->status;
         $blogCategory->slug = null;

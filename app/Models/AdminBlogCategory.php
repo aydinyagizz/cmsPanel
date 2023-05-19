@@ -6,11 +6,11 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BlogCategory extends Model
+class AdminBlogCategory extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $table = 'blog_categories';
+    protected $table = 'admin_blog_categories';
 
     public function sluggable():array
     {

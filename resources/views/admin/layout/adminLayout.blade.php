@@ -220,6 +220,41 @@
 
 
 
+                        <a href="{{ route('admin.about.us.list') }}">
+                            <div
+                                class="menu-item   {{ Route::is('admin.about.us.list') ? 'show' : '' }} menu-accordion mb-1">
+                            <span class="menu-link"><span class="menu-icon">
+
+                                    <i class="fa fa-images fa-3x" aria-hidden="true"></i>
+
+                                 </span>
+                                <span class="menu-title">About Us
+                                </span>
+                                <span class=""></span></span>
+
+
+                            </div>
+                        </a>
+
+
+                        <a href="{{ route('admin.services.list') }}">
+                            <div
+                                class="menu-item   {{ Route::is('admin.services.list') ? 'show' : '' }} menu-accordion mb-1">
+                            <span class="menu-link"><span class="menu-icon">
+
+                                    <i class="fa fa-images fa-3x" aria-hidden="true"></i>
+
+                                 </span>
+                                <span class="menu-title">Services
+                                </span>
+                                <span class=""></span></span>
+
+
+                            </div>
+                        </a>
+
+
+
 
 
 
@@ -7497,6 +7532,9 @@
 
 <script src="{{ asset('public/admin/assets/js/blog-list.js') }}"></script>
 <script src="{{ asset('public/admin/assets/js/blog-add.js') }}"></script>
+
+<script src="{{ asset('public/admin/assets/js/services-list.js') }}"></script>
+<script src="{{ asset('public/admin/assets/js/services-add.js') }}"></script>
 
 
 {{--<script src="{{ asset('public/admin/assets/js/custom/apps/user-management/users/list/table.js') }}"></script>--}}

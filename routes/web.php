@@ -42,4 +42,11 @@ Route::prefix('/admin')->middleware(['is_admin', 'role:Admin'])->group(function 
     Route::post( '/blogDelete', [\App\Http\Controllers\Admin\BlogController::class, 'blogDelete'])->name('admin.blog.delete');
     Route::post( '/blogUpdate/{id}', [\App\Http\Controllers\Admin\BlogController::class, 'blogUpdate'])->name('admin.blog.update');
 
+    Route::get( '/aboutUs', [\App\Http\Controllers\Admin\AboutUsController::class, 'aboutUsList'])->name('admin.about.us.list');
+    Route::post( '/aboutUsUpdate', [\App\Http\Controllers\Admin\AboutUsController::class, 'aboutUsUpdate'])->name('admin.about.us.update');
+
+    Route::get( '/services', [\App\Http\Controllers\Admin\ServicesController::class, 'servicesList'])->name('admin.services.list');
+    Route::post( '/servicesAdd', [\App\Http\Controllers\Admin\ServicesController::class, 'servicesAdd'])->name('admin.services.add');
+    Route::post( '/servicesDelete', [\App\Http\Controllers\Admin\ServicesController::class, 'servicesDelete'])->name('admin.services.delete');
+    Route::post( '/servicesUpdate/{id}', [\App\Http\Controllers\Admin\ServicesController::class, 'servicesUpdate'])->name('admin.services.update');
 });

@@ -1,6 +1,7 @@
 @extends('admin.layout.adminLayout')
 
 @section('title')
+    Blog
 @endsection
 
 @section('css')
@@ -484,7 +485,7 @@
 
                                                         <!--begin::Input-->
                                                         {{--                                    <input type="text" class="form-control form-control-solid"--}}
-                                                        {{--                                           placeholder="Blog Content" name="content" id="content"/>--}}
+                                                        {{--                                           placeholder="AdminBlog Content" name="content" id="content"/>--}}
 
                                                         <div class="card-body">
                                                         <textarea id="" name="blog_content"
@@ -680,7 +681,7 @@
 
                                     <!--begin::Input-->
                                     {{--                                    <input type="text" class="form-control form-control-solid"--}}
-                                    {{--                                           placeholder="Blog Content" name="content" id="content"/>--}}
+                                    {{--                                           placeholder="AdminBlog Content" name="content" id="content"/>--}}
 
                                     <div class="card-body">
                                         <textarea id="blog_content" name="blog_content" required></textarea>

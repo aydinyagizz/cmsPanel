@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
-use App\Models\BlogCategory;
+use App\Models\AdminBlog;
+use App\Models\AdminBlogCategory;
 use App\Models\User;
 use Flasher\Prime\FlasherInterface;
 use Illuminate\Http\Request;
@@ -20,12 +20,12 @@ class BlogController extends Controller
     {
         $data = [
             'admin' => User::where('id', Session::get('adminId'))->first(),
-            //'blog' => Blog::all(),
-            'blog' => DB::table('blogs')
-                ->join('blog_categories', 'blogs.category_id', '=', 'blog_categories.id')
-                ->select('blogs.*', 'blog_categories.name as category_name')
+            //'blog' => AdminBlog::all(),
+            'blog' => DB::table('admin_blogs')
+                ->leftJoin('admin_blog_categories', 'admin_blogs.category_id', '=', 'admin_blog_categories.id')
+                ->select('admin_blogs.*', 'admin_blog_categories.name as category_name')
                 ->get(),
-            'blog_category' => BlogCategory::where('status',1)->get(),
+            'blog_category' => AdminBlogCategory::where('status',1)->get(),
         ];
 
 
@@ -37,7 +37,7 @@ class BlogController extends Controller
 
         $data = [
             'admin' => User::where('id', Session::get('adminId'))->first(),
-            'blog' => Blog::all(),
+            'blog' => AdminBlog::all(),
         ];
 
         if ($request->blog_content == '' || $request->title == ''){
@@ -52,7 +52,7 @@ class BlogController extends Controller
 
 
 
-        $blog = new Blog();
+        $blog = new AdminBlog();
         $blog->category_id = $request->blog_category;
         $blog->title = $request->title;
         //$blog->image =  $request->image;
@@ -64,7 +64,7 @@ class BlogController extends Controller
             $this->validate($request, [
                 'blog_image' => 'mimes:jpeg,jpg,png', 'max:4096',
             ], [
-                'blog_image.mimes' => ' Blog image should be in jpg, jpeg, png format.',
+                'blog_image.mimes' => 'Blog image should be in jpg, jpeg, png format.',
                 'blog_image.max' => 'Blog photo cannot be larger than 4 MB.',
             ]);
 
@@ -105,11 +105,11 @@ class BlogController extends Controller
     {
         if ($request->input('IDs')){
             $IDs = $request->input('IDs');
-            Blog::whereIn('id', $IDs)->delete();
+            AdminBlog::whereIn('id', $IDs)->delete();
         }
         if ($request->input('blogId')){
             $blogCategoryId = $request->input('blogId');
-            Blog::find($blogCategoryId)->delete();
+            AdminBlog::find($blogCategoryId)->delete();
         }
 
         return response()->json(['success'=>'Selected blog have been deleted.']);
@@ -142,8 +142,8 @@ class BlogController extends Controller
 
         $id = $request->id;
 
-        //$blogCategory = BlogCategory::where('id', $id)->first();
-        $blog = Blog::findOrFail($id);
+        //$blogCategory = AdminBlogCategory::where('id', $id)->first();
+        $blog = AdminBlog::findOrFail($id);
         $blog->title = $request->title;
         $blog->content = $request->blog_content;
         $blog->status = $request->status;
@@ -156,7 +156,7 @@ class BlogController extends Controller
             $this->validate($request, [
                 'blog_image' => 'mimes:jpeg,jpg,png', 'max:4096',
             ], [
-                'blog_image.mimes' => ' Blog image should be in jpg, jpeg, png format.',
+                'blog_image.mimes' => 'Blog image should be in jpg, jpeg, png format.',
                 'blog_image.max' => 'Blog photo cannot be larger than 4 MB.',
             ]);
 

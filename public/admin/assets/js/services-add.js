@@ -1,7 +1,7 @@
 "use strict";
 
 // Class definition
-var KTModalBlogAdd = function () {
+var KTServicesAdd = function () {
     var submitButton;
     var cancelButton;
     var closeButton;
@@ -16,34 +16,34 @@ var KTModalBlogAdd = function () {
             form,
             {
                 fields: {
-
-
-
-
-                    // 'content': {
-                    //     validators: {
-                    //         notEmpty: {
-                    //             message: 'AdminBlog content is required'
-                    //         }
-                    //     }
-                    // },
-
                     'title': {
                         validators: {
                             notEmpty: {
-                                message: 'AdminBlog title is required'
+                                message: 'Title is required'
                             }
                         }
                     },
-
-                    'blog_category': {
-                            validators: {
-                                notEmpty: {
-                                message: 'AdminBlog category is required'
+                    // 'services_content': {
+                    //     validators: {
+                    //         notEmpty: {
+                    //             message: 'Content is required'
+                    //         }
+                    //     }
+                    // },
+                    'home_status': {
+                        validators: {
+                            notEmpty: {
+                                message: 'Home status is required'
                             }
                         }
                     },
-
+                    'status': {
+                        validators: {
+                            notEmpty: {
+                                message: 'Status is required'
+                            }
+                        }
+                    },
 
                 },
                 plugins: {
@@ -56,12 +56,6 @@ var KTModalBlogAdd = function () {
                 }
             }
         );
-
-
-
-
-
-
 
 
         // $(form.querySelector('[name="country"]')).on('change', function() {
@@ -200,24 +194,19 @@ var KTModalBlogAdd = function () {
                     });
                 }
             });
-        });
-
-
-
-
-
+        })
     }
 
     return {
         // Public functions
         init: function () {
             // Elements
-            modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_blog_modal'));
+            modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_services'));
 
-            form = document.querySelector('#kt_modal_add_blog_form');
-            submitButton = form.querySelector('#kt_modal_add_blog_submit');
-            cancelButton = form.querySelector('#kt_modal_add_blog_cancel');
-            closeButton = form.querySelector('#kt_modal_add_blog_close');
+            form = document.querySelector('#kt_modal_add_services_form');
+            submitButton = form.querySelector('#kt_modal_add_services_submit');
+            cancelButton = form.querySelector('#kt_modal_add_services_cancel');
+            closeButton = form.querySelector('#kt_modal_add_services_close');
 
             handleForm();
         }
@@ -226,5 +215,5 @@ var KTModalBlogAdd = function () {
 
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
-    KTModalBlogAdd.init();
+    KTServicesAdd.init();
 });
