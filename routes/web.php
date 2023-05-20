@@ -49,4 +49,10 @@ Route::prefix('/admin')->middleware(['is_admin', 'role:Admin'])->group(function 
     Route::post( '/servicesAdd', [\App\Http\Controllers\Admin\ServicesController::class, 'servicesAdd'])->name('admin.services.add');
     Route::post( '/servicesDelete', [\App\Http\Controllers\Admin\ServicesController::class, 'servicesDelete'])->name('admin.services.delete');
     Route::post( '/servicesUpdate/{id}', [\App\Http\Controllers\Admin\ServicesController::class, 'servicesUpdate'])->name('admin.services.update');
+
+    Route::get( '/pricing', [\App\Http\Controllers\Admin\PricingController::class, 'pricingList'])->name('admin.pricing.list');
+    Route::post( '/pricingAdd', [\App\Http\Controllers\Admin\PricingController::class, 'pricingAdd'])->name('admin.pricing.add');
+    Route::post( '/pricingDelete', [\App\Http\Controllers\Admin\PricingController::class, 'pricingDelete'])->name('admin.pricing.delete');
+    Route::post( '/pricingUpdate/{id}', [\App\Http\Controllers\Admin\PricingController::class, 'pricingUpdate'])->name('admin.pricing.update');
+
 });

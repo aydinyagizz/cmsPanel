@@ -1,8 +1,8 @@
 "use strict";
 
-var KTServicesList = function () {
+var KTPricingList = function () {
     // Define shared variables
-    var table = document.getElementById('kt_table_services');
+    var table = document.getElementById('kt_table_pricing');
     var datatable;
     var toolbarBase;
     var toolbarSelected;
@@ -55,7 +55,7 @@ var KTServicesList = function () {
             'columnDefs': [
                 { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
                 // TODO: tabloda sayısını eklediğimiz değere göre düzelt
-                { orderable: false, targets: 5 }, // Disable ordering on column 6 (actions)
+                { orderable: false, targets: 7 }, // Disable ordering on column 6 (actions)
             ],
            // columns: [
            //      { data: 'content', name: 'content',   width: '30%',
@@ -79,7 +79,7 @@ var KTServicesList = function () {
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
-        const filterSearch = document.querySelector('[data-kt-services-table-filter="search"]');
+        const filterSearch = document.querySelector('[data-kt-pricing-table-filter="search"]');
         filterSearch.addEventListener('keyup', function (e) {
             datatable.search(e.target.value).draw();
         });
@@ -116,12 +116,12 @@ var KTServicesList = function () {
     // Reset Filter
     var handleResetForm = () => {
         // Select reset button
-        const resetButton = document.querySelector('[data-kt-services-table-filter="reset"]');
+        const resetButton = document.querySelector('[data-kt-pricing-table-filter="reset"]');
 
         // Reset datatable
         resetButton.addEventListener('click', function () {
             // Select filter options
-            const filterForm = document.querySelector('[data-kt-services-table-filter="form"]');
+            const filterForm = document.querySelector('[data-kt-pricing-table-filter="form"]');
             const selectOptions = filterForm.querySelectorAll('select');
 
             // Reset select2 values -- more info: https://select2.org/programmatic-control/add-select-clear-items
@@ -138,7 +138,7 @@ var KTServicesList = function () {
     // Delete subscirption
     var handleDeleteRows = () => {
         // Select all delete buttons
-        const deleteButtons = table.querySelectorAll('[data-kt-services-table-filter="delete_row"]');
+        const deleteButtons = table.querySelectorAll('[data-kt-pricing-table-filter="delete_row"]');
 
         deleteButtons.forEach(d => {
             // Delete button on click
@@ -153,7 +153,7 @@ var KTServicesList = function () {
 
                 // TODO: company list tablosunda tekli silme işlemi burada olacak
 
-                const servicesId = parent.querySelectorAll('td')[1].querySelectorAll('a')[0].getAttribute('data-id');
+                const pricingId = parent.querySelectorAll('td')[1].querySelectorAll('a')[0].getAttribute('data-id');
                 //TODO: idsini aldık ajax ile silme işlemi kaldı.
 
                 // console.log('user ıd ' + userId);
@@ -200,12 +200,12 @@ var KTServicesList = function () {
                                 }
                             });
 
-                            var deleteUrl = document.getElementById('delete-url-services').value;
+                            var deleteUrl = document.getElementById('delete-url-pricing').value;
 
                             $.ajax({
                                 url: deleteUrl,
                                 type: 'POST',
-                                data: { servicesId: servicesId},
+                                data: { pricingId: pricingId},
                                 success: function(response){
                                     // Silme işlemi tamamlandıktan sonra yapılacaklar
                                    // alert("Silme tamam!");
@@ -246,10 +246,10 @@ var KTServicesList = function () {
         const checkboxes = table.querySelectorAll('[type="checkbox"]');
 
         // Select elements
-        toolbarBase = document.querySelector('[data-kt-services-table-toolbar="base"]');
-        toolbarSelected = document.querySelector('[data-kt-services-table-toolbar="selected"]');
-        selectedCount = document.querySelector('[data-kt-services-table-select="selected_count"]');
-        const deleteSelected = document.querySelector('[data-kt-services-table-select="delete_selected"]');
+        toolbarBase = document.querySelector('[data-kt-pricing-table-toolbar="base"]');
+        toolbarSelected = document.querySelector('[data-kt-pricing-table-toolbar="selected"]');
+        selectedCount = document.querySelector('[data-kt-pricing-table-select="selected_count"]');
+        const deleteSelected = document.querySelector('[data-kt-pricing-table-select="delete_selected"]');
 
         // Toggle delete selected toolbar
         checkboxes.forEach(c => {
@@ -309,7 +309,7 @@ var KTServicesList = function () {
                                         }
                                     });
 
-                                    var deleteUrl = document.getElementById('delete-url-services').value;
+                                    var deleteUrl = document.getElementById('delete-url-pricing').value;
 
                                     $.ajax({
                                         url: deleteUrl,
@@ -405,5 +405,5 @@ var KTServicesList = function () {
 
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
-    KTServicesList.init();
+    KTPricingList.init();
 });

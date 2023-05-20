@@ -253,6 +253,22 @@
                             </div>
                         </a>
 
+                        <a href="{{ route('admin.pricing.list') }}">
+                            <div
+                                class="menu-item   {{ Route::is('admin.pricing.list') ? 'show' : '' }} menu-accordion mb-1">
+                            <span class="menu-link"><span class="menu-icon">
+
+                                    <i class="fa fa-images fa-3x" aria-hidden="true"></i>
+
+                                 </span>
+                                <span class="menu-title">Pricing
+                                </span>
+                                <span class=""></span></span>
+
+
+                            </div>
+                        </a>
+
 
 
 
@@ -7535,6 +7551,9 @@
 
 <script src="{{ asset('public/admin/assets/js/services-list.js') }}"></script>
 <script src="{{ asset('public/admin/assets/js/services-add.js') }}"></script>
+
+<script src="{{ asset('public/admin/assets/js/pricing-list.js') }}"></script>
+<script src="{{ asset('public/admin/assets/js/pricing-add.js') }}"></script>
 
 
 {{--<script src="{{ asset('public/admin/assets/js/custom/apps/user-management/users/list/table.js') }}"></script>--}}

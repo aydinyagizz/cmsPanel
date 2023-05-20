@@ -1,7 +1,7 @@
 @extends('admin.layout.adminLayout')
 
 @section('title')
-    Services
+    Pricing
 @endsection
 
 @section('css')
@@ -18,7 +18,7 @@
 
         <!--begin::Heading-->
         <h1 class="text-dark fw-bold mt-1 mb-1 fs-2">
-            Services <small class="text-muted fs-6 fw-normal ms-1"></small>
+            Pricing <small class="text-muted fs-6 fw-normal ms-1"></small>
         </h1>
         <!--end::Heading-->
 
@@ -35,7 +35,7 @@
             </li>
 
             <li class="breadcrumb-item text-dark">
-                Services
+                Pricing
             </li>
 
         </ul>
@@ -70,7 +70,7 @@
     fill="currentColor"/>
 </svg>
 </span>
-                            <input type="text" data-kt-services-table-filter="search"
+                            <input type="text" data-kt-pricing-table-filter="search"
                                    class="form-control form-control-solid w-250px ps-14"
                                    placeholder="Search user"/>
                         </div>
@@ -81,7 +81,7 @@
                     <!--begin::Card toolbar-->
                     <div class="card-toolbar">
                         <!--begin::Toolbar-->
-                        <div class="d-flex justify-content-end" data-kt-services-table-toolbar="base">
+                        <div class="d-flex justify-content-end" data-kt-pricing-table-toolbar="base">
                             <!--begin::Filter-->
                             {{--                                                        <button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click"--}}
                             {{--                                                                data-kt-menu-placement="bottom-end">--}}
@@ -108,7 +108,7 @@
                                 <!--end::Separator-->
 
                                 <!--begin::Content-->
-                                <div class="px-7 py-5" data-kt-services-table-filter="form">
+                                <div class="px-7 py-5" data-kt-pricing-table-filter="form">
                                     <!--begin::Input group-->
                                     <div class="mb-10">
                                         <label class="form-label fs-6 fw-semibold">Role:</label>
@@ -141,7 +141,7 @@
                                     <div class="d-flex justify-content-end">
                                         <button type="reset"
                                                 class="btn btn-light btn-active-light-primary fw-semibold me-2 px-6"
-                                                data-kt-menu-dismiss="true" data-kt-services-table-filter="reset">
+                                                data-kt-menu-dismiss="true" data-kt-pricing-table-filter="reset">
                                             Reset
                                         </button>
                                         <button type="submit" class="btn btn-primary fw-semibold px-6"
@@ -157,8 +157,8 @@
 
 
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#kt_modal_add_services">
-                                Add New Services
+                                    data-bs-target="#kt_modal_add_pricing">
+                                Add New Pricing
                             </button>
 
 
@@ -166,12 +166,12 @@
 
 
                         <div class="d-flex justify-content-end align-items-center d-none"
-                             data-kt-services-table-toolbar="selected">
+                             data-kt-pricing-table-toolbar="selected">
                             <div class="fw-bold me-5">
-                                <span class="me-2" data-kt-services-table-select="selected_count"></span> Selected
+                                <span class="me-2" data-kt-pricing-table-select="selected_count"></span> Selected
                             </div>
 
-                            <button type="button" class="btn btn-danger" data-kt-services-table-select="delete_selected">
+                            <button type="button" class="btn btn-danger" data-kt-pricing-table-select="delete_selected">
                                 Delete Selected
                             </button>
                         </div>
@@ -186,7 +186,7 @@
                     <div class="card-body py-4  table-responsive">
 
                         <!--begin::Table-->
-                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_services">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_pricing">
                             <!--begin::Table head-->
                             <thead>
                             <!--begin::Table row-->
@@ -194,12 +194,14 @@
                                 <th class="w-10px pe-2">
                                     <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
                                         <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                               data-kt-check-target="#kt_table_services .form-check-input"
+                                               data-kt-check-target="#kt_table_pricing .form-check-input"
                                                value=""/>
                                     </div>
                                 </th>
                                 <th class="min-w-125px">Title</th>
                                 <th class="min-w-125px">Content</th>
+                                <th class="min-w-125px">Price</th>
+                                <th class="min-w-125px">Price Suffix</th>
                                 <th class="min-w-125px">Home Page Status</th>
                                 <th class="min-w-125px">Status</th>
                                 <th class="text-end min-w-100px">Actions</th>
@@ -211,7 +213,7 @@
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-semibold">
 
-                            @foreach($services as $item)
+                            @foreach($pricing as $item)
                                 <tr>
                                     <!--begin::Checkbox-->
                                     <td>
@@ -245,6 +247,9 @@
                                         </div>
 
                                     </td>
+
+                                    <td>{{ $item->price }}</td>
+                                    <td>{{ $item->price_suffix }}</td>
 
 
                                     <td>
@@ -302,7 +307,7 @@
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
                                                 <a href="#" class="menu-link px-3"
-                                                   data-kt-services-table-filter="delete_row">
+                                                   data-kt-pricing-table-filter="delete_row">
                                                     Delete
                                                 </a>
                                             </div>
@@ -347,7 +352,7 @@
 
                                             </div>
 
-                                            <form action="{{ route('admin.services.update', [$item->id]) }}"
+                                            <form action="{{ route('admin.pricing.update', [$item->id]) }}"
                                                   method="POST">
                                                 @csrf
 
@@ -375,9 +380,28 @@
                                                         {{--                                    <input type="text" class="form-control form-control-solid"--}}
                                                         {{--                                           placeholder="" name="services_content" id="services_content"/>--}}
 
-                                                        <textarea name="services_content" id="services_content" cols="30"
+                                                        <textarea name="pricing_content" id="pricing_content" cols="30"
                                                                   rows="3">{{ $item->content }}</textarea>
 
+                                                    </div>
+
+
+                                                    <div class="row">
+                                                        <div class="fv-row mb-7 col-md-6">
+                                                            <label class="required fs-6 fw-semibold mb-2">Price</label>
+
+                                                            <input type="number" class="form-control form-control-solid" step="any"
+                                                                   placeholder="Price" name="price" id="price"  value="{{ $item->price }}"/>
+
+                                                        </div>
+
+                                                        <div class="fv-row mb-7 col-md-6">
+                                                            <label class="required fs-6 fw-semibold mb-2">Price Suffix</label>
+
+                                                            <input type="text" class="form-control form-control-solid"
+                                                                   placeholder="Price Suffix" name="price_suffix" id="price_suffix" value="{{ $item->price_suffix }}"/>
+
+                                                        </div>
                                                     </div>
 
 
@@ -533,26 +557,26 @@
             <!--end::Container-->                </div>
 
 
-        {{--                            TODO: Add service modal start  --}}
+        {{--                            TODO: Add pricing modal start  --}}
 
-        <div class="modal fade " id="kt_modal_add_services" tabindex="-1"
+        <div class="modal fade " id="kt_modal_add_pricing" tabindex="-1"
              aria-hidden="true">
             <!--begin::Modal dialog-->
             <div class="modal-dialog modal-dialog-centered mw-650px">
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" method="POST" action="{{ route('admin.services.add') }} "
-                          id="kt_modal_add_services_form"
+                    <form class="form" method="POST" action="{{ route('admin.pricing.add') }} "
+                          id="kt_modal_add_pricing_form"
                           data-kt-redirect-blog-category="">
                         @csrf
                         <!--begin::Modal header-->
                         <div class="modal-header" id="kt_modal_add_customer_header">
                             <!--begin::Modal title-->
-                            <h2 class="fw-bold">Add Services</h2>
+                            <h2 class="fw-bold">Add Pricing</h2>
 
 
-                            <div id="kt_modal_add_services_close"
+                            <div id="kt_modal_add_pricing_close"
                                  class="btn btn-icon btn-sm btn-active-icon-primary">
 
                                 <span class="svg-icon svg-icon-1"><svg width="24" height="24"
@@ -597,9 +621,27 @@
                                     {{--                                    <input type="text" class="form-control form-control-solid"--}}
                                     {{--                                           placeholder="" name="services_content" id="services_content"/>--}}
 
-                                    <textarea name="services_content" id="services_content" cols="30"
-                                              rows="3"></textarea>
+                                    <textarea class="form-control form-control-solid" name="pricing_content" id="pricing_content" cols="30"
+                                              rows="2"></textarea>
 
+                                </div>
+
+                                <div class="row">
+                                    <div class="fv-row mb-7 col-md-6">
+                                        <label class="required fs-6 fw-semibold mb-2">Price</label>
+
+                                        <input type="number" class="form-control form-control-solid"
+                                               placeholder="Price" name="price" id="price"/>
+
+                                    </div>
+
+                                    <div class="fv-row mb-7 col-md-6">
+                                        <label class="required fs-6 fw-semibold mb-2">Price Suffix</label>
+
+                                        <input type="text" class="form-control form-control-solid"
+                                               placeholder="Price Suffix" name="price_suffix" id="price_suffix"/>
+
+                                    </div>
                                 </div>
 
 
@@ -647,14 +689,14 @@
                         <!--begin::Modal footer-->
                         <div class="modal-footer flex-center">
                             <!--begin::Button-->
-                            <button type="reset" id="kt_modal_add_services_cancel"
+                            <button type="reset" id="kt_modal_add_pricing_cancel"
                                     class="btn btn-light me-3">
                                 Discard
                             </button>
                             <!--end::Button-->
 
                             <!--begin::Button-->
-                            <button type="submit" id="kt_modal_add_services_submit"
+                            <button type="submit" id="kt_modal_add_pricing_submit"
                                     class="btn btn-primary">
                         <span class="indicator-label">
                             Submit
@@ -674,10 +716,10 @@
             </div>
         </div>
 
-        {{--                            TODO: Add service modal end  --}}
+        {{--                            TODO: Add pricing modal end  --}}
 
 
-        <input type="hidden" id="delete-url-services" value="{{ route('admin.services.delete') }}">
+        <input type="hidden" id="delete-url-pricing" value="{{ route('admin.pricing.delete') }}">
 
 
         <script>

@@ -42,7 +42,7 @@ class ServicesController extends Controller
             'title.required' => 'Title is required',
             'services_content.required' => 'Content is required',
             'status.required' => 'Status is required',
-            'home_status.required' => 'Category is required',
+            'home_status.required' => 'home status is required',
         ]);
 
         if ($validator->fails()) {
@@ -63,5 +63,54 @@ class ServicesController extends Controller
 
         return Redirect::route('admin.services.list');
 
+    }
+
+    public function servicesUpdate(Request $request, FlasherInterface $flasher)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'services_content' => 'required',
+            'home_status' => 'required',
+            'status' => 'required',
+        ], [
+            'title.required' => 'Title is required',
+            'services_content.required' => 'Content is required',
+            'home_status.required' => 'Category is required',
+            'status.required' => 'Status is required',
+
+        ]);
+
+        if ($validator->fails()) {
+            foreach ($validator->errors()->all() as $error) {
+                $flasher->addError($error);
+            }
+            // Hata oluştuğunda yapılması gereken diğer işlemler...
+            return Redirect::route('admin.services.list');
+        }
+
+        $id = $request->id;
+
+        $services = AdminServices::findOrFail($id);
+        $services->title = $request->title;
+        $services->content = $request->services_content;
+        $services->home_status = $request->home_status;
+        $services->status = $request->status;
+        $services->save();
+        $flasher->addSuccess('Services Updated Success');
+        return Redirect::route('admin.services.list');
+    }
+
+    public function servicesDelete(Request $request)
+    {
+        if ($request->input('IDs')){
+            $IDs = $request->input('IDs');
+            AdminServices::whereIn('id', $IDs)->delete();
+        }
+        if ($request->input('servicesId')){
+            $servicesId = $request->input('servicesId');
+            AdminServices::find($servicesId)->delete();
+        }
+
+        return response()->json(['success'=>'Selected services have been deleted.']);
     }
 }
