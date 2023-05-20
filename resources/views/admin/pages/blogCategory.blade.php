@@ -242,10 +242,10 @@
 
                                     <td>
                                         @if($item->status)
-                                            <div class="badge badge-light-success">Active</div>
+                                            <div class="badge py-3 px-4 fs-7 badge-light-success">Active</div>
 
                                         @else
-                                            <div class="badge badge-light-danger">Pending</div>
+                                            <div class="badge py-3 px-4 fs-7 badge-light-danger">Pending</div>
                                         @endif
 
                                     </td>
