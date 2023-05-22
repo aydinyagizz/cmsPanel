@@ -32,7 +32,8 @@ Route::prefix('/admin')->middleware(['is_admin', 'role:Admin'])->group(function 
 
     Route::get( '/user', [\App\Http\Controllers\Admin\UserController::class, 'userList'])->name('admin.user.list');
     Route::post( '/userAdd', [\App\Http\Controllers\Admin\UserController::class, 'userAdd'])->name('admin.user.add');
-    Route::post( '/blogUserDelete', [\App\Http\Controllers\Admin\UserController::class, 'userDelete'])->name('admin.user.delete');
+    Route::post( '/userDelete', [\App\Http\Controllers\Admin\UserController::class, 'userDelete'])->name('admin.user.delete');
+    Route::post( '/userUpdate/{id}', [\App\Http\Controllers\Admin\UserController::class, 'userUpdate'])->name('admin.user.update');
 
 
     Route::get( '/blogCategory', [\App\Http\Controllers\Admin\BlogCategoryController::class, 'blogCategoryList'])->name('admin.blog.category.list');

@@ -226,7 +226,7 @@
                                         <!--begin:: Avatar -->
                                         <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                             <a href="#" data-id="{{ $item->id }}" data-bs-toggle="modal"
-                                               data-bs-target="#blogCategoryEdit{{ $item->id }}">
+                                               data-bs-target="#userEdit{{ $item->id }}">
                                                 @if($item->user_image)
                                                     <div class="symbol-label">
                                                         <img
@@ -247,7 +247,8 @@
                                         <!--begin::User details-->
                                         <div class="d-flex flex-column">
                                             <a href="#" data-bs-toggle="modal"
-                                               data-bs-target="#blogCategoryEdit{{ $item->id }}" class="text-gray-800 text-hover-primary mb-1">{{ $item->name }}</a>
+                                               data-bs-target="#userEdit{{ $item->id }}"
+                                               class="text-gray-800 text-hover-primary mb-1">{{ $item->name }}</a>
                                             <span>{{ $item->email }}</span>
                                         </div>
                                         <!--begin::User details-->
@@ -301,7 +302,7 @@
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
                                                 <a href="#" data-bs-toggle="modal"
-                                                   data-bs-target="#blogCategoryEdit{{ $item->id }}"
+                                                   data-bs-target="#userEdit{{ $item->id }}"
                                                    class="menu-link px-3">
                                                     Edit
                                                 </a>
@@ -325,7 +326,7 @@
 
                                 {{--                                TODO: Modal edit Başlangıcı    --}}
 
-                                <div class="modal fade" id="blogCategoryEdit{{ $item->id }}" tabindex="-1"
+                                <div class="modal fade modal-trigger" id="userEdit{{ $item->id }}" tabindex="-1"
                                      role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
@@ -334,7 +335,7 @@
                                                 <h2 class="fw-bold">{{ $item->name }}</h2>
 
                                                 <div
-                                                    class="btn btn-icon btn-sm btn-active-icon-primary close"
+                                                    class="btn btn-icon btn-sm btn-active-icon-primary close" id="userEditCancel"
                                                     data-bs-dismiss="modal" aria-label="Close">
 
                                 <span class="svg-icon svg-icon-1">
@@ -355,83 +356,121 @@
 
                                             </div>
 
-                                            <form action="{{ route('admin.pricing.update', [$item->id]) }}"
-                                                  method="POST">
+                                            <form action="{{ route('admin.user.update', [$item->id]) }}"
+                                                  method="POST" enctype="multipart/form-data" >
                                                 @csrf
 
                                                 <div class="modal-body">
 
 
-                                                    <div class="fv-row mb-7">
-                                                        <!--begin::Label-->
-                                                        <label class="required fs-6 fw-semibold mb-2">Title</label>
-                                                        <!--end::Label-->
+                                                    <div class="fv-row mb-7 text-center">
+                                                        <div class="image-input image-input-outline"
+                                                             data-kt-image-input="true"
+                                                             style="background-image: url('assets/media/svg/files/blank-image.svg')">
+                                                            <!--begin::Preview existing avatar-->
+                                                            <div class="image-input-wrapper w-125px h-125px"
+                                                                 @if($item->user_image)
+                                                                     style="background-image: url('data:image/jpeg;base64,{{ $item->user_image }}')"
+                                                                 @else
+                                                                     style="background-image: url('assets/media/svg/files/blank-image.svg')"
+                                                                @endif
 
-                                                        <!--begin::Input-->
-                                                        <input type="text" class="form-control form-control-solid"
-                                                               placeholder="Title" name="title" id="title" required
-                                                               value="{{ $item->title }}"/>
+                                                            ></div>
+                                                            <!--end::Preview existing avatar-->
 
+                                                            <!--begin::Label-->
+                                                            <label
+                                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                                data-kt-image-input-action="change"
+                                                                data-bs-toggle="tooltip"
+                                                                title="Change image">
+                                                                <i class="bi bi-pencil-fill fs-7"></i>
 
+                                                                <!--begin::Inputs-->
+                                                                <input type="file" name="user_image"
+                                                                       accept=".png, .jpg, .jpeg"/>
+
+                                                                <input type="hidden" name="avatar_remove"/>
+
+                                                                <!--end::Inputs-->
+                                                            </label>
+                                                            <!--end::Label-->
+
+                                                            <!--begin::Cancel-->
+                                                            <span
+                                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                                data-kt-image-input-action="cancel"
+                                                                data-bs-toggle="tooltip"
+                                                                title="Cancel image">
+                                                                     <i class="bi bi-x fs-2"></i>
+                                                            </span>
+                                                            <!--end::Cancel-->
+
+                                                            <!--begin::Remove-->
+                                                            @if($item->user_image)
+                                                                <span
+                                                                    class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                                    data-kt-image-input-action="remove"
+                                                                    data-bs-toggle="tooltip"
+                                                                    title="Remove image">
+                                                                    <i class="bi bi-x fs-2"></i>
+                                                            </span>
+                                                            @endif
+                                                            <!--end::Remove-->
+                                                        </div>
+                                                        <!--end::Image input-->
                                                     </div>
 
 
-                                                    <div class="fv-row mb-7">
-                                                        <label class="required fs-6 fw-semibold mb-2">Content</label>
 
-                                                        {{--                                    <input type="text" class="form-control form-control-solid"--}}
-                                                        {{--                                           placeholder="" name="services_content" id="services_content"/>--}}
+                                                        <div class=" fv-row mb-7">
+                                                            <!--begin::Label-->
+                                                            <label class="required fs-6 fw-semibold mb-2">Full
+                                                                Name</label>
+                                                            <!--end::Label-->
 
-                                                        <textarea name="pricing_content" id="pricing_content" cols="30"
-                                                                  rows="3">{{ $item->content }}</textarea>
+                                                            <!--begin::Input-->
+                                                            <input type="text" class="form-control form-control-solid"
+                                                                   placeholder="Full Name" name="name" id="name"
+                                                                   required
+                                                                   value="{{ $item->name }}"/>
+                                                        </div>
 
-                                                    </div>
+
 
 
                                                     <div class="row">
-                                                        <div class="fv-row mb-7 col-md-6">
-                                                            <label class="required fs-6 fw-semibold mb-2">Price</label>
 
-                                                            <input type="number" class="form-control form-control-solid"
-                                                                   step="any"
-                                                                   placeholder="Price" name="price" id="price"
-                                                                   value="{{ $item->price }}"/>
 
-                                                        </div>
 
-                                                        <div class="fv-row mb-7 col-md-6">
-                                                            <label class="required fs-6 fw-semibold mb-2">Price
-                                                                Suffix</label>
+                                                            <div class="col-md-6 fv-row mb-7">
+                                                                <!--begin::Label-->
+                                                                <label class="required fs-6 fw-semibold mb-2">Phone</label>
+                                                                <!--end::Label-->
 
+                                                                <!--begin::Input-->
+                                                                <input type="tel" class="form-control form-control-solid"
+                                                                       placeholder="Phone" name="phone" id="phone" required
+                                                                       value="{{ $item->phone }}"/>
+                                                            </div>
+
+                                                        <div class="col-md-6 fv-row mb-7">
+                                                            <label class="required fs-6 fw-semibold mb-2 ">Web Site
+                                                                Name</label>
                                                             <input type="text" class="form-control form-control-solid"
-                                                                   placeholder="Price Suffix" name="price_suffix"
-                                                                   id="price_suffix" value="{{ $item->price_suffix }}"/>
-
+                                                                   placeholder="Web Site Name" name="web_site_name"
+                                                                   id="web_site_name" required
+                                                                   value="{{ $item->web_site_name }}"/>
                                                         </div>
                                                     </div>
 
 
-                                                    <div class="fv-row mb-7">
-                                                        <label class="required fs-6 fw-semibold mb-2">Home Page
-                                                            Status</label>
-
-                                                        <!--begin::Select2-->
-                                                        <select name="home_status" required
-                                                                class="form-select mb-2"
-                                                                data-control="select2"
-                                                                data-hide-search="true"
-                                                                data-placeholder="Select category"
-                                                                id="home_status{{ $item->id }}">
-                                                            @if($item->home_status)
-                                                                <option value="1">Active</option>
-                                                                <option value="0">Pending</option>
-                                                            @else
-                                                                <option value="0">Pending</option>
-                                                                <option value="1">Active</option>
-                                                            @endif
-
-                                                        </select>
-                                                        <!--end::Select2-->
+                                                    <div class=" fv-row mb-7">
+                                                        <label class="required fs-6 fw-semibold mb-2">Address</label>
+                                                        <textarea class="form-control form-control-solid"
+                                                                  placeholder="Address" name="address" id="address"
+                                                                  cols="30"
+                                                                  rows="1">{{ $item->address ? $item->address : '' }}</textarea>
                                                     </div>
 
 
@@ -439,7 +478,7 @@
                                                         <label class="required fs-6 fw-semibold mb-2">Status</label>
 
                                                         <!--begin::Select2-->
-                                                        <select name="status" required
+                                                        <select data-dropdown-parent="#userEdit{{ $item->id }}" name="status" required
                                                                 class="form-select mb-2"
                                                                 data-control="select2"
                                                                 data-hide-search="true"
@@ -688,8 +727,6 @@
                                 </div>
 
 
-
-
                                 <div class=" row fv-row mb-7">
                                     <div class=" mb-6" data-kt-password-meter="true">
                                         <!--begin::Label-->
@@ -749,7 +786,8 @@
                                                 <div class="col-md-12 fv-row">
                                                     <input class="form-control form-control-lg form-control-solid"
                                                            type="password"
-                                                           placeholder="Confirm Password" name="confirm_password" id="confirm_password"
+                                                           placeholder="Confirm Password" name="confirm_password"
+                                                           id="confirm_password"
                                                            autocomplete="off"/></div>
                                                 <!--end::Col-->
 
@@ -762,7 +800,6 @@
                                 </div>
 
 
-
                                 <div class="fv-row mb-7">
                                     <label class="required fs-6 fw-semibold mb-2">Phone</label>
                                     <input type="tel" class="form-control form-control-solid"
@@ -771,7 +808,8 @@
 
                                 <div class="fv-row mb-7">
                                     <label class="required fs-6 fw-semibold mb-2">Address</label>
-                                    <textarea placeholder="Address" class="form-control form-control-solid" name="address" id="address" cols="30" rows="2"></textarea>
+                                    <textarea placeholder="Address" class="form-control form-control-solid"
+                                              name="address" id="address" cols="30" rows="2"></textarea>
                                 </div>
 
                                 <div class="fv-row mb-7">
@@ -1018,9 +1056,6 @@
                                 {{--                                    </div>--}}
                                 {{--                                    <!--end::Col-->--}}
                                 {{--                                </div>--}}
-
-
-
 
 
                             </div>
