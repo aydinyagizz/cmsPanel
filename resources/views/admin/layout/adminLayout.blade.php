@@ -21,7 +21,7 @@
     <title> @yield("title") </title>
 
 
-    <link rel="canonical" href="https://preview.keenthemes.com/rider-html-pro"/>
+{{--    <link rel="canonical" href="https://preview.keenthemes.com/rider-html-pro"/>--}}
     <link rel="shortcut icon" href="{{ asset('public/admin/assets/media/logos/favicon.ico') }}"/>
 
     <!--begin::Fonts(mandatory for all pages)-->
@@ -48,6 +48,8 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>--}}
+
+
 
     @yield('css')
 
@@ -125,7 +127,7 @@
             <!--begin::Brand-->
             <div class="aside-logo flex-column-auto pt-9 pb-7 px-9" id="kt_aside_logo">
                 <!--begin::Logo-->
-                <a href="index708f.html?page=index">
+                <a href="#">
                     <img alt="Logo" src="{{ asset('public/admin/assets/media/logos/logo-default.svg') }}"
                          class="max-h-50px logo-default"/>
                     <img alt="Logo" src="{{ asset('public/admin/assets/media/logos/logo-compact.svg') }}"
@@ -183,6 +185,21 @@
                         </a>
 
 
+                        <a href="{{ route('admin.user.list') }}">
+                            <div
+                                class="menu-item   {{ Route::is('admin.user.list') ? 'show' : '' }} menu-accordion mb-1">
+                            <span class="menu-link"><span class="menu-icon">
+
+                                    <i class="fa fa-users fa-3x" aria-hidden="true"></i>
+
+                                 </span>
+                                <span class="menu-title">Users
+                                </span>
+                                <span class=""></span></span>
+
+
+                            </div>
+                        </a>
 
 
                         <a href="{{ route('admin.blog.category.list') }}">
@@ -7495,23 +7512,51 @@
 
 <!--begin::Javascript-->
 <script>
-    var hostUrl = "{{ asset('public/admin/assets/index.html') }}";        </script>
+    var hostUrl = "{{ asset('admin/assets/index.html') }}";</script>
 
 
 
 
 <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-<script src="{{ asset('public/admin/assets/plugins/global/plugins.bundle.js') }}"></script>
-<script src="{{ asset('public/admin/assets/js/scripts.bundle.js') }}"></script>
+<script src="{{ asset('admin/assets/plugins/global/plugins.bundle.js') }}"></script>
+<script src="{{ asset('admin/assets/js/scripts.bundle.js') }}"></script>
 <!--end::Global Javascript Bundle-->
 
 <!--begin::Vendors Javascript(used for this page only)-->
-<script src="{{ asset('public/admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+<script src="{{ asset('admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 
-<script src="{{ asset('public/admin/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
+<script src="{{ asset('admin/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
 
 
-<script src="{{ asset('public/admin/assets/plugins/custom/vis-timeline/vis-timeline.bundle.js') }}"></script>
+<script src="{{ asset('admin/assets/plugins/custom/vis-timeline/vis-timeline.bundle.js') }}"></script>
+
+
+
+
+
+
+
+
+<script src="{{ asset('public/admin/assets/js/blog-category-list.js') }}"></script>
+<script src="{{ asset('public/admin/assets/js/blog-category-add.js') }}"></script>
+
+<script src="{{ asset('public/admin/assets/js/blog-list.js') }}"></script>
+<script src="{{ asset('public/admin/assets/js/blog-add.js') }}"></script>
+
+<script src="{{ asset('public/admin/assets/js/services-list.js') }}"></script>
+<script src="{{ asset('public/admin/assets/js/services-add.js') }}"></script>
+
+<script src="{{ asset('public/admin/assets/js/pricing-list.js') }}"></script>
+<script src="{{ asset('public/admin/assets/js/pricing-add.js') }}"></script>
+
+<script src="{{ asset('admin/assets/js/users-list.js') }}"></script>
+<script src="{{ asset('admin/assets/js/users-add.js') }}"></script>
+
+
+
+
+
+
 <script src="../../cdn.amcharts.com/lib/5/index.js"></script>
 <script src="../../cdn.amcharts.com/lib/5/map.js"></script>
 <script src="../../cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
@@ -7530,43 +7575,24 @@
 
 
 <!--begin::Custom Javascript(used for this page only)-->
-<script src="{{ asset('public/admin/assets/js/widgets.bundle.js') }}"></script>
-<script src="{{ asset('public/admin/assets/js/custom/apps/chat/chat.js') }}"></script>
-<script src="{{ asset('public/admin/assets/js/custom/utilities/modals/bidding.js') }}"></script>
-<script src="{{ asset('public/admin/assets/js/custom/utilities/modals/users-search.js') }}"></script>
-
-{{--<script src="{{ asset('public/admin/assets/js/custom/account/settings/profile-details.js') }}"></script>--}}
+<script src="{{ asset('admin/assets/js/widgets.bundle.js') }}"></script>
+<script src="{{ asset('admin/assets/js/custom/apps/chat/chat.js') }}"></script>
+<script src="{{ asset('admin/assets/js/custom/utilities/modals/bidding.js') }}"></script>
+<script src="{{ asset('admin/assets/js/custom/utilities/modals/users-search.js') }}"></script>
 
 
 
 
-{{--<script src="{{ asset('public/admin/assets/js/company-add.js') }}"></script>--}}
-{{--<script src="{{ asset('public/admin/assets/js/admin-company-add-team.js') }}"></script>--}}
-
-<script src="{{ asset('public/admin/assets/js/blog-category-list.js') }}"></script>
-<script src="{{ asset('public/admin/assets/js/blog-category-add.js') }}"></script>
-
-<script src="{{ asset('public/admin/assets/js/blog-list.js') }}"></script>
-<script src="{{ asset('public/admin/assets/js/blog-add.js') }}"></script>
-
-<script src="{{ asset('public/admin/assets/js/services-list.js') }}"></script>
-<script src="{{ asset('public/admin/assets/js/services-add.js') }}"></script>
-
-<script src="{{ asset('public/admin/assets/js/pricing-list.js') }}"></script>
-<script src="{{ asset('public/admin/assets/js/pricing-add.js') }}"></script>
 
 
-{{--<script src="{{ asset('public/admin/assets/js/custom/apps/user-management/users/list/table.js') }}"></script>--}}
-{{--<script src="{{ asset('public/admin/assets/js/custom/apps/user-management/users/list/export-users.js') }}"></script>--}}
-{{--<script src="{{ asset('public/admin/assets/js/custom/apps/user-management/users/list/add.js') }}"></script>--}}
+{{--<script src="{{ asset('public/admin/assets/js/custom/apps/ecommerce/catalog/save-product.js') }}"></script>--}}
 
 
-<script src="{{ asset('public/admin/assets/js/custom/apps/ecommerce/catalog/save-product.js') }}"></script>
+<script src="{{ asset('admin/assets/js/widgets.bundle.js') }}"></script>
+<script src="{{ asset('admin/assets/js/custom/apps/chat/chat.js') }}"></script>
+<script src="{{ asset('admin/assets/js/custom/utilities/modals/users-search.js') }}"></script>
 
 
-<script src="{{ asset('public/admin/assets/js/widgets.bundle.js') }}"></script>
-<script src="{{ asset('public/admin/assets/js/custom/apps/chat/chat.js') }}"></script>
-<script src="{{ asset('public/admin/assets/js/custom/utilities/modals/users-search.js') }}"></script>
 
 
 

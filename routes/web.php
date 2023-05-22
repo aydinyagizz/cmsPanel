@@ -30,6 +30,10 @@ Route::get('/logout', [\App\Http\Controllers\LoginController::class, 'logout'])-
 Route::prefix('/admin')->middleware(['is_admin', 'role:Admin'])->group(function () {
     Route::get('/home', [\App\Http\Controllers\Admin\AdminController::class, 'adminIndex'])->name('admin.index');
 
+    Route::get( '/user', [\App\Http\Controllers\Admin\UserController::class, 'userList'])->name('admin.user.list');
+    Route::post( '/userAdd', [\App\Http\Controllers\Admin\UserController::class, 'userAdd'])->name('admin.user.add');
+    Route::post( '/blogUserDelete', [\App\Http\Controllers\Admin\UserController::class, 'userDelete'])->name('admin.user.delete');
+
 
     Route::get( '/blogCategory', [\App\Http\Controllers\Admin\BlogCategoryController::class, 'blogCategoryList'])->name('admin.blog.category.list');
     Route::post( '/blogCategoryAdd', [\App\Http\Controllers\Admin\BlogCategoryController::class, 'blogCategoryAdd'])->name('admin.blog.category.add');

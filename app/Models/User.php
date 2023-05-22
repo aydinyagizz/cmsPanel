@@ -50,7 +50,7 @@ class User extends Authenticatable
     {
         return [
             'slug' => [
-//                'source' => 'company_name'
+                'source' => 'web_site_name'
             ]
         ];
 

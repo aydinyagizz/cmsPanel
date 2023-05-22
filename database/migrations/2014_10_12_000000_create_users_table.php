@@ -20,10 +20,13 @@ return new class extends Migration
             $table->string('password');
 //            $table->string('company_name')->nullable();
 //            $table->string('user_logo')->nullable();
-            $table->string('user_image')->nullable();
+            $table->longText('user_image')->nullable();
+            $table->string('web_site_name', 500)->nullable();
             $table->string('slug')->nullable();
-            $table->tinyText('country')->nullable();
+            $table->tinyInteger('status')->nullable();
+           // $table->tinyText('country')->nullable();
             $table->string('phone')->nullable();
+            $table->string('address', 500)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

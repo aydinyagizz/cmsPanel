@@ -11,7 +11,6 @@ class AdminController extends Controller
 {
     public function adminIndex()
     {
-//        if (auth()->user()){
         $user = array();
         if (Session::has('adminId')){
             $user = User::where('id', Session::get('adminId'))->first();
@@ -19,12 +18,10 @@ class AdminController extends Controller
         $data = [
             //'user' => User::where('id', Session::get('adminId'))->first(),
             'admin' => User::where('id', Session::get('adminId'))->first(),
+           // 'users' => User::where('user_role', 1)->get(),
         ];
 
         return view('admin.pages.adminIndex', $data, compact('user'));
-//        }else{
-//            return Redirect::route('login');
-//        }
 
     }
 }

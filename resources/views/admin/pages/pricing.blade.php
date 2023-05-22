@@ -72,7 +72,7 @@
 </span>
                             <input type="text" data-kt-pricing-table-filter="search"
                                    class="form-control form-control-solid w-250px ps-14"
-                                   placeholder="Search user"/>
+                                   placeholder="Search pricing"/>
                         </div>
                         <!--end::Search-->
                     </div>

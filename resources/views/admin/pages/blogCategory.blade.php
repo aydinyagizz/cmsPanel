@@ -72,7 +72,7 @@
 </span>
                             <input type="text" data-kt-blog-category-table-filter="search"
                                    class="form-control form-control-solid w-250px ps-14"
-                                   placeholder="Search user"/>
+                                   placeholder="Search blog category"/>
                         </div>
                         <!--end::Search-->
                     </div>
@@ -363,7 +363,7 @@
                                                                 class="form-select mb-2"
                                                                 data-control="select2"
                                                                 data-hide-search="true"
-                                                                data-placeholder="Select category"
+                                                                data-placeholder="Select status"
                                                                 id="status{{ $item->id }}">
                                                             @if($item->status)
                                                                 <option value="1">Active</option>
