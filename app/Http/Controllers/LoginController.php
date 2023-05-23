@@ -43,12 +43,12 @@ class LoginController extends Controller
 //                        return view('auth.login');
 //                    }
 //                }
-                elseif (($user->roles[0]->name = 'User') && ($user->user_role == 2)){
+                elseif (($user->roles[0]->name = 'User') && ($user->user_role == 1)){
                     if (Hash::check($request->password, $user->password)){
                         Auth::login($user);
                         $request->session()->put('userId', $user->id);
                         $flasher->addSuccess('Login Success');
-                        return redirect()->intended('/user');
+                        return redirect()->intended('/user/home');
                     }else{
                         $flasher->addError('Password is wrong');
                         return view('auth.login');

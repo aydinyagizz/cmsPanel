@@ -61,3 +61,23 @@ Route::prefix('/admin')->middleware(['is_admin', 'role:Admin'])->group(function 
     Route::post( '/pricingUpdate/{id}', [\App\Http\Controllers\Admin\PricingController::class, 'pricingUpdate'])->name('admin.pricing.update');
 
 });
+
+
+
+//USER
+Route::prefix('/user')->middleware(['is_user', 'role:User'])->group(function () {
+
+    Route::get('/home', [\App\Http\Controllers\User\UserController::class, 'userIndex'])->name('user.index');
+
+    Route::get('/config', [\App\Http\Controllers\User\UserConfigController::class, 'userConfig'])->name('user.config');
+    Route::post( '/config/template', [\App\Http\Controllers\User\UserConfigController::class, 'userConfigTemplate'])->name('user.config.template');
+
+});
+
+
+//USER
+Route::prefix('/{slug}')->group(function () {
+
+    Route::get('/', [\App\Http\Controllers\UserFrontend\UserFrontendController::class, 'userFrontendIndex'])->name('user.frontend.index');
+
+});

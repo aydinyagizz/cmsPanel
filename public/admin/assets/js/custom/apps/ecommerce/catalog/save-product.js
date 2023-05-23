@@ -297,13 +297,13 @@ var KTAppEcommerceSaveProduct = function () {
                             }
                         }
                     },
-                    'sku': {
-                        validators: {
-                            notEmpty: {
-                                message: 'Product barcode is required'
-                            }
-                        }
-                    },
+                    // 'sku': {
+                    //     validators: {
+                    //         notEmpty: {
+                    //             message: 'Product barcode is required'
+                    //         }
+                    //     }
+                    // },
                     'shelf': {
                         validators: {
                             notEmpty: {

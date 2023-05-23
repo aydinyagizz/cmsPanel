@@ -28,14 +28,14 @@
             {{--                            Home </a>--}}
             {{--                    </li>--}}
 
-            {{--                    <li class="breadcrumb-item text-muted">--}}
-            {{--                        <a href="index708f.html?page=index" class="text-muted text-hover-primary">--}}
-            {{--                        Dashboards </a>--}}
-            {{--                    </li>--}}
+            <li class="breadcrumb-item text-muted">
+                <a href="{{ route('admin.index') }}" class="text-muted text-hover-primary">
+                    Dashboard </a>
+            </li>
 
-            {{--                    <li class="breadcrumb-item text-dark">--}}
-            {{--                        Logistics--}}
-            {{--                    </li>--}}
+            <li class="breadcrumb-item text-dark">
+                Users
+            </li>
 
         </ul>
         <!--end::Breadcrumb-->
