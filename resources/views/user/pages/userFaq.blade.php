@@ -1,7 +1,7 @@
-@extends('admin.layout.adminLayout')
+@extends('user.layout.userLayout')
 
 @section('title')
-    Services
+    Faq
 @endsection
 
 @section('css')
@@ -18,7 +18,7 @@
 
         <!--begin::Heading-->
         <h1 class="text-dark fw-bold mt-1 mb-1 fs-2">
-            Services <small class="text-muted fs-6 fw-normal ms-1"></small>
+            Faq <small class="text-muted fs-6 fw-normal ms-1"></small>
         </h1>
         <!--end::Heading-->
 
@@ -30,12 +30,12 @@
             {{--                                </li>--}}
 
             <li class="breadcrumb-item text-muted">
-                <a href="{{ route('admin.index') }}" class="text-muted text-hover-primary">
+                <a href="{{ route('user.index') }}" class="text-muted text-hover-primary">
                     Dashboard </a>
             </li>
 
             <li class="breadcrumb-item text-dark">
-                Services
+                Frequently Asked Questions
             </li>
 
         </ul>
@@ -70,9 +70,9 @@
     fill="currentColor"/>
 </svg>
 </span>
-                            <input type="text" data-kt-services-table-filter="search"
+                            <input type="text" data-kt-faq-table-filter="search"
                                    class="form-control form-control-solid w-250px ps-14"
-                                   placeholder="Search services"/>
+                                   placeholder="Search Faq"/>
                         </div>
                         <!--end::Search-->
                     </div>
@@ -81,7 +81,7 @@
                     <!--begin::Card toolbar-->
                     <div class="card-toolbar">
                         <!--begin::Toolbar-->
-                        <div class="d-flex justify-content-end" data-kt-services-table-toolbar="base">
+                        <div class="d-flex justify-content-end" data-kt-faq-table-toolbar="base">
                             <!--begin::Filter-->
                             {{--                                                        <button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click"--}}
                             {{--                                                                data-kt-menu-placement="bottom-end">--}}
@@ -108,7 +108,7 @@
                                 <!--end::Separator-->
 
                                 <!--begin::Content-->
-                                <div class="px-7 py-5" data-kt-services-table-filter="form">
+                                <div class="px-7 py-5" data-kt-faq-table-filter="form">
                                     <!--begin::Input group-->
                                     <div class="mb-10">
                                         <label class="form-label fs-6 fw-semibold">Role:</label>
@@ -141,7 +141,7 @@
                                     <div class="d-flex justify-content-end">
                                         <button type="reset"
                                                 class="btn btn-light btn-active-light-primary fw-semibold me-2 px-6"
-                                                data-kt-menu-dismiss="true" data-kt-services-table-filter="reset">
+                                                data-kt-menu-dismiss="true" data-kt-faq-table-filter="reset">
                                             Reset
                                         </button>
                                         <button type="submit" class="btn btn-primary fw-semibold px-6"
@@ -157,8 +157,8 @@
 
 
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#kt_modal_add_services">
-                                Add New Services
+                                    data-bs-target="#kt_modal_add_faq">
+                                Add New Faq
                             </button>
 
 
@@ -166,12 +166,12 @@
 
 
                         <div class="d-flex justify-content-end align-items-center d-none"
-                             data-kt-services-table-toolbar="selected">
+                             data-kt-faq-table-toolbar="selected">
                             <div class="fw-bold me-5">
-                                <span class="me-2" data-kt-services-table-select="selected_count"></span> Selected
+                                <span class="me-2" data-kt-faq-table-select="selected_count"></span> Selected
                             </div>
 
-                            <button type="button" class="btn btn-danger" data-kt-services-table-select="delete_selected">
+                            <button type="button" class="btn btn-danger" data-kt-faq-table-select="delete_selected">
                                 Delete Selected
                             </button>
                         </div>
@@ -182,11 +182,12 @@
                     </div>
                     <!--end::Card header-->
 
-                    <!--begin::Card body-->
-                    <div class="card-body py-4  table-responsive">
 
-                        <!--begin::Table-->
-                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_services">
+                    <!--begin::Card body-->
+                    <div class="card-body py-4 table-responsive">
+
+
+                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_faq">
                             <!--begin::Table head-->
                             <thead>
                             <!--begin::Table row-->
@@ -194,14 +195,14 @@
                                 <th class="w-10px pe-2">
                                     <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
                                         <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                               data-kt-check-target="#kt_table_services .form-check-input"
+                                               data-kt-check-target="#kt_table_faq .form-check-input"
                                                value=""/>
                                     </div>
                                 </th>
                                 <th class="min-w-125px">Title</th>
                                 <th class="min-w-125px">Content</th>
-                                <th class="min-w-125px">Home Page Status</th>
                                 <th class="min-w-125px">Status</th>
+                                <th class="min-w-125px">Created At</th>
                                 <th class="text-end min-w-100px">Actions</th>
                             </tr>
                             <!--end::Table row-->
@@ -211,7 +212,7 @@
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-semibold">
 
-                            @foreach($services as $item)
+                            @foreach($faq as $item)
                                 <tr>
                                     <!--begin::Checkbox-->
                                     <td>
@@ -238,7 +239,7 @@
 
                                         <div class="menu-item px-3">
                                             <a href="#" data-bs-toggle="modal"
-                                               data-bs-target="#servicesDetail{{ $item->id }}"
+                                               data-bs-target="#faqDetail{{ $item->id }}"
                                                class="menu-link px-3">
                                                 View
                                             </a>
@@ -247,15 +248,6 @@
                                     </td>
 
 
-                                    <td>
-                                        @if($item->home_status)
-                                            <div class="badge py-3 px-4 fs-7 badge-light-success">Active</div>
-
-                                        @else
-                                            <div class="badge py-3 px-4 fs-7 badge-light-danger">Pending</div>
-                                        @endif
-
-                                    </td>
 
                                     <td>
                                         @if($item->status)
@@ -266,9 +258,9 @@
                                         @endif
 
                                     </td>
-                                    <!--begin::Joined-->
 
-                                    <!--begin::Action--->
+                                    <td>{{ $item->created_at }}</td>
+
                                     <td class="text-end">
                                         <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
                                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -292,7 +284,7 @@
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
                                                 <a href="#" data-bs-toggle="modal"
-                                                   data-bs-target="#blogCategoryEdit{{ $item->id }}"
+                                                   data-bs-target="#faqEdit{{ $item->id }}"
                                                    class="menu-link px-3">
                                                     Edit
                                                 </a>
@@ -302,7 +294,7 @@
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
                                                 <a href="#" class="menu-link px-3"
-                                                   data-kt-services-table-filter="delete_row">
+                                                   data-kt-faq-table-filter="delete_row">
                                                     Delete
                                                 </a>
                                             </div>
@@ -317,7 +309,7 @@
 
                                 {{--                                TODO: Modal edit Başlangıcı    --}}
 
-                                <div class="modal fade" id="blogCategoryEdit{{ $item->id }}" tabindex="-1"
+                                <div class="modal fade" id="faqEdit{{ $item->id }}" tabindex="-1"
                                      role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
@@ -347,7 +339,7 @@
 
                                             </div>
 
-                                            <form action="{{ route('admin.services.update', [$item->id]) }}"
+                                            <form action="{{ route('user.faq.update', [$item->id]) }}"
                                                   method="POST">
                                                 @csrf
 
@@ -375,41 +367,21 @@
                                                         {{--                                    <input type="text" class="form-control form-control-solid"--}}
                                                         {{--                                           placeholder="" name="services_content" id="services_content"/>--}}
 
-                                                        <textarea name="services_content" id="services_content" cols="30"
+                                                        <textarea name="faq_content" id="faq_content" cols="30"
                                                                   rows="3">{{ $item->content }}</textarea>
 
                                                     </div>
 
 
 
-                                                    <div class="fv-row mb-7">
-                                                        <label class="required fs-6 fw-semibold mb-2">Home Page Status</label>
 
-                                                        <!--begin::Select2-->
-                                                        <select name="home_status" required
-                                                                class="form-select mb-2"
-                                                                data-control="select2"
-                                                                data-hide-search="true"
-                                                                data-placeholder="Select home status"
-                                                                id="home_status{{ $item->id }}">
-                                                            @if($item->home_status)
-                                                                <option value="1">Active</option>
-                                                                <option value="0">Pending</option>
-                                                            @else
-                                                                <option value="0">Pending</option>
-                                                                <option value="1">Active</option>
-                                                            @endif
-
-                                                        </select>
-                                                        <!--end::Select2-->
-                                                    </div>
 
 
                                                     <div class="fv-row mb-7">
                                                         <label class="required fs-6 fw-semibold mb-2">Status</label>
 
                                                         <!--begin::Select2-->
-                                                        <select name="status" required
+                                                        <select name="status" required data-dropdown-parent="#faqEdit{{ $item->id }}"
                                                                 class="form-select mb-2"
                                                                 data-control="select2"
                                                                 data-hide-search="true"
@@ -460,7 +432,7 @@
 
                                 {{--                                TODO: Modal Detail Başlangıcı    --}}
 
-                                <div class="modal fade" id="servicesDetail{{ $item->id }}" tabindex="-1"
+                                <div class="modal fade" id="faqDetail{{ $item->id }}" tabindex="-1"
                                      role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                                     <div class="modal-dialog  modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
@@ -524,35 +496,37 @@
                             </tbody>
                             <!--end::Table body-->
                         </table>
-                        <!--end::Table-->    </div>
+
+
+                    </div>
                     <!--end::Card body-->
                 </div>
-                <!--end::Card--></div>
+               </div>
 
 
             <!--end::Container-->                </div>
 
 
-        {{--                            TODO: Add service modal start  --}}
+        {{--                            TODO: Add faq modal start  --}}
 
-        <div class="modal fade " id="kt_modal_add_services" tabindex="-1"
+        <div class="modal fade " id="kt_modal_add_faq" tabindex="-1"
              aria-hidden="true">
             <!--begin::Modal dialog-->
             <div class="modal-dialog modal-dialog-centered mw-650px">
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" method="POST" action="{{ route('admin.services.add') }} "
-                          id="kt_modal_add_services_form"
+                    <form class="form" method="POST" action="{{ route('user.faq.add') }} "
+                          id="kt_modal_add_faq_form"
                           data-kt-redirect-blog-category="">
                         @csrf
                         <!--begin::Modal header-->
                         <div class="modal-header" id="kt_modal_add_customer_header">
                             <!--begin::Modal title-->
-                            <h2 class="fw-bold">Add Services</h2>
+                            <h2 class="fw-bold">Add Faq</h2>
 
 
-                            <div id="kt_modal_add_services_close"
+                            <div id="kt_modal_add_faq_close"
                                  class="btn btn-icon btn-sm btn-active-icon-primary">
 
                                 <span class="svg-icon svg-icon-1"><svg width="24" height="24"
@@ -597,35 +571,19 @@
                                     {{--                                    <input type="text" class="form-control form-control-solid"--}}
                                     {{--                                           placeholder="" name="services_content" id="services_content"/>--}}
 
-                                    <textarea name="services_content" id="services_content" cols="30"
+                                    <textarea name="faq_content" id="faq_content" cols="30"
                                               rows="3"></textarea>
 
                                 </div>
 
 
-                                <div class="fv-row mb-7">
-                                    <label class="required fs-6 fw-semibold mb-2">Home Status</label>
-
-                                    <!--begin::Select2-->
-                                    <select name="home_status" required data-dropdown-parent="#kt_modal_add_services"
-                                            class="form-select mb-2"
-                                            data-control="select2"
-                                            data-hide-search="true"
-                                            data-placeholder="Select home status" id="home_status">
-                                        <option value="1">Active</option>
-                                        <option value="0">Pending</option>
-
-
-                                    </select>
-                                    <!--end::Select2-->
-                                </div>
 
 
                                 <div class="fv-row mb-7">
                                     <label class="required fs-6 fw-semibold mb-2">Status</label>
 
                                     <!--begin::Select2-->
-                                    <select name="status" required data-dropdown-parent="#kt_modal_add_services"
+                                    <select name="status" required
                                             class="form-select mb-2"
                                             data-control="select2"
                                             data-hide-search="true"
@@ -647,14 +605,14 @@
                         <!--begin::Modal footer-->
                         <div class="modal-footer flex-center">
                             <!--begin::Button-->
-                            <button type="reset" id="kt_modal_add_services_cancel"
+                            <button type="reset" id="kt_modal_add_faq_cancel"
                                     class="btn btn-light me-3">
                                 Discard
                             </button>
                             <!--end::Button-->
 
                             <!--begin::Button-->
-                            <button type="submit" id="kt_modal_add_services_submit"
+                            <button type="submit" id="kt_modal_add_faq_submit"
                                     class="btn btn-primary">
                         <span class="indicator-label">
                             Submit
@@ -674,18 +632,20 @@
             </div>
         </div>
 
-        {{--                            TODO: Add service modal end  --}}
+        {{--                            TODO: Add faq modal end  --}}
 
 
-        <input type="hidden" id="delete-url-services" value="{{ route('admin.services.delete') }}">
+        <input type="hidden" id="delete-url-user-faq" value="{{ route('user.faq.delete') }}">
 
 
         <script>
             CKEDITOR.replaceAll();
+            // CKEDITOR.replace('services_content');
 
         </script>
 
 @endsection
 
 @section('js')
+
 @endsection

@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 \Illuminate\Support\Facades\Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -69,15 +71,36 @@ Route::prefix('/user')->middleware(['is_user', 'role:User'])->group(function () 
 
     Route::get('/home', [\App\Http\Controllers\User\UserController::class, 'userIndex'])->name('user.index');
 
+    Route::get('/edit', [\App\Http\Controllers\User\UserEditController::class, 'userEdit'])->name('user.edit');
+    Route::post( '/edit/profileDetail', [\App\Http\Controllers\User\UserEditController::class, 'userEditProfileDetail'])->name('user.edit.profile.detail');
+
     Route::get('/config', [\App\Http\Controllers\User\UserConfigController::class, 'userConfig'])->name('user.config');
     Route::post( '/config/template', [\App\Http\Controllers\User\UserConfigController::class, 'userConfigTemplate'])->name('user.config.template');
+
+    Route::get( '/aboutUs', [\App\Http\Controllers\User\UserAboutUsController::class, 'aboutUsList'])->name('user.about.us.list');
+    Route::post( '/aboutUsUpdate', [\App\Http\Controllers\User\UserAboutUsController::class, 'aboutUsUpdate'])->name('user.about.us.update');
+
+    Route::get( '/services', [\App\Http\Controllers\User\UserServicesController::class, 'servicesList'])->name('user.services.list');
+    Route::post( '/servicesAdd', [\App\Http\Controllers\User\UserServicesController::class, 'servicesAdd'])->name('user.services.add');
+    Route::post( '/servicesDelete', [\App\Http\Controllers\User\UserServicesController::class, 'servicesDelete'])->name('user.services.delete');
+    Route::post( '/servicesUpdate/{id}', [\App\Http\Controllers\User\UserServicesController::class, 'servicesUpdate'])->name('user.services.update');
+
+    Route::get( '/pricing', [\App\Http\Controllers\User\UserPricingController::class, 'pricingList'])->name('user.pricing.list');
+    Route::post( '/pricingAdd', [\App\Http\Controllers\User\UserPricingController::class, 'pricingAdd'])->name('user.pricing.add');
+    Route::post( '/pricingDelete', [\App\Http\Controllers\User\UserPricingController::class, 'pricingDelete'])->name('user.pricing.delete');
+    Route::post( '/pricingUpdate/{id}', [\App\Http\Controllers\User\UserPricingController::class, 'pricingUpdate'])->name('user.pricing.update');
+
+    Route::get( '/faq', [\App\Http\Controllers\User\UserFaqController::class, 'faqList'])->name('user.faq.list');
+    Route::post( '/faqAdd', [\App\Http\Controllers\User\UserFaqController::class, 'faqAdd'])->name('user.faq.add');
+    Route::post( '/faqDelete', [\App\Http\Controllers\User\UserFaqController::class, 'faqDelete'])->name('user.faq.delete');
+    Route::post( '/faqUpdate/{id}', [\App\Http\Controllers\User\UserFaqController::class, 'faqUpdate'])->name('user.faq.update');
+
 
 });
 
 
-//USER
+//USER FRONTEND
 Route::prefix('/{slug}')->group(function () {
-
     Route::get('/', [\App\Http\Controllers\UserFrontend\UserFrontendController::class, 'userFrontendIndex'])->name('user.frontend.index');
 
 });

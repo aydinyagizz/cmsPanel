@@ -30,7 +30,7 @@
             {{--                                </li>--}}
 
             <li class="breadcrumb-item text-muted">
-                <a href="{{ route('admin.index') }}" class="text-muted text-hover-primary">
+                <a href="{{ route('user.index') }}" class="text-muted text-hover-primary">
                     Dashboard </a>
             </li>
 
@@ -649,7 +649,7 @@
                                     <label class="required fs-6 fw-semibold mb-2">Home Status</label>
 
                                     <!--begin::Select2-->
-                                    <select name="home_status" required
+                                    <select name="home_status" required data-dropdown-parent="#kt_modal_add_pricing"
                                             class="form-select mb-2"
                                             data-control="select2"
                                             data-hide-search="true"
@@ -667,7 +667,7 @@
                                     <label class="required fs-6 fw-semibold mb-2">Status</label>
 
                                     <!--begin::Select2-->
-                                    <select name="status" required
+                                    <select name="status" required data-dropdown-parent="#kt_modal_add_pricing"
                                             class="form-select mb-2"
                                             data-control="select2"
                                             data-hide-search="true"

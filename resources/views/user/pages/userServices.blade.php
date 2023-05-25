@@ -1,4 +1,4 @@
-@extends('admin.layout.adminLayout')
+@extends('user.layout.userLayout')
 
 @section('title')
     Services
@@ -30,7 +30,7 @@
             {{--                                </li>--}}
 
             <li class="breadcrumb-item text-muted">
-                <a href="{{ route('admin.index') }}" class="text-muted text-hover-primary">
+                <a href="{{ route('user.index') }}" class="text-muted text-hover-primary">
                     Dashboard </a>
             </li>
 
@@ -182,10 +182,11 @@
                     </div>
                     <!--end::Card header-->
 
-                    <!--begin::Card body-->
-                    <div class="card-body py-4  table-responsive">
 
-                        <!--begin::Table-->
+                    <!--begin::Card body-->
+                    <div class="card-body py-4 table-responsive">
+
+
                         <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_services">
                             <!--begin::Table head-->
                             <thead>
@@ -200,8 +201,8 @@
                                 </th>
                                 <th class="min-w-125px">Title</th>
                                 <th class="min-w-125px">Content</th>
-                                <th class="min-w-125px">Home Page Status</th>
                                 <th class="min-w-125px">Status</th>
+                                <th class="min-w-125px">Created At</th>
                                 <th class="text-end min-w-100px">Actions</th>
                             </tr>
                             <!--end::Table row-->
@@ -247,15 +248,6 @@
                                     </td>
 
 
-                                    <td>
-                                        @if($item->home_status)
-                                            <div class="badge py-3 px-4 fs-7 badge-light-success">Active</div>
-
-                                        @else
-                                            <div class="badge py-3 px-4 fs-7 badge-light-danger">Pending</div>
-                                        @endif
-
-                                    </td>
 
                                     <td>
                                         @if($item->status)
@@ -266,9 +258,9 @@
                                         @endif
 
                                     </td>
-                                    <!--begin::Joined-->
 
-                                    <!--begin::Action--->
+                                    <td>{{ $item->created_at }}</td>
+
                                     <td class="text-end">
                                         <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
                                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -347,7 +339,7 @@
 
                                             </div>
 
-                                            <form action="{{ route('admin.services.update', [$item->id]) }}"
+                                            <form action="{{ route('user.services.update', [$item->id]) }}"
                                                   method="POST">
                                                 @csrf
 
@@ -382,27 +374,7 @@
 
 
 
-                                                    <div class="fv-row mb-7">
-                                                        <label class="required fs-6 fw-semibold mb-2">Home Page Status</label>
 
-                                                        <!--begin::Select2-->
-                                                        <select name="home_status" required
-                                                                class="form-select mb-2"
-                                                                data-control="select2"
-                                                                data-hide-search="true"
-                                                                data-placeholder="Select home status"
-                                                                id="home_status{{ $item->id }}">
-                                                            @if($item->home_status)
-                                                                <option value="1">Active</option>
-                                                                <option value="0">Pending</option>
-                                                            @else
-                                                                <option value="0">Pending</option>
-                                                                <option value="1">Active</option>
-                                                            @endif
-
-                                                        </select>
-                                                        <!--end::Select2-->
-                                                    </div>
 
 
                                                     <div class="fv-row mb-7">
@@ -524,10 +496,12 @@
                             </tbody>
                             <!--end::Table body-->
                         </table>
-                        <!--end::Table-->    </div>
+
+
+                    </div>
                     <!--end::Card body-->
                 </div>
-                <!--end::Card--></div>
+               </div>
 
 
             <!--end::Container-->                </div>
@@ -542,7 +516,7 @@
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" method="POST" action="{{ route('admin.services.add') }} "
+                    <form class="form" method="POST" action="{{ route('user.services.add') }} "
                           id="kt_modal_add_services_form"
                           data-kt-redirect-blog-category="">
                         @csrf
@@ -603,29 +577,13 @@
                                 </div>
 
 
-                                <div class="fv-row mb-7">
-                                    <label class="required fs-6 fw-semibold mb-2">Home Status</label>
-
-                                    <!--begin::Select2-->
-                                    <select name="home_status" required data-dropdown-parent="#kt_modal_add_services"
-                                            class="form-select mb-2"
-                                            data-control="select2"
-                                            data-hide-search="true"
-                                            data-placeholder="Select home status" id="home_status">
-                                        <option value="1">Active</option>
-                                        <option value="0">Pending</option>
-
-
-                                    </select>
-                                    <!--end::Select2-->
-                                </div>
 
 
                                 <div class="fv-row mb-7">
                                     <label class="required fs-6 fw-semibold mb-2">Status</label>
 
                                     <!--begin::Select2-->
-                                    <select name="status" required data-dropdown-parent="#kt_modal_add_services"
+                                    <select name="status" required
                                             class="form-select mb-2"
                                             data-control="select2"
                                             data-hide-search="true"
@@ -677,7 +635,7 @@
         {{--                            TODO: Add service modal end  --}}
 
 
-        <input type="hidden" id="delete-url-services" value="{{ route('admin.services.delete') }}">
+        <input type="hidden" id="delete-url-user-services" value="{{ route('user.services.delete') }}">
 
 
         <script>

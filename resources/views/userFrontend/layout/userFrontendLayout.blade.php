@@ -46,18 +46,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+
     @yield('css')
 
 
 
-    <!-- =======================================================
-    * Template Name: Arsha - v4.9.1
-    * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 
-{{--    <style>--}}
+
+
+
+    {{--    <style>--}}
 {{--        /*.modal-open .modal{*/--}}
 {{--        /*    overflow-x : auto;*/--}}
 {{--        /*    overflow-y : auto;*/--}}

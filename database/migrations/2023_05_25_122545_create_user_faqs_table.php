@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admin_pricings', function (Blueprint $table) {
+        Schema::create('user_faqs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title')->nullable();
             $table->string('content', 500)->nullable();
-            $table->decimal('price', 8, 2)->nullable();
-            $table->string('price_suffix')->nullable();
-            $table->tinyInteger('home_status')->default(1);
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admin_pricings');
+        Schema::dropIfExists('user_faqs');
     }
 };

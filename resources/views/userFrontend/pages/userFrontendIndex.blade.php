@@ -6,9 +6,12 @@
 
 @section('css')
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
+
 @endsection
 
 @section('content')
+
+
 
         <section id="hero" class="d-flex align-items-center">
 
@@ -410,14 +413,16 @@
 {{--                        @foreach($faq as $item)--}}
                             <li data-aos="fade-up" data-aos-delay="200">
                                 <i class="bx bx-help-circle icon-help"></i>
-                                <a data-bs-toggle="collapse" data-bs-target="#faq-list-  $item->id  " class="collapsed">
+                                <a data-bs-toggle="collapse" data-bs-target="#faq-list-$item->id" class="collapsed">
                                      $item->faq_title
                                     <i class="bx bx-chevron-down icon-show"></i><i
                                         class="bx bx-chevron-up icon-close"></i></a>
-                                <div id="faq-list-  $item->id  " class="collapse" data-bs-parent=".faq-list">
+                                <div id="faq-list-$item->id" class="collapse" data-bs-parent=".faq-list">
+                                     $item->faq_content
                                      $item->faq_content
                                 </div>
                             </li>
+
 {{--                        @endforeach--}}
 
 

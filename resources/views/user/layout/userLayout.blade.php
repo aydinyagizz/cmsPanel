@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -161,8 +160,6 @@
                         <!--begin:Menu item-->
 
 
-
-
                         <a href="{{ route('user.index') }}">
                             <div
                                 class="menu-item   {{ Route::is('user.index') ? 'show' : '' }} menu-accordion mb-1">
@@ -187,12 +184,78 @@
                         </a>
 
 
+                        <a href="{{ route('user.about.us.list') }}">
+                            <div
+                                class="menu-item   {{ Route::is('user.about.us.list') ? 'show' : '' }} menu-accordion mb-1">
+                            <span class="menu-link"><span class="menu-icon">
+
+                                 <i style="font-size: 17px!important;" class="fa fa-info-circle" aria-hidden="true"></i>
+
+                                 </span>
+                                <span class="menu-title">About Us
+                                </span>
+                                <span class=""></span></span>
+
+
+                            </div>
+                        </a>
+
+                        <a href="{{ route('user.services.list') }}">
+                            <div
+                                class="menu-item   {{ Route::is('user.services.list') ? 'show' : '' }} menu-accordion mb-1">
+                            <span class="menu-link"><span class="menu-icon">
+
+                                <i style="font-size: 17px!important;" class="fa fa-wrench" aria-hidden="true"></i>
+
+                                 </span>
+                                <span class="menu-title">Services
+                                </span>
+                                <span class=""></span></span>
+
+
+                            </div>
+                        </a>
+
+                        <a href="{{ route('user.pricing.list') }}">
+                            <div
+                                class="menu-item   {{ Route::is('user.pricing.list') ? 'show' : '' }} menu-accordion mb-1">
+                            <span class="menu-link"><span class="menu-icon">
+
+                                <i style="font-size: 17px!important;" class="fa fa-money-check-dollar"></i>
+
+                                 </span>
+                                <span class="menu-title">Pricing
+                                </span>
+                                <span class=""></span></span>
+
+
+                            </div>
+                        </a>
+
+                        <a href="{{ route('user.faq.list') }}">
+                            <div
+                                class="menu-item   {{ Route::is('user.faq.list') ? 'show' : '' }} menu-accordion mb-1">
+                            <span class="menu-link"><span class="menu-icon">
+
+                                <i style="font-size: 17px!important;" class="fa fa-question-circle"
+                                   aria-hidden="true"></i>
+
+                                 </span>
+                                <span class="menu-title">FAQ
+                                </span>
+                                <span class=""></span></span>
+
+
+                            </div>
+                        </a>
+
+
                         <a href="{{ route('user.config') }}">
                             <div
                                 class="menu-item   {{ Route::is('user.config') ? 'show' : '' }} menu-accordion mb-1">
                             <span class="menu-link"><span class="menu-icon">
 
-                                  <i class="fa fa-cog" aria-hidden="true"></i>
+                                  <i style="font-size: 17px!important;" class="fa fa-cog" aria-hidden="true"></i>
 
                                  </span>
                                 <span class="menu-title">Config
@@ -202,25 +265,6 @@
 
                             </div>
                         </a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                         {{--                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion mb-1">--}}
@@ -315,10 +359,6 @@
                 <!--begin::Container-->
                 <div class=" container-fluid  d-flex align-items-stretch justify-content-between"
                      id="kt_header_container">
-
-
-
-
 
 
                     {{--                    <div--}}
@@ -1411,13 +1451,9 @@
                         <!--end::Activities-->
 
 
-
-
-
-
-                        <a href="{{ route('user.frontend.index', [$user->slug]) }}" target="_blank"><i class="fa fa-globe" aria-hidden="true"></i></a>
-
-
+                        <a class="btn btn-icon btn-active-light-primary position-relative w-35px h-35px w-md-40px h-md-40px"
+                           href="{{ route('user.frontend.index', [$user->slug]) }}" target="_blank"><i
+                                style="font-size: 17px!important;" class="fa fa-globe" aria-hidden="true"></i></a>
 
 
                         <!--begin::Notifications-->
@@ -2324,9 +2360,14 @@
                             <div class="cursor-pointer symbol symbol-circle symbol-35px symbol-md-40px"
                                  data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-attach="parent"
                                  data-kt-menu-placement="bottom-end">
-                                {{--                                <img alt="Pic" src="{{ asset('public/admin/assets/media/avatars/300-1.jpg') }}"/>--}}
-                                <img src="{{ asset('public/user/assets/media/svg/avatars/blank.svg') }}" alt="Logo" class="w-100"/>
-
+                                @if($user->user_image)
+                                    <img
+                                        src="data:image/jpeg;base64,{{ $user->user_image }}"
+                                        alt="{{ $user->name }}" class="w-100"/>
+                                @else
+                                    <img src="{{ asset('public/user/assets/media/svg/avatars/blank.svg') }}" alt="Logo"
+                                         class="w-100"/>
+                                @endif
                             </div>
 
                             <!--begin::User account menu-->
@@ -2338,10 +2379,14 @@
                                     <div class="menu-content d-flex align-items-center px-3">
                                         <!--begin::Avatar-->
                                         <div class="symbol symbol-50px me-5">
-                                            {{--                                            <img alt="Logo"--}}
-                                            {{--                                                 src="{{ asset('public/admin/assets/media/avatars/300-1.jpg') }}"/>--}}
-                                            <img src="{{ asset('public/user/assets/media/svg/avatars/blank.svg') }}" alt="Logo" class="w-100"/>
-
+                                            @if($user->user_image)
+                                                <img
+                                                    src="data:image/jpeg;base64,{{ $user->user_image }}"
+                                                    alt="{{ $user->name }}" class="w-100"/>
+                                            @else
+                                                <img src="{{ asset('public/user/assets/media/svg/avatars/blank.svg') }}"
+                                                     alt="Image" class="w-100"/>
+                                            @endif
                                         </div>
                                         <!--end::Avatar-->
 
@@ -2550,7 +2595,7 @@
 
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-5 my-1">
-                                    <a href="index1477.html?page=account/settings" class="menu-link px-5">
+                                    <a href="{{ route('user.edit') }}" class="menu-link px-5">
                                         Account Settings
                                     </a>
                                 </div>
@@ -2583,13 +2628,10 @@
                     <div class="row gy-5 g-xl-10">
 
 
-
-
                         @yield('content')
 
 
                         {{--                            Body içeriği--}}
-
 
 
                     </div>
@@ -4942,7 +4984,7 @@
 
                         <!--begin::Select2-->
                         <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
-                                name="currency_type" data-placeholder="Select a Currency Type" >
+                                name="currency_type" data-placeholder="Select a Currency Type">
                             <option value=""></option>
                             <option value="dollar" selected>Dollar</option>
                             <option value="crypto">Crypto</option>
@@ -7454,8 +7496,6 @@
     var hostUrl = "{{ asset('user/assets/index.html') }}";</script>
 
 
-
-
 <!--begin::Global Javascript Bundle(mandatory for all pages)-->
 <script src="{{ asset('user/assets/plugins/global/plugins.bundle.js') }}"></script>
 <script src="{{ asset('public/user/assets/js/scripts.bundle.js') }}"></script>
@@ -7470,13 +7510,19 @@
 <script src="{{ asset('user/assets/plugins/custom/vis-timeline/vis-timeline.bundle.js') }}"></script>
 
 
+<script src="{{ asset('public/user/assets/js/services-add.js') }}"></script>
+<script src="{{ asset('public/user/assets/js/services-list.js') }}"></script>
 
+<script src="{{ asset('public/user/assets/js/pricing-add.js') }}"></script>
+<script src="{{ asset('public/user/assets/js/pricing-list.js') }}"></script>
 
+<script src="{{ asset('public/user/assets/js/faq-add.js') }}"></script>
+<script src="{{ asset('public/user/assets/js/faq-list.js') }}"></script>
 
+<script src="{{ asset('public/user/assets/js/template.js') }}"></script>
 
-
-
-
+<script src="{{ asset('public/user/assets/js/signin-methods.js') }}"></script>
+<script src="{{ asset('public/user/assets/js/profile-details.js') }}"></script>
 
 
 <script src="../../cdn.amcharts.com/lib/5/index.js"></script>
@@ -7493,18 +7539,11 @@
 <!--end::Vendors Javascript-->
 
 
-
-
-
 <!--begin::Custom Javascript(used for this page only)-->
 <script src="{{ asset('user/assets/js/widgets.bundle.js') }}"></script>
 <script src="{{ asset('user/assets/js/custom/apps/chat/chat.js') }}"></script>
 <script src="{{ asset('user/assets/js/custom/utilities/modals/bidding.js') }}"></script>
 <script src="{{ asset('user/assets/js/custom/utilities/modals/users-search.js') }}"></script>
-
-
-
-
 
 
 {{--<script src="{{ asset('public/admin/assets/js/custom/apps/ecommerce/catalog/save-product.js') }}"></script>--}}
@@ -7513,10 +7552,6 @@
 <script src="{{ asset('user/assets/js/widgets.bundle.js') }}"></script>
 <script src="{{ asset('user/assets/js/custom/apps/chat/chat.js') }}"></script>
 <script src="{{ asset('user/assets/js/custom/utilities/modals/users-search.js') }}"></script>
-
-
-
-
 
 
 @yield('js')
