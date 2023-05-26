@@ -60,14 +60,14 @@ var KTAccountUserSigninMethods = function () {
             signInForm,
             {
                 fields: {
-                    emailaddress: {
+                    email: {
                         validators: {
                             notEmpty: {
                                 message: 'Email is required'
                             },
-                            emailAddress: {
-                                message: 'The value is not a valid email address'
-                            },
+                            // emailAddress: {
+                            //     message: 'The value is not a valid email address'
+                            // },
                             regexp: {
                                 regexp: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                                 message: 'The value is not a valid email address',
@@ -104,19 +104,21 @@ var KTAccountUserSigninMethods = function () {
 
             validation.validate().then(function (status) {
                 if (status == 'Valid') {
-                    swal.fire({
-                        text: "Sent password reset. Please check your email",
-                        icon: "success",
-                        buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
-                        customClass: {
-                            confirmButton: "btn font-weight-bold btn-light-primary"
-                        }
-                    }).then(function(){
-                        signInForm.reset();
-                        validation.resetForm(); // Reset formvalidation --- more info: https://formvalidation.io/guide/api/reset-form/
-                        toggleChangeEmail();
-                    });
+                    signInForm.submit();
+
+                    // swal.fire({
+                    //     text: "Sent password reset. Please check your email",
+                    //     icon: "success",
+                    //     buttonsStyling: false,
+                    //     confirmButtonText: "Ok, got it!",
+                    //     customClass: {
+                    //         confirmButton: "btn font-weight-bold btn-light-primary"
+                    //     }
+                    // }).then(function(){
+                    //     signInForm.reset();
+                    //     validation.resetForm(); // Reset formvalidation --- more info: https://formvalidation.io/guide/api/reset-form/
+                    //     toggleChangeEmail();
+                    // });
                 } else {
                     // swal.fire({
                     //     text: "Sorry, looks like there are some errors detected, please try again.",

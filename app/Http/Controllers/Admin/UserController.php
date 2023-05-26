@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AdminBlogCategory;
 use App\Models\AdminPricing;
 use App\Models\User;
+use App\Models\UserLog;
 use Flasher\Prime\FlasherInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +25,10 @@ class UserController extends Controller
             'admin' => User::where('id', Session::get('adminId'))->first(),
             'users' => User::where('user_role', 1)->get(),
             //'users' => DB::table('users')->where('user_role', 1)->get(),
+           // 'logs' => UserLog::with('user')->latest()->paginate(10),
+            //'userLastLog' => UserLog::where('user_id', $userId)->latest()->first()
         ];
+        //dd($data['logs'][0]->getLastLoginAttribute());
 
 
         return view('admin.pages.user', $data);
@@ -206,7 +210,39 @@ class UserController extends Controller
 
 
         $flasher->addSuccess('User Update Success');
-        return Redirect::route('admin.user.list');
+        //return Redirect::route('admin.user.list');
+        //return Redirect::route('admin.user.detail', [$id]);
+        return Redirect::back();
 
+    }
+
+    public function userDetail(Request $request, FlasherInterface $flasher)
+    {
+        $id = $request->id;
+        $data = [
+            'admin' => User::where('id', Session::get('adminId'))->first(),
+            'user' => User::where('id', $id)->first(),
+            //'users' => DB::table('users')->where('user_role', 1)->get(),
+            'logs' => UserLog::where('user_id', $id)->with('user')->latest()->paginate(10),
+            'userLastLog' => UserLog::where('user_id', $id)->latest()->first()
+        ];
+        //dd($data['logs'][0]->getLastLoginAttribute());
+
+        return view('admin.pages.userDetail', $data);
+    }
+
+    public function userDetailLog(Request $request)
+    {
+        $id = $request->id;
+        $data = [
+            'admin' => User::where('id', Session::get('adminId'))->first(),
+            'user' => User::where('id', $id)->first(),
+            //'users' => DB::table('users')->where('user_role', 1)->get(),
+            'logs' => UserLog::where('user_id', $id)->with('user')->latest()->paginate(10),
+            'userLastLog' => UserLog::where('user_id', $id)->latest()->first()
+        ];
+        //dd($data['logs'][0]->getLastLoginAttribute());
+
+        return view('admin.pages.userDetailLogs', $data);
     }
 }

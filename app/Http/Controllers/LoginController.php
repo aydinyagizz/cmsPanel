@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserLog;
 use Flasher\Prime\FlasherInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,38 @@ class LoginController extends Controller
                     if (Hash::check($request->password, $user->password)){
                         Auth::login($user);
                         $request->session()->put('userId', $user->id);
+
+                        // Kullanıcı aracısı bilgisini almak için kodu buraya yerleştirin
+                        if ($request->header('User-Agent')) {
+                            $userAgent = $request->header('User-Agent');
+                            $platform = 'Unknown';
+                            $browser = 'Unknown';
+
+                            // İşletim Sistemi Kontrolü
+                            if (preg_match('/\((.*?)\)/', $userAgent, $matches)) {
+                                $platform = $matches[1];
+                            }
+
+                            // Tarayıcı Kontrolü
+                            if (strpos($userAgent, 'Chrome') !== false) {
+                                $browser = 'Chrome';
+                            } elseif (strpos($userAgent, 'Safari') !== false) {
+                                $browser = 'Safari';
+                            }
+
+                            $userAgent = $browser . ' - ' . $platform;
+                        } else {
+                            $userAgent = 'Unknown';
+                        }
+
+                        UserLog::create([
+                            'user_id' => $user->id,
+                            'ip_address' => $request->ip(),
+                            //'user_agent' => $request->header('User-Agent'),
+                            'user_agent' => $userAgent,
+                        ]);
+
+
                         $flasher->addSuccess('Login Success');
                         return redirect()->intended('/user/home');
                     }else{

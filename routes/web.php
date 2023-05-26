@@ -36,6 +36,8 @@ Route::prefix('/admin')->middleware(['is_admin', 'role:Admin'])->group(function 
     Route::post( '/userAdd', [\App\Http\Controllers\Admin\UserController::class, 'userAdd'])->name('admin.user.add');
     Route::post( '/userDelete', [\App\Http\Controllers\Admin\UserController::class, 'userDelete'])->name('admin.user.delete');
     Route::post( '/userUpdate/{id}', [\App\Http\Controllers\Admin\UserController::class, 'userUpdate'])->name('admin.user.update');
+    Route::get( '/userDetail/{id}', [\App\Http\Controllers\Admin\UserController::class, 'userDetail'])->name('admin.user.detail');
+    Route::get( '/userDetailLog/{id}', [\App\Http\Controllers\Admin\UserController::class, 'userDetailLog'])->name('admin.user.detail.log');
 
 
     Route::get( '/blogCategory', [\App\Http\Controllers\Admin\BlogCategoryController::class, 'blogCategoryList'])->name('admin.blog.category.list');
@@ -73,6 +75,9 @@ Route::prefix('/user')->middleware(['is_user', 'role:User'])->group(function () 
 
     Route::get('/edit', [\App\Http\Controllers\User\UserEditController::class, 'userEdit'])->name('user.edit');
     Route::post( '/edit/profileDetail', [\App\Http\Controllers\User\UserEditController::class, 'userEditProfileDetail'])->name('user.edit.profile.detail');
+    Route::post( '/edit/email', [\App\Http\Controllers\User\UserEditController::class, 'userEditEmail'])->name('user.edit.email');
+    Route::post( '/edit/password', [\App\Http\Controllers\User\UserEditController::class, 'userEditPassword'])->name('user.edit.password');
+
 
     Route::get('/config', [\App\Http\Controllers\User\UserConfigController::class, 'userConfig'])->name('user.config');
     Route::post( '/config/template', [\App\Http\Controllers\User\UserConfigController::class, 'userConfigTemplate'])->name('user.config.template');

@@ -7552,6 +7552,9 @@
 <script src="{{ asset('admin/assets/js/users-list.js') }}"></script>
 <script src="{{ asset('admin/assets/js/users-add.js') }}"></script>
 
+<script src="{{ asset('admin/assets/js/user-view-update-email.js') }}"></script>
+<script src="{{ asset('admin/assets/js/user-view-update-password.js') }}"></script>
+<script src="{{ asset('admin/assets/js/user-view-update-details.js') }}"></script>
 
 
 

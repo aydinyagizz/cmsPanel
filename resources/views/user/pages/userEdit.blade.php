@@ -241,18 +241,19 @@
                             <!--begin::Edit-->
                             <div id="kt_signin_email_edit" class="flex-row-fluid d-none">
                                 <!--begin::Form-->
-                                <form id="kt_signin_change_email" class="form" novalidate="novalidate">
+                                <form action="{{ route('user.edit.email') }}" method="POST" id="kt_signin_change_email" class="form" novalidate="novalidate">
+                                   @csrf
                                     <div class="row mb-6">
                                         <div class="col-lg-6 mb-4 mb-lg-0">
                                             <div class="fv-row mb-0">
                                                 <label for="emailaddress" class="form-label fs-6 fw-bold mb-3">Enter New Email Address</label>
-                                                <input type="email" class="form-control form-control-lg form-control-solid" id="emailaddress" placeholder="Email Address" name="emailaddress" value="{{ $user->email }}" />
+                                                <input type="email" class="form-control form-control-lg form-control-solid" id="emailaddress" placeholder="Email Address" name="email" value="{{ $user->email }}" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="fv-row mb-0">
                                                 <label for="confirmemailpassword" class="form-label fs-6 fw-bold mb-3">Confirm Password</label>
-                                                <input type="password" class="form-control form-control-lg form-control-solid" name="confirmemailpassword" id="confirmemailpassword" />
+                                                <input type="password" class="form-control form-control-lg form-control-solid" name="confirmemailpassword" id="confirmemailpassword" placeholder="Confirm Password"/>
                                             </div>
                                         </div>
                                     </div>
@@ -289,31 +290,32 @@
                             <!--begin::Edit-->
                             <div id="kt_signin_password_edit" class="flex-row-fluid d-none">
                                 <!--begin::Form-->
-                                <form id="kt_signin_change_password" class="form" novalidate="novalidate">
+                                <form action="{{ route('user.edit.password') }}" method="POST" id="kt_signin_change_password" class="form" novalidate="novalidate">
+                                    @csrf
                                     <div class="row mb-1">
                                         <div class="col-lg-4">
                                             <div class="fv-row mb-0">
                                                 <label for="currentpassword" class="form-label fs-6 fw-bold mb-3">Current Password</label>
-                                                <input type="password" class="form-control form-control-lg form-control-solid " name="currentpassword" id="currentpassword" />
+                                                <input type="password" class="form-control form-control-lg form-control-solid " name="currentpassword" id="currentpassword" placeholder="Current Password"/>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4">
                                             <div class="fv-row mb-0">
                                                 <label for="newpassword" class="form-label fs-6 fw-bold mb-3">New Password</label>
-                                                <input type="password" class="form-control form-control-lg form-control-solid " name="newpassword" id="newpassword" />
+                                                <input type="password" class="form-control form-control-lg form-control-solid " name="newpassword" id="newpassword" placeholder="New Password"/>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4">
                                             <div class="fv-row mb-0">
                                                 <label for="confirmpassword" class="form-label fs-6 fw-bold mb-3">Confirm New Password</label>
-                                                <input type="password" class="form-control form-control-lg form-control-solid " name="confirmpassword" id="confirmpassword" />
+                                                <input type="password" class="form-control form-control-lg form-control-solid " name="confirmpassword" id="confirmpassword" placeholder="Confirm New Password"/>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="form-text mb-5">Password must be at least 8 character and contain symbols</div>
+                                    <div class="form-text mb-5">Password must be at least 6 character and contain symbols</div>
 
                                     <div class="d-flex">
                                         <button id="kt_password_submit" type="button" class="btn btn-primary me-2 px-6">Update Password</button>

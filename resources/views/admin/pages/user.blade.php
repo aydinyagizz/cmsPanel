@@ -301,8 +301,9 @@
 
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" data-bs-toggle="modal"
-                                                   data-bs-target="#userEdit{{ $item->id }}"
+                                                <a href="{{ route('admin.user.detail',[$item->id]) }}"
+{{--                                                   data-bs-toggle="modal"--}}
+{{--                                                   data-bs-target="#userEdit{{ $item->id }}"--}}
                                                    class="menu-link px-3">
                                                     Edit
                                                 </a>
