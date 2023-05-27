@@ -153,6 +153,15 @@
                                     <div class="text-gray-600">{!! $user->web_site_name !!}
                                     </div>
 
+                                    <div class="fw-bold mt-5">Status</div>
+                                    @if($user->status)
+                                        <div class="text-gray-600"><div class="badge py-3 px-4 fs-7 badge-light-success">Active</div></div>
+
+                                    @else
+                                        <div class="text-gray-600"><div class="badge py-3 px-4 fs-7 badge-light-danger">Pending</div></div>
+                                    @endif
+
+
                                     <div class="fw-bold mt-5">Last Login</div>
                                     <div
                                         class="text-gray-600">{{ $userLastLog ? $userLastLog->created_at : 'No logs found' }}</div>
@@ -173,12 +182,12 @@
                 <div class="flex-lg-row-fluid ms-lg-15">
                     <!--begin:::Tabs-->
                     <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8">
-                        <!--begin:::Tab item-->
-                        <li class="nav-item">
-                            <a class="nav-link text-active-primary pb-4"
-                               href="{{ route('admin.user.detail', [$user->id]) }}">Overview</a>
-                        </li>
-                        <!--end:::Tab item-->
+
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link text-active-primary pb-4"--}}
+{{--                               href="{{ route('admin.user.detail', [$user->id]) }}">Overview</a>--}}
+{{--                        </li>--}}
+
 
                         <!--begin:::Tab item-->
                         <li class="nav-item">

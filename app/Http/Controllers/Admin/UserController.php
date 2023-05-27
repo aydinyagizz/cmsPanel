@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -25,7 +26,7 @@ class UserController extends Controller
             'admin' => User::where('id', Session::get('adminId'))->first(),
             'users' => User::where('user_role', 1)->get(),
             //'users' => DB::table('users')->where('user_role', 1)->get(),
-           // 'logs' => UserLog::with('user')->latest()->paginate(10),
+            // 'logs' => UserLog::with('user')->latest()->paginate(10),
             //'userLastLog' => UserLog::where('user_id', $userId)->latest()->first()
         ];
         //dd($data['logs'][0]->getLastLoginAttribute());
@@ -43,7 +44,7 @@ class UserController extends Controller
             'confirm_password' => 'required|min:6|max:20|same:password',
             'phone' => 'required|numeric',
             'address' => 'required',
-           // 'country' => 'required',
+            // 'country' => 'required',
             'web_site_name' => 'required',
         ], [
             'name.required' => 'Name is required',
@@ -65,7 +66,7 @@ class UserController extends Controller
             'phone.numeric' => 'Phone must be numeric',
 
             'address.required' => 'Address is required',
-           // 'country.required' => 'Country is required',
+            // 'country.required' => 'Country is required',
             'web_site_name.required' => 'Web site name is required',
         ]);
 
@@ -118,16 +119,16 @@ class UserController extends Controller
 
     public function userDelete(Request $request)
     {
-        if ($request->input('IDs')){
+        if ($request->input('IDs')) {
             $IDs = $request->input('IDs');
             User::whereIn('id', $IDs)->delete();
         }
-        if ($request->input('userId')){
+        if ($request->input('userId')) {
             $userId = $request->input('userId');
             User::find($userId)->delete();
         }
 
-        return response()->json(['success'=>'Selected user have been deleted.']);
+        return response()->json(['success' => 'Selected user have been deleted.']);
     }
 
     public function userUpdate(Request $request, FlasherInterface $flasher)
@@ -135,7 +136,7 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-          //  'email' => 'required|email|unique:users',
+            //  'email' => 'required|email|unique:users',
 //            'password' => 'required|min:6|max:20',
 //            'confirm_password' => 'required|min:6|max:20|same:password',
             'phone' => 'required|numeric',
@@ -205,7 +206,6 @@ class UserController extends Controller
         }
 
 
-
         $user->save();
 
 
@@ -224,11 +224,15 @@ class UserController extends Controller
             'user' => User::where('id', $id)->first(),
             //'users' => DB::table('users')->where('user_role', 1)->get(),
             'logs' => UserLog::where('user_id', $id)->with('user')->latest()->paginate(10),
-            'userLastLog' => UserLog::where('user_id', $id)->latest()->first()
+            'userLastLog' => UserLog::where('user_id', $id)->latest()->first(),
+
         ];
+        $user = User::find($id);
+        $userPermissions = $user->permissions()->pluck('name')->toArray();
+
         //dd($data['logs'][0]->getLastLoginAttribute());
 
-        return view('admin.pages.userDetail', $data);
+        return view('admin.pages.userDetail', $data)->with(compact('userPermissions'));
     }
 
     public function userDetailLog(Request $request)
@@ -244,5 +248,40 @@ class UserController extends Controller
         //dd($data['logs'][0]->getLastLoginAttribute());
 
         return view('admin.pages.userDetailLogs', $data);
+    }
+
+    public function userPermissions(Request $request, FlasherInterface $flasher)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'permissions' => 'required|array',
+            'permissions.*' => 'required',
+        ], [
+            'permissions.required' => 'Permissions field is required.',
+            'permissions.array' => 'Permissions must be an array.',
+            'permissions.*.required' => 'Each permission must have a value.',
+        ]);
+
+        if ($validator->fails()) {
+            foreach ($validator->errors()->all() as $error) {
+                $flasher->addError($error);
+            }
+            // Hata oluştuğunda yapılması gereken diğer işlemler...
+            return Redirect::back();
+        }
+
+        $id = $request->id;
+        $user = User::find($id);
+        $permissions = $request->permissions;
+        $permissionModels = Permission::whereIn('name', $permissions)->get();
+
+        if ($permissionModels->isNotEmpty()) {
+            $user->syncPermissions($permissionModels);
+            $flasher->addSuccess('Permissions assigned successfully.');
+        } else {
+            $flasher->addWarning('No permissions selected.');
+        }
+
+        return redirect()->back();
     }
 }

@@ -38,6 +38,7 @@ Route::prefix('/admin')->middleware(['is_admin', 'role:Admin'])->group(function 
     Route::post( '/userUpdate/{id}', [\App\Http\Controllers\Admin\UserController::class, 'userUpdate'])->name('admin.user.update');
     Route::get( '/userDetail/{id}', [\App\Http\Controllers\Admin\UserController::class, 'userDetail'])->name('admin.user.detail');
     Route::get( '/userDetailLog/{id}', [\App\Http\Controllers\Admin\UserController::class, 'userDetailLog'])->name('admin.user.detail.log');
+    Route::post( '/userPermissions/{id}', [\App\Http\Controllers\Admin\UserController::class, 'userPermissions'])->name('admin.user.permissions');
 
 
     Route::get( '/blogCategory', [\App\Http\Controllers\Admin\BlogCategoryController::class, 'blogCategoryList'])->name('admin.blog.category.list');

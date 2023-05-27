@@ -153,6 +153,14 @@
                                     <div class="text-gray-600">{!! $user->web_site_name !!}
                                     </div>
 
+                                    <div class="fw-bold mt-5">Status</div>
+                                    @if($user->status)
+                                        <div class="text-gray-600"><div class="badge py-3 px-4 fs-7 badge-light-success">Active</div></div>
+
+                                    @else
+                                        <div class="text-gray-600"><div class="badge py-3 px-4 fs-7 badge-light-danger">Pending</div></div>
+                                    @endif
+
                                     <div class="fw-bold mt-5">Last Login</div>
                                     <div
                                         class="text-gray-600">{{ $userLastLog ? $userLastLog->created_at : 'No logs found' }}</div>
@@ -173,16 +181,16 @@
                 <div class="flex-lg-row-fluid ms-lg-15">
                     <!--begin:::Tabs-->
                     <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8">
-                        <!--begin:::Tab item-->
-                        <li class="nav-item">
-                            <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab"
-                               href="#kt_user_view_overview_tab">Overview</a>
-                        </li>
-                        <!--end:::Tab item-->
+
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab"--}}
+{{--                               href="#kt_user_view_overview_tab">Overview</a>--}}
+{{--                        </li>--}}
+
 
                         <!--begin:::Tab item-->
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary pb-4" data-kt-countup-tabs="true"
+                            <a class="nav-link text-active-primary pb-4 active" data-kt-countup-tabs="true"
                                data-bs-toggle="tab" href="#kt_user_view_overview_security">Security</a>
                         </li>
                         <!--end:::Tab item-->
@@ -200,42 +208,37 @@
 
                     <!--begin:::Tab content-->
                     <div class="tab-content" id="myTabContent">
-                        <!--begin:::Tab pane-->
-                        <div class="tab-pane fade show active" id="kt_user_view_overview_tab" role="tabpanel">
-                            <!--begin::Card-->
-                            <div class="card card-flush mb-6 mb-xl-9">
-                                <!--begin::Card header-->
-                                <div class="card-header mt-6">
-                                    <!--begin::Card title-->
-                                    <div class="card-title flex-column">
-                                        <h2 class="mb-1">User's Schedule</h2>
-                                    </div>
-                                    <!--end::Card title-->
+
+{{--                        <div class="tab-pane fade show active" id="kt_user_view_overview_tab" role="tabpanel">--}}
+{{--                         --}}
+{{--                            <div class="card card-flush mb-6 mb-xl-9">--}}
+{{--                            --}}
+{{--                                <div class="card-header mt-6">--}}
+{{--                               --}}
+{{--                                    <div class="card-title flex-column">--}}
+{{--                                        <h2 class="mb-1">User's Schedule</h2>--}}
+{{--                                    </div>--}}
+{{--                                    --}}
 
 
-                                </div>
-                                <!--end::Card header-->
-
-                                <!--begin::Card body-->
-                                <div class="card-body p-9 pt-4">
+{{--                                </div>--}}
+{{--                                --}}
+{{--                                <div class="card-body p-9 pt-4">--}}
 
 
-                                    kart içeriği
+{{--                                    kart içeriği--}}
 
 
-                                </div>
-                                <!--end::Card body-->
-                            </div>
-                            <!--end::Card-->
+{{--                                </div>--}}
+{{--                             --}}
+{{--                            </div>--}}
+{{--                      --}}
 
-                            <!--begin::Tasks-->
-
-                            <!--end::Tasks-->
-                        </div>
+{{--                        </div>--}}
                         <!--end:::Tab pane-->
 
                         <!--begin:::Tab pane-->
-                        <div class="tab-pane fade" id="kt_user_view_overview_security" role="tabpanel">
+                        <div class="tab-pane fade show active" id="kt_user_view_overview_security" role="tabpanel">
                             <!--begin::Card-->
                             <div class="card pt-4 mb-6 mb-xl-9">
                                 <!--begin::Card header-->
@@ -318,9 +321,162 @@
                             <!--end::Card-->
 
 
-                            <!--begin::Card-->
+                            <div class="card pt-4 mb-6 mb-xl-9">
 
-                            <!--end::Card-->
+                                <div class="card-header border-0">
+                                    <div class="card-title">
+                                        <h2>Permissions</h2>
+                                    </div>
+                                </div>
+
+                                <div class="card-body pt-0 pb-5">
+                            <form id="kt_modal_update_role_form_user" class="form" action="{{ route('admin.user.permissions', [$user->id]) }}" method="POST">
+                             @csrf
+                                <!--begin::Scroll-->
+                                <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_role_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_role_header" data-kt-scroll-wrappers="#kt_modal_update_role_scroll" data-kt-scroll-offset="300px">
+
+                                    <div class="fv-row">
+
+                                        <div class="table-responsive">
+                                            <!--begin::Table-->
+                                            <table class="table align-middle table-row-dashed fs-6 gy-5">
+                                                <!--begin::Table body-->
+                                                <tbody class="text-gray-600 fw-semibold">
+                                                <!--begin::Table row-->
+                                                <tr>
+                                                    <td class="text-gray-800">
+                                                        Administrator Access
+
+                                                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Allows a full access to the system"></i>
+                                                    </td>
+                                                    <td>
+                                                        <!--begin::Checkbox-->
+                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-9">
+                                                            <input class="form-check-input" type="checkbox" value="" id="kt_roles_select_all_user" />
+                                                            <span class="form-check-label" for="kt_roles_select_all_user">
+                                                        Select all
+                                                    </span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                    </td>
+                                                </tr>
+                                                <!--end::Table row-->
+                                                <!--begin::Table row-->
+                                                <tr>
+                                                    <!--begin::Label-->
+                                                    <td class="text-gray-800">About Us Management</td>
+                                                    <!--end::Label-->
+
+                                                    <!--begin::Input group-->
+                                                    <td>
+                                                        <!--begin::Wrapper-->
+                                                        <div class="d-flex">
+                                                            <!--begin::Checkbox-->
+                                                            <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input" type="checkbox" value="about us view" {{ in_array('about us view', $userPermissions) ? 'checked' : '' }} name="permissions[]"/>
+                                                                <span class="form-check-label">
+                                                                View
+                                                            </span>
+                                                            </label>
+                                                            <!--end::Checkbox-->
+
+                                                            <!--begin::Checkbox-->
+                                                            <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input" type="checkbox" value="about us update" {{ in_array('about us update', $userPermissions) ? 'checked' : '' }} name="permissions[]"/>
+                                                                <span class="form-check-label">
+                                                                Update
+                                                            </span>
+                                                            </label>
+                                                            <!--end::Checkbox-->
+
+                                                        </div>
+                                                        <!--end::Wrapper-->
+                                                    </td>
+                                                    <!--end::Input group-->
+                                                </tr>
+                                                <!--end::Table row-->
+                                                <!--begin::Table row-->
+                                                <tr>
+                                                    <!--begin::Label-->
+                                                    <td class="text-gray-800">Services Management</td>
+                                                    <!--end::Label-->
+
+                                                    <!--begin::Input group-->
+                                                    <td>
+                                                        <!--begin::Wrapper-->
+                                                        <div class="d-flex">
+                                                            <!--begin::Checkbox-->
+                                                            <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input" type="checkbox" value="services view" {{ in_array('services view', $userPermissions) ? 'checked' : '' }} name="permissions[]"/>
+                                                                <span class="form-check-label">
+                                                                View
+                                                            </span>
+                                                            </label>
+                                                            <!--end::Checkbox-->
+
+                                                            <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input" type="checkbox" value="services create" {{ in_array('services create', $userPermissions) ? 'checked' : '' }} name="permissions[]"/>
+                                                                <span class="form-check-label">
+                                                                Create
+                                                            </span>
+                                                            </label>
+
+                                                            <!--begin::Checkbox-->
+                                                            <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input" type="checkbox" value="services update" {{ in_array('services update', $userPermissions) ? 'checked' : '' }} name="permissions[]"/>
+                                                                <span class="form-check-label">
+                                                                Update
+                                                            </span>
+                                                            </label>
+
+                                                            <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input" type="checkbox" value="services delete" {{ in_array('services delete', $userPermissions) ? 'checked' : '' }} name="permissions[]"/>
+                                                                <span class="form-check-label">
+                                                                Delete
+                                                            </span>
+                                                            </label>
+
+                                                        </div>
+                                                        <!--end::Wrapper-->
+                                                    </td>
+                                                    <!--end::Input group-->
+                                                </tr>
+                                                <!--end::Table row-->
+
+
+                                                </tbody>
+                                                <!--end::Table body-->
+                                            </table>
+                                            <!--end::Table-->
+                                        </div>
+                                        <!--end::Table wrapper-->
+                                    </div>
+                                    <!--end::Permissions-->
+                                </div>
+                                <!--end::Scroll-->
+
+                                <!--begin::Actions-->
+                                <div class="text-center pt-15">
+                                    <button type="reset" class="btn btn-light me-3" data-kt-roles-modal-action="cancel">
+                                        Discard
+                                    </button>
+
+                                    <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit">
+                            <span class="indicator-label">
+                                Submit
+                            </span>
+                                        <span class="indicator-progress">
+                                Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                            </span>
+                                    </button>
+                                </div>
+                                <!--end::Actions-->
+                            </form>
+                                </div>
+
+                            </div>
+
+
                         </div>
                         <!--end:::Tab pane-->
 
@@ -856,7 +1012,23 @@ data-bs-dismiss="modal" aria-label="Close"
     </div>
 
     {{--    TODO: update password modal end--}}
+    <script>
+        $( document ).ready(function() {
+            const handleSelectAll = () => {
+                const selectAll = document.querySelector('#kt_roles_select_all_user');
+                const allCheckboxes = document.querySelectorAll('[type="checkbox"]');
 
+                selectAll.addEventListener('change', () => {
+                    allCheckboxes.forEach(checkbox => {
+                        checkbox.checked = selectAll.checked;
+                    });
+                });
+            };
+
+            handleSelectAll();
+        });
+
+    </script>
 @endsection
 
 @section('js')
