@@ -92,7 +92,7 @@
 
 
                             <div class="mb-10 fv-row d-flex justify-content-end mt-10">
-
+                                @can('about us update')
                                 <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
                                      <span class="indicator-label">
                                                  Save Changes
@@ -101,7 +101,7 @@
                                           Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                     </span>
                                 </button>
-
+                                @endcan
 
                             </div>
                             <!--end::Card header-->

@@ -17,7 +17,7 @@
 
         <!--begin::Heading-->
         <h1 class="text-dark fw-bold mt-1 mb-1 fs-2">
-            Dashboard <small class="text-muted fs-6 fw-normal ms-1"></small>
+            Config <small class="text-muted fs-6 fw-normal ms-1"></small>
         </h1>
         <!--end::Heading-->
 

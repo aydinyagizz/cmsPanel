@@ -12,11 +12,11 @@ var KTAccountUserSigninMethods = function () {
     var passwordChange;
     var passwordCancel;
 
-    var toggleChangeEmail = function () {
-        signInMainEl.classList.toggle('d-none');
-        signInChangeEmail.classList.toggle('d-none');
-        signInEditEl.classList.toggle('d-none');
-    }
+    // var toggleChangeEmail = function () {
+    //     signInMainEl.classList.toggle('d-none');
+    //     signInChangeEmail.classList.toggle('d-none');
+    //     signInEditEl.classList.toggle('d-none');
+    // }
 
     var toggleChangePassword = function () {
         passwordMainEl.classList.toggle('d-none');
@@ -26,18 +26,18 @@ var KTAccountUserSigninMethods = function () {
 
     // Private functions
     var initSettings = function () {
-        if (!signInMainEl) {
-            return;
-        }
+        // if (!signInMainEl) {
+        //     return;
+        // }
 
         // toggle UI
-        signInChangeEmail.querySelector('button').addEventListener('click', function () {
-            toggleChangeEmail();
-        });
-
-        signInCancelEmail.addEventListener('click', function () {
-            toggleChangeEmail();
-        });
+        // signInChangeEmail.querySelector('button').addEventListener('click', function () {
+        //     toggleChangeEmail();
+        // });
+        //
+        // signInCancelEmail.addEventListener('click', function () {
+        //     toggleChangeEmail();
+        // });
 
         passwordChange.querySelector('button').addEventListener('click', function () {
             toggleChangePassword();
@@ -49,90 +49,90 @@ var KTAccountUserSigninMethods = function () {
         });
     }
 
-    var handleChangeEmail = function (e) {
-        var validation;
-
-        if (!signInForm) {
-            return;
-        }
-
-        validation = FormValidation.formValidation(
-            signInForm,
-            {
-                fields: {
-                    email: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Email is required'
-                            },
-                            // emailAddress: {
-                            //     message: 'The value is not a valid email address'
-                            // },
-                            regexp: {
-                                regexp: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                message: 'The value is not a valid email address',
-                            },
-                        }
-                    },
-
-                    confirmemailpassword: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Password is required'
-                            },
-                            stringLength: {
-                                min: 6,
-                                max: 20,
-                                message: 'The password must be more than 6 and less than 20 characters long'
-                            },
-                        }
-                    }
-                },
-
-                plugins: { //Learn more: https://formvalidation.io/guide/plugins
-                    trigger: new FormValidation.plugins.Trigger(),
-                    bootstrap: new FormValidation.plugins.Bootstrap5({
-                        rowSelector: '.fv-row'
-                    })
-                }
-            }
-        );
-
-        signInForm.querySelector('#kt_signin_submit').addEventListener('click', function (e) {
-            e.preventDefault();
-            console.log('click');
-
-            validation.validate().then(function (status) {
-                if (status == 'Valid') {
-                    signInForm.submit();
-
-                    // swal.fire({
-                    //     text: "Sent password reset. Please check your email",
-                    //     icon: "success",
-                    //     buttonsStyling: false,
-                    //     confirmButtonText: "Ok, got it!",
-                    //     customClass: {
-                    //         confirmButton: "btn font-weight-bold btn-light-primary"
-                    //     }
-                    // }).then(function(){
-                    //     signInForm.reset();
-                    //     validation.resetForm(); // Reset formvalidation --- more info: https://formvalidation.io/guide/api/reset-form/
-                    //     toggleChangeEmail();
-                    // });
-                } else {
-                    // swal.fire({
-                    //     text: "Sorry, looks like there are some errors detected, please try again.",
-                    //     icon: "error",
-                    //     buttonsStyling: false,
-                    //     confirmButtonText: "Ok, got it!",
-                    //     customClass: {
-                    //         confirmButton: "btn font-weight-bold btn-light-primary"
-                    //     }
-                    // });
-                }
-            });
-        });
-    }
+    // var handleChangeEmail = function (e) {
+    //     var validation;
+    //
+    //     if (!signInForm) {
+    //         return;
+    //     }
+    //
+    //     validation = FormValidation.formValidation(
+    //         signInForm,
+    //         {
+    //             fields: {
+    //                 email: {
+    //                     validators: {
+    //                         notEmpty: {
+    //                             message: 'Email is required'
+    //                         },
+    //                         // emailAddress: {
+    //                         //     message: 'The value is not a valid email address'
+    //                         // },
+    //                         regexp: {
+    //                             regexp: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    //                             message: 'The value is not a valid email address',
+    //                         },
+    //                     }
+    //                 },
+    //
+    //                 confirmemailpassword: {
+    //                     validators: {
+    //                         notEmpty: {
+    //                             message: 'Password is required'
+    //                         },
+    //                         stringLength: {
+    //                             min: 6,
+    //                             max: 20,
+    //                             message: 'The password must be more than 6 and less than 20 characters long'
+    //                         },
+    //                     }
+    //                 }
+    //             },
+    //
+    //             plugins: { //Learn more: https://formvalidation.io/guide/plugins
+    //                 trigger: new FormValidation.plugins.Trigger(),
+    //                 bootstrap: new FormValidation.plugins.Bootstrap5({
+    //                     rowSelector: '.fv-row'
+    //                 })
+    //             }
+    //         }
+    //     );
+    //
+    //     signInForm.querySelector('#kt_signin_submit').addEventListener('click', function (e) {
+    //         e.preventDefault();
+    //         console.log('click');
+    //
+    //         validation.validate().then(function (status) {
+    //             if (status == 'Valid') {
+    //                 signInForm.submit();
+    //
+    //                 // swal.fire({
+    //                 //     text: "Sent password reset. Please check your email",
+    //                 //     icon: "success",
+    //                 //     buttonsStyling: false,
+    //                 //     confirmButtonText: "Ok, got it!",
+    //                 //     customClass: {
+    //                 //         confirmButton: "btn font-weight-bold btn-light-primary"
+    //                 //     }
+    //                 // }).then(function(){
+    //                 //     signInForm.reset();
+    //                 //     validation.resetForm(); // Reset formvalidation --- more info: https://formvalidation.io/guide/api/reset-form/
+    //                 //     toggleChangeEmail();
+    //                 // });
+    //             } else {
+    //                 // swal.fire({
+    //                 //     text: "Sorry, looks like there are some errors detected, please try again.",
+    //                 //     icon: "error",
+    //                 //     buttonsStyling: false,
+    //                 //     confirmButtonText: "Ok, got it!",
+    //                 //     customClass: {
+    //                 //         confirmButton: "btn font-weight-bold btn-light-primary"
+    //                 //     }
+    //                 // });
+    //             }
+    //         });
+    //     });
+    // }
 
     var handleChangePassword = function (e) {
         var validation;
@@ -238,18 +238,18 @@ var KTAccountUserSigninMethods = function () {
     // Public methods
     return {
         init: function () {
-            signInForm = document.getElementById('kt_signin_change_email');
-            signInMainEl = document.getElementById('kt_signin_email');
-            signInEditEl = document.getElementById('kt_signin_email_edit');
+           // signInForm = document.getElementById('kt_signin_change_email');
+           // signInMainEl = document.getElementById('kt_signin_email');
+           // signInEditEl = document.getElementById('kt_signin_email_edit');
             passwordMainEl = document.getElementById('kt_signin_password');
             passwordEditEl = document.getElementById('kt_signin_password_edit');
-            signInChangeEmail = document.getElementById('kt_signin_email_button');
-            signInCancelEmail = document.getElementById('kt_signin_cancel');
+           // signInChangeEmail = document.getElementById('kt_signin_email_button');
+           // signInCancelEmail = document.getElementById('kt_signin_cancel');
             passwordChange = document.getElementById('kt_signin_password_button');
             passwordCancel = document.getElementById('kt_password_cancel');
 
             initSettings();
-            handleChangeEmail();
+           // handleChangeEmail();
             handleChangePassword();
         }
     }

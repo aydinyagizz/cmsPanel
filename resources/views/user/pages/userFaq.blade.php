@@ -155,12 +155,12 @@
                             <!--end::Menu 1-->
                             <!--end::Filter-->
 
-
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#kt_modal_add_faq">
-                                Add New Faq
-                            </button>
-
+                            @can('faq create')
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#kt_modal_add_faq">
+                                    Add New Faq
+                                </button>
+                            @endcan
 
                         </div>
 
@@ -182,267 +182,158 @@
                     </div>
                     <!--end::Card header-->
 
+                </div>
 
-                    <!--begin::Card body-->
-                    <div class="card-body py-4 table-responsive">
+                <!--begin::Card body-->
+                <div class="card-body py-4 table-responsive">
 
 
-                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_faq">
-                            <!--begin::Table head-->
-                            <thead>
-                            <!--begin::Table row-->
-                            <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
-                                <th class="w-10px pe-2">
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                        <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                               data-kt-check-target="#kt_table_faq .form-check-input"
-                                               value=""/>
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_faq">
+                        <!--begin::Table head-->
+                        <thead>
+                        <!--begin::Table row-->
+                        <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                            <th class="w-10px pe-2">
+                                @can('faq delete')
+                                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                    <input class="form-check-input" type="checkbox" data-kt-check="true"
+                                           data-kt-check-target="#kt_table_faq .form-check-input"
+                                           value=""/>
+                                </div>
+                                @endcan
+                            </th>
+                            <th class="min-w-125px">Title</th>
+                            <th class="min-w-125px">Content</th>
+                            <th class="min-w-125px">Status</th>
+                            <th class="min-w-125px">Created At</th>
+                            <th class="text-end min-w-100px">Actions</th>
+                        </tr>
+                        <!--end::Table row-->
+                        </thead>
+                        <!--end::Table head-->
+
+                        <!--begin::Table body-->
+                        <tbody class="text-gray-600 fw-semibold">
+
+                        @foreach($faq as $item)
+                            <tr>
+                                <!--begin::Checkbox-->
+                                <td>
+                                    @can('faq delete')
+                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                        <input class="form-check-input" type="checkbox" value="{{ $item->id }}"/>
                                     </div>
-                                </th>
-                                <th class="min-w-125px">Title</th>
-                                <th class="min-w-125px">Content</th>
-                                <th class="min-w-125px">Status</th>
-                                <th class="min-w-125px">Created At</th>
-                                <th class="text-end min-w-100px">Actions</th>
-                            </tr>
-                            <!--end::Table row-->
-                            </thead>
-                            <!--end::Table head-->
+                                    @endcan
+                                </td>
+                                <!--end::Checkbox-->
 
-                            <!--begin::Table body-->
-                            <tbody class="text-gray-600 fw-semibold">
-
-                            @foreach($faq as $item)
-                                <tr>
-                                    <!--begin::Checkbox-->
-                                    <td>
-                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="{{ $item->id }}"/>
-                                        </div>
-                                    </td>
-                                    <!--end::Checkbox-->
-
-                                    <!--begin::User--->
-                                    <td class=" align-items-center">
+                                <!--begin::User--->
+                                <td class=" align-items-center">
 
 
-                                        <div class="flex-column">
-                                            <a href="#" data-id="{{ $item->id }}"
-                                               class="text-gray-800 text-hover-primary mb-1">{{ $item->title }} </a>
-                                        </div>
-                                        <!--begin::User details-->
+                                    <div class="flex-column">
+                                        <a href="#" data-id="{{ $item->id }}"
+                                           class="text-gray-800 text-hover-primary mb-1">{{ $item->title }} </a>
+                                    </div>
+                                    <!--begin::User details-->
 
-                                    </td>
-
-
-                                    <td>
-
-                                        <div class="menu-item px-3">
-                                            <a href="#" data-bs-toggle="modal"
-                                               data-bs-target="#faqDetail{{ $item->id }}"
-                                               class="menu-link px-3">
-                                                View
-                                            </a>
-                                        </div>
-
-                                    </td>
+                                </td>
 
 
+                                <td>
 
-                                    <td>
-                                        @if($item->status)
-                                            <div class="badge py-3 px-4 fs-7 badge-light-success">Active</div>
+                                    <div class="menu-item px-3">
+                                        <a href="#" data-bs-toggle="modal"
+                                           data-bs-target="#faqDetail{{ $item->id }}"
+                                           class="menu-link px-3">
+                                            View
+                                        </a>
+                                    </div>
 
-                                        @else
-                                            <div class="badge py-3 px-4 fs-7 badge-light-danger">Pending</div>
-                                        @endif
+                                </td>
 
-                                    </td>
 
-                                    <td>{{ $item->created_at }}</td>
+                                <td>
+                                    @if($item->status)
+                                        <div class="badge py-3 px-4 fs-7 badge-light-success">Active</div>
 
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
-                                           data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                            Actions
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                            <span class="svg-icon svg-icon-5 m-0"><svg width="24" height="24"
-                                                                                       viewBox="0 0 24 24" fill="none"
-                                                                                       xmlns="http://www.w3.org/2000/svg">
+                                    @else
+                                        <div class="badge py-3 px-4 fs-7 badge-light-danger">Pending</div>
+                                    @endif
+
+                                </td>
+
+                                <td>{{ $item->created_at }}</td>
+
+                                <td class="text-end">
+                                    <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
+                                       data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                        Actions
+                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                        <span class="svg-icon svg-icon-5 m-0"><svg width="24" height="24"
+                                                                                   viewBox="0 0 24 24" fill="none"
+                                                                                   xmlns="http://www.w3.org/2000/svg">
 <path
     d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
     fill="currentColor"/>
 </svg>
 </span>
-                                            <!--end::Svg Icon-->                    </a>
-                                        <!--begin::Menu-->
-                                        <div
-                                            class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                                            data-kt-menu="true">
+                                        <!--end::Svg Icon-->                    </a>
+                                    <!--begin::Menu-->
+                                    <div
+                                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
+                                        data-kt-menu="true">
 
 
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" data-bs-toggle="modal"
-                                                   data-bs-target="#faqEdit{{ $item->id }}"
-                                                   class="menu-link px-3">
-                                                    Edit
-                                                </a>
-                                            </div>
-                                            <!--end::Menu item-->
-
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3"
-                                                   data-kt-faq-table-filter="delete_row">
-                                                    Delete
-                                                </a>
-                                            </div>
-                                            <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        @can('faq update')
+                                        <div class="menu-item px-3">
+                                            <a href="#" data-bs-toggle="modal"
+                                               data-bs-target="#faqEdit{{ $item->id }}"
+                                               class="menu-link px-3">
+                                                Edit
+                                            </a>
                                         </div>
-                                        <!--end::Menu-->
-                                    </td>
-                                    <!--end::Action--->
-                                </tr>
+                                        @endcan
+                                        <!--end::Menu item-->
 
-
-
-                                {{--                                TODO: Modal edit Başlangıcı    --}}
-
-                                <div class="modal fade" id="faqEdit{{ $item->id }}" tabindex="-1"
-                                     role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                {{--                                                <h2 class="modal-title" id="exampleModalScrollableTitle">{{ $item->title }}</h2>--}}
-                                                <h2 class="fw-bold">{{ $item->title }}</h2>
-
-                                                <div
-                                                    class="btn btn-icon btn-sm btn-active-icon-primary close"
-                                                    data-bs-dismiss="modal" aria-label="Close">
-
-                                <span class="svg-icon svg-icon-1">
-                                    <svg width="24" height="24"
-                                         viewBox="0 0 24 24"
-                                         fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
-                                              transform="rotate(-45 6 17.3137)"
-                                              fill="currentColor"/>
-                                        <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                              transform="rotate(45 7.41422 6)" fill="currentColor"/>
-                                    </svg>
-
-                                </span>
-                                                </div>
-
-
-                                            </div>
-
-                                            <form action="{{ route('user.faq.update', [$item->id]) }}"
-                                                  method="POST">
-                                                @csrf
-
-                                                <div class="modal-body">
-
-
-                                                    <div class="fv-row mb-7">
-                                                        <!--begin::Label-->
-                                                        <label class="required fs-6 fw-semibold mb-2">Title</label>
-                                                        <!--end::Label-->
-
-                                                        <!--begin::Input-->
-                                                        <input type="text" class="form-control form-control-solid"
-                                                               placeholder="Title" name="title" id="title" required
-                                                               value="{{ $item->title }}"/>
-
-
-                                                    </div>
-
-
-
-                                                    <div class="fv-row mb-7">
-                                                        <label class="required fs-6 fw-semibold mb-2">Content</label>
-
-                                                        {{--                                    <input type="text" class="form-control form-control-solid"--}}
-                                                        {{--                                           placeholder="" name="services_content" id="services_content"/>--}}
-
-                                                        <textarea name="faq_content" id="faq_content" cols="30"
-                                                                  rows="3">{{ $item->content }}</textarea>
-
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="fv-row mb-7">
-                                                        <label class="required fs-6 fw-semibold mb-2">Status</label>
-
-                                                        <!--begin::Select2-->
-                                                        <select name="status" required data-dropdown-parent="#faqEdit{{ $item->id }}"
-                                                                class="form-select mb-2"
-                                                                data-control="select2"
-                                                                data-hide-search="true"
-                                                                data-placeholder="Select status"
-                                                                id="status{{ $item->id }}">
-                                                            @if($item->status)
-                                                                <option value="1">Active</option>
-                                                                <option value="0">Pending</option>
-                                                            @else
-                                                                <option value="0">Pending</option>
-                                                                <option value="1">Active</option>
-                                                            @endif
-
-                                                        </select>
-                                                        <!--end::Select2-->
-                                                    </div>
-
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">
-                                                        Close
-                                                    </button>
-
-                                                    <button type="submit" class="btn btn-primary">
-                                                        Update
-                                                    </button>
-
-                                                </div>
-
-
-                                            </form>
+                                        <!--begin::Menu item-->
+                                        @can('faq delete')
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3"
+                                               data-kt-faq-table-filter="delete_row">
+                                                Delete
+                                            </a>
                                         </div>
+                                        @endcan
+                                        <!--end::Menu item-->
+
+                                        @if (! (auth()->user()->can('faq update') || auth()->user()->can('faq delete')))
+                                            <div class="menu-item ">
+                                                <p class="text-center ">empty</p>
+                                            </div>
+                                        @endif
                                     </div>
-                                </div>
+                                    <!--end::Menu-->
+                                </td>
+                                <!--end::Action--->
+                            </tr>
 
 
 
+                            {{--                                TODO: Modal edit Başlangıcı    --}}
 
+                            <div class="modal fade" id="faqEdit{{ $item->id }}" tabindex="-1"
+                                 role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            {{--                                                <h2 class="modal-title" id="exampleModalScrollableTitle">{{ $item->title }}</h2>--}}
+                                            <h2 class="fw-bold">{{ $item->title }}</h2>
 
-                                {{--                                TODO: Modal edit Bitişi     --}}
-
-
-
-
-
-
-                                {{--                                TODO: Modal Detail Başlangıcı    --}}
-
-                                <div class="modal fade" id="faqDetail{{ $item->id }}" tabindex="-1"
-                                     role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-                                    <div class="modal-dialog  modal-dialog-scrollable" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                {{--                                                <h2 class="modal-title" id="exampleModalScrollableTitle">{{ $item->title }}</h2>--}}
-                                                <h2 class="fw-bold">{{ $item->title }}</h2>
-
-                                                <div
-                                                    class="btn btn-icon btn-sm btn-active-icon-primary close"
-                                                    data-bs-dismiss="modal" aria-label="Close">
+                                            <div
+                                                class="btn btn-icon btn-sm btn-active-icon-primary close"
+                                                data-bs-dismiss="modal" aria-label="Close">
 
                                 <span class="svg-icon svg-icon-1">
                                     <svg width="24" height="24"
@@ -457,16 +348,66 @@
                                     </svg>
 
                                 </span>
-                                                </div>
-
-
                                             </div>
 
+
+                                        </div>
+
+                                        <form action="{{ route('user.faq.update', [$item->id]) }}"
+                                              method="POST">
+                                            @csrf
 
                                             <div class="modal-body">
 
 
-                                                {!! $item->content !!}
+                                                <div class="fv-row mb-7">
+                                                    <!--begin::Label-->
+                                                    <label class="required fs-6 fw-semibold mb-2">Title</label>
+                                                    <!--end::Label-->
+
+                                                    <!--begin::Input-->
+                                                    <input type="text" class="form-control form-control-solid"
+                                                           placeholder="Title" name="title" id="title" required
+                                                           value="{{ $item->title }}"/>
+
+
+                                                </div>
+
+
+                                                <div class="fv-row mb-7">
+                                                    <label class="required fs-6 fw-semibold mb-2">Content</label>
+
+                                                    {{--                                    <input type="text" class="form-control form-control-solid"--}}
+                                                    {{--                                           placeholder="" name="services_content" id="services_content"/>--}}
+
+                                                    <textarea name="faq_content" id="faq_content" cols="30"
+                                                              rows="3">{{ $item->content }}</textarea>
+
+                                                </div>
+
+
+                                                <div class="fv-row mb-7">
+                                                    <label class="required fs-6 fw-semibold mb-2">Status</label>
+
+                                                    <!--begin::Select2-->
+                                                    <select name="status" required
+                                                            data-dropdown-parent="#faqEdit{{ $item->id }}"
+                                                            class="form-select mb-2"
+                                                            data-control="select2"
+                                                            data-hide-search="true"
+                                                            data-placeholder="Select status"
+                                                            id="status{{ $item->id }}">
+                                                        @if($item->status)
+                                                            <option value="1">Active</option>
+                                                            <option value="0">Pending</option>
+                                                        @else
+                                                            <option value="0">Pending</option>
+                                                            <option value="1">Active</option>
+                                                        @endif
+
+                                                    </select>
+                                                    <!--end::Select2-->
+                                                </div>
 
 
                                             </div>
@@ -476,58 +417,123 @@
                                                     Close
                                                 </button>
 
+                                                <button type="submit" class="btn btn-primary">
+                                                    Update
+                                                </button>
 
                                             </div>
 
 
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
+                            </div>
 
 
 
 
 
-                                {{--                                TODO: Modal detail Bitişi     --}}
-
-                            @endforeach
+                            {{--                                TODO: Modal edit Bitişi     --}}
 
 
-                            </tbody>
-                            <!--end::Table body-->
-                        </table>
 
 
-                    </div>
-                    <!--end::Card body-->
+
+
+                            {{--                                TODO: Modal Detail Başlangıcı    --}}
+
+                            <div class="modal fade" id="faqDetail{{ $item->id }}" tabindex="-1"
+                                 role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                <div class="modal-dialog  modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            {{--                                                <h2 class="modal-title" id="exampleModalScrollableTitle">{{ $item->title }}</h2>--}}
+                                            <h2 class="fw-bold">{{ $item->title }}</h2>
+
+                                            <div
+                                                class="btn btn-icon btn-sm btn-active-icon-primary close"
+                                                data-bs-dismiss="modal" aria-label="Close">
+
+                                <span class="svg-icon svg-icon-1">
+                                    <svg width="24" height="24"
+                                         viewBox="0 0 24 24"
+                                         fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                              transform="rotate(-45 6 17.3137)"
+                                              fill="currentColor"/>
+                                        <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                              transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                    </svg>
+
+                                </span>
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="modal-body">
+
+
+                                            {!! $item->content !!}
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">
+                                                Close
+                                            </button>
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            {{--                                TODO: Modal detail Bitişi     --}}
+
+                        @endforeach
+
+
+                        </tbody>
+                        <!--end::Table body-->
+                    </table>
+
+
                 </div>
-               </div>
+                <!--end::Card body-->
+
+            </div>
+
+            {{--                            TODO: Add faq modal start  --}}
+
+            <div class="modal fade " id="kt_modal_add_faq" tabindex="-1"
+                 aria-hidden="true">
+                <!--begin::Modal dialog-->
+                <div class="modal-dialog modal-dialog-centered mw-650px">
+                    <!--begin::Modal content-->
+                    <div class="modal-content">
+                        <!--begin::Form-->
+                        <form class="form" method="POST" action="{{ route('user.faq.add') }} "
+                              id="kt_modal_add_faq_form"
+                              data-kt-redirect-blog-category="">
+                            @csrf
+                            <!--begin::Modal header-->
+                            <div class="modal-header" id="kt_modal_add_customer_header">
+                                <!--begin::Modal title-->
+                                <h2 class="fw-bold">Add Faq</h2>
 
 
-            <!--end::Container-->                </div>
-
-
-        {{--                            TODO: Add faq modal start  --}}
-
-        <div class="modal fade " id="kt_modal_add_faq" tabindex="-1"
-             aria-hidden="true">
-            <!--begin::Modal dialog-->
-            <div class="modal-dialog modal-dialog-centered mw-650px">
-                <!--begin::Modal content-->
-                <div class="modal-content">
-                    <!--begin::Form-->
-                    <form class="form" method="POST" action="{{ route('user.faq.add') }} "
-                          id="kt_modal_add_faq_form"
-                          data-kt-redirect-blog-category="">
-                        @csrf
-                        <!--begin::Modal header-->
-                        <div class="modal-header" id="kt_modal_add_customer_header">
-                            <!--begin::Modal title-->
-                            <h2 class="fw-bold">Add Faq</h2>
-
-
-                            <div id="kt_modal_add_faq_close"
-                                 class="btn btn-icon btn-sm btn-active-icon-primary">
+                                <div id="kt_modal_add_faq_close"
+                                     class="btn btn-icon btn-sm btn-active-icon-primary">
 
                                 <span class="svg-icon svg-icon-1"><svg width="24" height="24"
                                                                        viewBox="0 0 24 24"
@@ -539,110 +545,117 @@
 </svg>
 
 </span>
+                                </div>
+
                             </div>
 
-                        </div>
+
+                            <!--begin::Modal body-->
+                            <div class="modal-body py-10 px-lg-17">
+                                <!--begin::Scroll-->
+                                <div class="scroll-y me-n7 pe-7" id="kt_modal_add_customer_scroll"
+                                     data-kt-scroll="true"
+                                     data-kt-scroll-activate="{default: false, lg: true}"
+                                     data-kt-scroll-max-height="auto"
+                                     data-kt-scroll-dependencies="#kt_modal_add_customer_header"
+                                     data-kt-scroll-wrappers="#kt_modal_add_customer_scroll"
+                                     data-kt-scroll-offset="300px">
 
 
-                        <!--begin::Modal body-->
-                        <div class="modal-body py-10 px-lg-17">
-                            <!--begin::Scroll-->
-                            <div class="scroll-y me-n7 pe-7" id="kt_modal_add_customer_scroll"
-                                 data-kt-scroll="true"
-                                 data-kt-scroll-activate="{default: false, lg: true}"
-                                 data-kt-scroll-max-height="auto"
-                                 data-kt-scroll-dependencies="#kt_modal_add_customer_header"
-                                 data-kt-scroll-wrappers="#kt_modal_add_customer_scroll"
-                                 data-kt-scroll-offset="300px">
+                                    <div class="fv-row mb-7">
+                                        <label class="required fs-6 fw-semibold mb-2">Title</label>
+
+                                        <input type="text" class="form-control form-control-solid"
+                                               placeholder="Title" name="title" id="title"/>
+
+                                    </div>
 
 
-                                <div class="fv-row mb-7">
-                                    <label class="required fs-6 fw-semibold mb-2">Title</label>
+                                    <div class="fv-row mb-7">
+                                        <label class="required fs-6 fw-semibold mb-2">Content</label>
 
-                                    <input type="text" class="form-control form-control-solid"
-                                           placeholder="Title" name="title" id="title"/>
+                                        {{--                                    <input type="text" class="form-control form-control-solid"--}}
+                                        {{--                                           placeholder="" name="services_content" id="services_content"/>--}}
+
+                                        <textarea name="faq_content" id="faq_content" cols="30"
+                                                  rows="3"></textarea>
+
+                                    </div>
+
+
+                                    <div class="fv-row mb-7">
+                                        <label class="required fs-6 fw-semibold mb-2">Status</label>
+
+                                        <!--begin::Select2-->
+                                        <select name="status" required
+                                                class="form-select mb-2"
+                                                data-control="select2"
+                                                data-hide-search="true"
+                                                data-placeholder="Select status" id="status">
+                                            <option value="1">Active</option>
+                                            <option value="0">Pending</option>
+
+
+                                        </select>
+                                        <!--end::Select2-->
+                                    </div>
+
 
                                 </div>
-
-
-                                <div class="fv-row mb-7">
-                                    <label class="required fs-6 fw-semibold mb-2">Content</label>
-
-                                    {{--                                    <input type="text" class="form-control form-control-solid"--}}
-                                    {{--                                           placeholder="" name="services_content" id="services_content"/>--}}
-
-                                    <textarea name="faq_content" id="faq_content" cols="30"
-                                              rows="3"></textarea>
-
-                                </div>
-
-
-
-
-                                <div class="fv-row mb-7">
-                                    <label class="required fs-6 fw-semibold mb-2">Status</label>
-
-                                    <!--begin::Select2-->
-                                    <select name="status" required
-                                            class="form-select mb-2"
-                                            data-control="select2"
-                                            data-hide-search="true"
-                                            data-placeholder="Select status" id="status">
-                                        <option value="1">Active</option>
-                                        <option value="0">Pending</option>
-
-
-                                    </select>
-                                    <!--end::Select2-->
-                                </div>
-
-
+                                <!--end::Scroll-->
                             </div>
-                            <!--end::Scroll-->
-                        </div>
-                        <!--end::Modal body-->
+                            <!--end::Modal body-->
 
-                        <!--begin::Modal footer-->
-                        <div class="modal-footer flex-center">
-                            <!--begin::Button-->
-                            <button type="reset" id="kt_modal_add_faq_cancel"
-                                    class="btn btn-light me-3">
-                                Discard
-                            </button>
-                            <!--end::Button-->
+                            <!--begin::Modal footer-->
+                            <div class="modal-footer flex-center">
+                                <!--begin::Button-->
+                                <button type="reset" id="kt_modal_add_faq_cancel"
+                                        class="btn btn-light me-3">
+                                    Discard
+                                </button>
+                                <!--end::Button-->
 
-                            <!--begin::Button-->
-                            <button type="submit" id="kt_modal_add_faq_submit"
-                                    class="btn btn-primary">
+                                <!--begin::Button-->
+                                <button type="submit" id="kt_modal_add_faq_submit"
+                                        class="btn btn-primary">
                         <span class="indicator-label">
                             Submit
                         </span>
-                                <span class="indicator-progress">
+                                    <span class="indicator-progress">
                             Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                         </span>
-                            </button>
-                            <!--end::Button-->
-                        </div>
-                        <!--end::Modal footer-->
-                    </form>
-                    <!--end::Form-->
+                                </button>
+                                <!--end::Button-->
+                            </div>
+                            <!--end::Modal footer-->
+                        </form>
+                        <!--end::Form-->
 
 
+                    </div>
                 </div>
             </div>
+
+            {{--                            TODO: Add faq modal end  --}}
+
+
         </div>
 
-        {{--                            TODO: Add faq modal end  --}}
+
+        <!--end::Container-->                </div>
 
 
-        <input type="hidden" id="delete-url-user-faq" value="{{ route('user.faq.delete') }}">
 
 
-        <script>
-            CKEDITOR.replaceAll();
-            // CKEDITOR.replace('services_content');
 
-        </script>
+    <input type="hidden" id="delete-url-user-faq" value="{{ route('user.faq.delete') }}">
+
+
+    <script>
+        CKEDITOR.replaceAll();
+        // CKEDITOR.replace('services_content');
+
+    </script>
 
 @endsection
 

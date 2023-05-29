@@ -156,11 +156,12 @@
                             <!--end::Filter-->
 
 
+                            @can('pricing create')
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#kt_modal_add_pricing">
                                 Add New Pricing
                             </button>
-
+                            @endcan
 
                         </div>
 
@@ -182,287 +183,164 @@
                     </div>
                     <!--end::Card header-->
 
-                    <!--begin::Card body-->
-                    <div class="card-body py-4  table-responsive">
+                </div>
 
-                        <!--begin::Table-->
-                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_pricing">
-                            <!--begin::Table head-->
-                            <thead>
-                            <!--begin::Table row-->
-                            <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
-                                <th class="w-10px pe-2">
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                        <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                               data-kt-check-target="#kt_table_pricing .form-check-input"
-                                               value=""/>
+                <!--begin::Card body-->
+                <div class="card-body py-4  table-responsive">
+
+                    <!--begin::Table-->
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_pricing">
+                        <!--begin::Table head-->
+                        <thead>
+                        <!--begin::Table row-->
+                        <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                            <th class="w-10px pe-2">
+                                @can('pricing delete')
+                                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                    <input class="form-check-input" type="checkbox" data-kt-check="true"
+                                           data-kt-check-target="#kt_table_pricing .form-check-input"
+                                           value=""/>
+                                </div>
+                                @endcan
+                            </th>
+                            <th class="min-w-125px">Title</th>
+                            <th class="min-w-125px">Content</th>
+                            <th class="min-w-125px">Price</th>
+                            <th class="min-w-125px">Price Suffix</th>
+                            <th class="min-w-125px">Status</th>
+                            <th class="text-end min-w-100px">Actions</th>
+                        </tr>
+                        <!--end::Table row-->
+                        </thead>
+                        <!--end::Table head-->
+
+                        <!--begin::Table body-->
+                        <tbody class="text-gray-600 fw-semibold">
+
+                        @foreach($pricing as $item)
+                            <tr>
+                                <!--begin::Checkbox-->
+                                <td>
+                                    @can('pricing delete')
+                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                        <input class="form-check-input" type="checkbox" value="{{ $item->id }}"/>
                                     </div>
-                                </th>
-                                <th class="min-w-125px">Title</th>
-                                <th class="min-w-125px">Content</th>
-                                <th class="min-w-125px">Price</th>
-                                <th class="min-w-125px">Price Suffix</th>
-                                <th class="min-w-125px">Status</th>
-                                <th class="text-end min-w-100px">Actions</th>
-                            </tr>
-                            <!--end::Table row-->
-                            </thead>
-                            <!--end::Table head-->
+                                    @endcan
+                                </td>
+                                <!--end::Checkbox-->
 
-                            <!--begin::Table body-->
-                            <tbody class="text-gray-600 fw-semibold">
-
-                            @foreach($pricing as $item)
-                                <tr>
-                                    <!--begin::Checkbox-->
-                                    <td>
-                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="{{ $item->id }}"/>
-                                        </div>
-                                    </td>
-                                    <!--end::Checkbox-->
-
-                                    <!--begin::User--->
-                                    <td class=" align-items-center">
+                                <!--begin::User--->
+                                <td class=" align-items-center">
 
 
-                                        <div class="flex-column">
-                                            <a href="#" data-id="{{ $item->id }}"
-                                               class="text-gray-800 text-hover-primary mb-1">{{ $item->title }} </a>
-                                        </div>
-                                        <!--begin::User details-->
+                                    <div class="flex-column">
+                                        <a href="#" data-id="{{ $item->id }}"
+                                           class="text-gray-800 text-hover-primary mb-1">{{ $item->title }} </a>
+                                    </div>
+                                    <!--begin::User details-->
 
-                                    </td>
-
-
-                                    <td>
-
-                                        <div class="menu-item px-3">
-                                            <a href="#" data-bs-toggle="modal"
-                                               data-bs-target="#servicesDetail{{ $item->id }}"
-                                               class="menu-link px-3">
-                                                View
-                                            </a>
-                                        </div>
-
-                                    </td>
-
-                                    <td>{{ $item->price }}</td>
-                                    <td>{{ $item->price_suffix }}</td>
+                                </td>
 
 
+                                <td>
 
-                                    <td>
-                                        @if($item->status)
-                                            <div class="badge py-3 px-4 fs-7 badge-light-success">Active</div>
+                                    <div class="menu-item px-3">
+                                        <a href="#" data-bs-toggle="modal"
+                                           data-bs-target="#servicesDetail{{ $item->id }}"
+                                           class="menu-link px-3">
+                                            View
+                                        </a>
+                                    </div>
 
-                                        @else
-                                            <div class="badge py-3 px-4 fs-7 badge-light-danger">Pending</div>
-                                        @endif
+                                </td>
 
-                                    </td>
-                                    <!--begin::Joined-->
+                                <td>{{ $item->price }}</td>
+                                <td>{{ $item->price_suffix }}</td>
 
-                                    <!--begin::Action--->
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
-                                           data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                            Actions
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                            <span class="svg-icon svg-icon-5 m-0"><svg width="24" height="24"
-                                                                                       viewBox="0 0 24 24" fill="none"
-                                                                                       xmlns="http://www.w3.org/2000/svg">
+
+                                <td>
+                                    @if($item->status)
+                                        <div class="badge py-3 px-4 fs-7 badge-light-success">Active</div>
+
+                                    @else
+                                        <div class="badge py-3 px-4 fs-7 badge-light-danger">Pending</div>
+                                    @endif
+
+                                </td>
+                                <!--begin::Joined-->
+
+                                <!--begin::Action--->
+                                <td class="text-end">
+                                    <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
+                                       data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                        Actions
+                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                        <span class="svg-icon svg-icon-5 m-0"><svg width="24" height="24"
+                                                                                   viewBox="0 0 24 24" fill="none"
+                                                                                   xmlns="http://www.w3.org/2000/svg">
 <path
     d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
     fill="currentColor"/>
 </svg>
 </span>
-                                            <!--end::Svg Icon-->                    </a>
-                                        <!--begin::Menu-->
-                                        <div
-                                            class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                                            data-kt-menu="true">
+                                        <!--end::Svg Icon-->                    </a>
+                                    <!--begin::Menu-->
+                                    <div
+                                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
+                                        data-kt-menu="true">
 
 
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" data-bs-toggle="modal"
-                                                   data-bs-target="#blogCategoryEdit{{ $item->id }}"
-                                                   class="menu-link px-3">
-                                                    Edit
-                                                </a>
-                                            </div>
-                                            <!--end::Menu item-->
-
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3"
-                                                   data-kt-pricing-table-filter="delete_row">
-                                                    Delete
-                                                </a>
-                                            </div>
-                                            <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        @can('pricing update')
+                                        <div class="menu-item px-3">
+                                            <a href="#" data-bs-toggle="modal"
+                                               data-bs-target="#blogCategoryEdit{{ $item->id }}"
+                                               class="menu-link px-3">
+                                                Edit
+                                            </a>
                                         </div>
-                                        <!--end::Menu-->
-                                    </td>
-                                    <!--end::Action--->
-                                </tr>
+                                        @endcan
+                                        <!--end::Menu item-->
 
+                                        <!--begin::Menu item-->
+                                        @can('pricing delete')
+                                        <div class="menu-item px-3">
 
+                                            <a href="#" class="menu-link px-3"
+                                               data-kt-pricing-table-filter="delete_row">
+                                                Delete
+                                            </a>
 
-                                {{--                                TODO: Modal edit Başlangıcı    --}}
-
-                                <div class="modal fade" id="blogCategoryEdit{{ $item->id }}" tabindex="-1"
-                                     role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                {{--                                                <h2 class="modal-title" id="exampleModalScrollableTitle">{{ $item->title }}</h2>--}}
-                                                <h2 class="fw-bold">{{ $item->title }}</h2>
-
-                                                <div
-                                                    class="btn btn-icon btn-sm btn-active-icon-primary close"
-                                                    data-bs-dismiss="modal" aria-label="Close">
-
-                                <span class="svg-icon svg-icon-1">
-                                    <svg width="24" height="24"
-                                         viewBox="0 0 24 24"
-                                         fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
-                                              transform="rotate(-45 6 17.3137)"
-                                              fill="currentColor"/>
-                                        <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                              transform="rotate(45 7.41422 6)" fill="currentColor"/>
-                                    </svg>
-
-                                </span>
-                                                </div>
-
-
-                                            </div>
-
-                                            <form action="{{ route('user.pricing.update', [$item->id]) }}"
-                                                  method="POST">
-                                                @csrf
-
-                                                <div class="modal-body">
-
-
-                                                    <div class="fv-row mb-7">
-                                                        <!--begin::Label-->
-                                                        <label class="required fs-6 fw-semibold mb-2">Title</label>
-                                                        <!--end::Label-->
-
-                                                        <!--begin::Input-->
-                                                        <input type="text" class="form-control form-control-solid"
-                                                               placeholder="Title" name="title" id="title" required
-                                                               value="{{ $item->title }}"/>
-
-
-                                                    </div>
-
-
-
-                                                    <div class="fv-row mb-7">
-                                                        <label class="required fs-6 fw-semibold mb-2">Content</label>
-
-                                                        {{--                                    <input type="text" class="form-control form-control-solid"--}}
-                                                        {{--                                           placeholder="" name="services_content" id="services_content"/>--}}
-
-                                                        <textarea name="pricing_content" id="pricing_content" cols="30"
-                                                                  rows="3">{{ $item->content }}</textarea>
-
-                                                    </div>
-
-
-                                                    <div class="row">
-                                                        <div class="fv-row mb-7 col-md-6">
-                                                            <label class="required fs-6 fw-semibold mb-2">Price</label>
-
-                                                            <input type="number" class="form-control form-control-solid" step="any"
-                                                                   placeholder="Price" name="price" id="price"  value="{{ $item->price }}"/>
-
-                                                        </div>
-
-                                                        <div class="fv-row mb-7 col-md-6">
-                                                            <label class="required fs-6 fw-semibold mb-2">Price Suffix</label>
-
-                                                            <input type="text" class="form-control form-control-solid"
-                                                                   placeholder="Price Suffix" name="price_suffix" id="price_suffix" value="{{ $item->price_suffix }}"/>
-
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="fv-row mb-7">
-                                                        <label class="required fs-6 fw-semibold mb-2">Status</label>
-
-                                                        <!--begin::Select2-->
-                                                        <select name="status" required data-dropdown-parent="#blogCategoryEdit{{ $item->id }}"
-                                                                class="form-select mb-2"
-                                                                data-control="select2"
-                                                                data-hide-search="true"
-                                                                data-placeholder="Select category"
-                                                                id="status{{ $item->id }}">
-                                                            @if($item->status)
-                                                                <option value="1">Active</option>
-                                                                <option value="0">Pending</option>
-                                                            @else
-                                                                <option value="0">Pending</option>
-                                                                <option value="1">Active</option>
-                                                            @endif
-
-                                                        </select>
-                                                        <!--end::Select2-->
-                                                    </div>
-
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">
-                                                        Close
-                                                    </button>
-
-                                                    <button type="submit" class="btn btn-primary">
-                                                        Update
-                                                    </button>
-
-                                                </div>
-
-
-                                            </form>
                                         </div>
+                                        @endcan
+
+                                        @if (! (auth()->user()->can('pricing update') || auth()->user()->can('pricing delete')))
+                                            <div class="menu-item ">
+                                                <p class="text-center ">empty</p>
+                                            </div>
+                                        @endif
+                                        <!--end::Menu item-->
                                     </div>
-                                </div>
+                                    <!--end::Menu-->
+                                </td>
+                                <!--end::Action--->
+                            </tr>
 
 
 
+                            {{--                                TODO: Modal edit Başlangıcı    --}}
 
+                            <div class="modal fade" id="blogCategoryEdit{{ $item->id }}" tabindex="-1"
+                                 role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            {{--                                                <h2 class="modal-title" id="exampleModalScrollableTitle">{{ $item->title }}</h2>--}}
+                                            <h2 class="fw-bold">{{ $item->title }}</h2>
 
-                                {{--                                TODO: Modal edit Bitişi     --}}
-
-
-
-
-
-
-                                {{--                                TODO: Modal Detail Başlangıcı    --}}
-
-                                <div class="modal fade" id="servicesDetail{{ $item->id }}" tabindex="-1"
-                                     role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-                                    <div class="modal-dialog  modal-dialog-scrollable" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                {{--                                                <h2 class="modal-title" id="exampleModalScrollableTitle">{{ $item->title }}</h2>--}}
-                                                <h2 class="fw-bold">{{ $item->title }}</h2>
-
-                                                <div
-                                                    class="btn btn-icon btn-sm btn-active-icon-primary close"
-                                                    data-bs-dismiss="modal" aria-label="Close">
+                                            <div
+                                                class="btn btn-icon btn-sm btn-active-icon-primary close"
+                                                data-bs-dismiss="modal" aria-label="Close">
 
                                 <span class="svg-icon svg-icon-1">
                                     <svg width="24" height="24"
@@ -477,16 +355,89 @@
                                     </svg>
 
                                 </span>
-                                                </div>
-
-
                                             </div>
 
+
+                                        </div>
+
+                                        <form action="{{ route('user.pricing.update', [$item->id]) }}"
+                                              method="POST">
+                                            @csrf
 
                                             <div class="modal-body">
 
 
-                                                {!! $item->content !!}
+                                                <div class="fv-row mb-7">
+                                                    <!--begin::Label-->
+                                                    <label class="required fs-6 fw-semibold mb-2">Title</label>
+                                                    <!--end::Label-->
+
+                                                    <!--begin::Input-->
+                                                    <input type="text" class="form-control form-control-solid"
+                                                           placeholder="Title" name="title" id="title" required
+                                                           value="{{ $item->title }}"/>
+
+
+                                                </div>
+
+
+                                                <div class="fv-row mb-7">
+                                                    <label class="required fs-6 fw-semibold mb-2">Content</label>
+
+                                                    {{--                                    <input type="text" class="form-control form-control-solid"--}}
+                                                    {{--                                           placeholder="" name="services_content" id="services_content"/>--}}
+
+                                                    <textarea name="pricing_content" id="pricing_content" cols="30"
+                                                              rows="3">{{ $item->content }}</textarea>
+
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="fv-row mb-7 col-md-6">
+                                                        <label class="required fs-6 fw-semibold mb-2">Price</label>
+
+                                                        <input type="number" class="form-control form-control-solid"
+                                                               step="any"
+                                                               placeholder="Price" name="price" id="price"
+                                                               value="{{ $item->price }}"/>
+
+                                                    </div>
+
+                                                    <div class="fv-row mb-7 col-md-6">
+                                                        <label class="required fs-6 fw-semibold mb-2">Price
+                                                            Suffix</label>
+
+                                                        <input type="text" class="form-control form-control-solid"
+                                                               placeholder="Price Suffix" name="price_suffix"
+                                                               id="price_suffix" value="{{ $item->price_suffix }}"/>
+
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="fv-row mb-7">
+                                                    <label class="required fs-6 fw-semibold mb-2">Status</label>
+
+                                                    <!--begin::Select2-->
+                                                    <select name="status" required
+                                                            data-dropdown-parent="#blogCategoryEdit{{ $item->id }}"
+                                                            class="form-select mb-2"
+                                                            data-control="select2"
+                                                            data-hide-search="true"
+                                                            data-placeholder="Select category"
+                                                            id="status{{ $item->id }}">
+                                                        @if($item->status)
+                                                            <option value="1">Active</option>
+                                                            <option value="0">Pending</option>
+                                                        @else
+                                                            <option value="0">Pending</option>
+                                                            <option value="1">Active</option>
+                                                        @endif
+
+                                                    </select>
+                                                    <!--end::Select2-->
+                                                </div>
 
 
                                             </div>
@@ -496,35 +447,104 @@
                                                     Close
                                                 </button>
 
+                                                <button type="submit" class="btn btn-primary">
+                                                    Update
+                                                </button>
 
                                             </div>
 
 
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
+                            </div>
 
 
 
 
 
-                                {{--                                TODO: Modal detail Bitişi     --}}
-
-                            @endforeach
+                            {{--                                TODO: Modal edit Bitişi     --}}
 
 
-                            </tbody>
-                            <!--end::Table body-->
-                        </table>
-                        <!--end::Table-->    </div>
-                    <!--end::Card body-->
-                </div>
-                <!--end::Card--></div>
 
 
-            <!--end::Container-->                </div>
 
 
+                            {{--                                TODO: Modal Detail Başlangıcı    --}}
+
+                            <div class="modal fade" id="servicesDetail{{ $item->id }}" tabindex="-1"
+                                 role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                <div class="modal-dialog  modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            {{--                                                <h2 class="modal-title" id="exampleModalScrollableTitle">{{ $item->title }}</h2>--}}
+                                            <h2 class="fw-bold">{{ $item->title }}</h2>
+
+                                            <div
+                                                class="btn btn-icon btn-sm btn-active-icon-primary close"
+                                                data-bs-dismiss="modal" aria-label="Close">
+
+                                <span class="svg-icon svg-icon-1">
+                                    <svg width="24" height="24"
+                                         viewBox="0 0 24 24"
+                                         fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                              transform="rotate(-45 6 17.3137)"
+                                              fill="currentColor"/>
+                                        <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                              transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                    </svg>
+
+                                </span>
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="modal-body">
+
+
+                                            {!! $item->content !!}
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">
+                                                Close
+                                            </button>
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            {{--                                TODO: Modal detail Bitişi     --}}
+
+                        @endforeach
+
+
+                        </tbody>
+                        <!--end::Table body-->
+                    </table>
+                    <!--end::Table-->    </div>
+                <!--end::Card body-->
+
+                <!--end::Card-->
+            </div>
+
+
+            <!--end::Container-->
+        </div>
         {{--                            TODO: Add pricing modal start  --}}
 
         <div class="modal fade " id="kt_modal_add_pricing" tabindex="-1"
@@ -589,7 +609,8 @@
                                     {{--                                    <input type="text" class="form-control form-control-solid"--}}
                                     {{--                                           placeholder="" name="services_content" id="services_content"/>--}}
 
-                                    <textarea class="form-control form-control-solid" name="pricing_content" id="pricing_content" cols="30"
+                                    <textarea class="form-control form-control-solid" name="pricing_content"
+                                              id="pricing_content" cols="30"
                                               rows="2"></textarea>
 
                                 </div>
@@ -611,8 +632,6 @@
 
                                     </div>
                                 </div>
-
-
 
 
                                 <div class="fv-row mb-7">
@@ -667,15 +686,19 @@
         </div>
 
         {{--                            TODO: Add pricing modal end  --}}
+    </div>
 
 
-        <input type="hidden" id="delete-url-user-pricing" value="{{ route('user.pricing.delete') }}">
 
 
-        <script>
-            CKEDITOR.replaceAll();
 
-        </script>
+    <input type="hidden" id="delete-url-user-pricing" value="{{ route('user.pricing.delete') }}">
+
+
+    <script>
+        CKEDITOR.replaceAll();
+
+    </script>
 
 @endsection
 

@@ -37,6 +37,17 @@ class UserController extends Controller
 
     public function userAdd(Request $request, FlasherInterface $flasher)
     {
+
+//        Permission::create(['name' => 'pricing view']);
+//        Permission::create(['name' => 'pricing create']);
+//        Permission::create(['name' => 'pricing update']);
+//        Permission::create(['name' => 'pricing delete']);
+//        Permission::create(['name' => 'faq view']);
+//        Permission::create(['name' => 'faq create']);
+//        Permission::create(['name' => 'faq update']);
+//        Permission::create(['name' => 'faq delete']);
+
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -112,6 +123,25 @@ class UserController extends Controller
         }
 
         $user->save();
+
+        $user->givePermissionTo([
+            'about us view',
+            'about us update',
+            'services view',
+            'services create',
+            'services update',
+            'services delete',
+            'pricing view',
+            'pricing create',
+            'pricing update',
+            'pricing delete',
+            'faq view',
+            'faq create',
+            'faq update',
+            'faq delete'
+        ]);
+
+
         $flasher->addSuccess('User Added Success');
 
         return Redirect::route('admin.user.list');

@@ -184,6 +184,7 @@
                         </a>
 
 
+                        @can('about us view')
                         <a href="{{ route('user.about.us.list') }}">
                             <div
                                 class="menu-item   {{ Route::is('user.about.us.list') ? 'show' : '' }} menu-accordion mb-1">
@@ -199,7 +200,9 @@
 
                             </div>
                         </a>
+                        @endcan
 
+                        @can('services view')
                         <a href="{{ route('user.services.list') }}">
                             <div
                                 class="menu-item   {{ Route::is('user.services.list') ? 'show' : '' }} menu-accordion mb-1">
@@ -215,7 +218,9 @@
 
                             </div>
                         </a>
+                        @endcan
 
+                        @can('pricing view')
                         <a href="{{ route('user.pricing.list') }}">
                             <div
                                 class="menu-item   {{ Route::is('user.pricing.list') ? 'show' : '' }} menu-accordion mb-1">
@@ -231,7 +236,9 @@
 
                             </div>
                         </a>
+                        @endcan
 
+                        @can('faq view')
                         <a href="{{ route('user.faq.list') }}">
                             <div
                                 class="menu-item   {{ Route::is('user.faq.list') ? 'show' : '' }} menu-accordion mb-1">
@@ -248,7 +255,7 @@
 
                             </div>
                         </a>
-
+                        @endcan
 
                         <a href="{{ route('user.config') }}">
                             <div

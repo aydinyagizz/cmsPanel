@@ -394,8 +394,7 @@
                                                     </td>
                                                     <!--end::Input group-->
                                                 </tr>
-                                                <!--end::Table row-->
-                                                <!--begin::Table row-->
+
                                                 <tr>
                                                     <!--begin::Label-->
                                                     <td class="text-gray-800">Services Management</td>
@@ -441,7 +440,96 @@
                                                     </td>
                                                     <!--end::Input group-->
                                                 </tr>
-                                                <!--end::Table row-->
+
+                                                <tr>
+                                                    <!--begin::Label-->
+                                                    <td class="text-gray-800">Pricing Management</td>
+                                                    <!--end::Label-->
+
+                                                    <!--begin::Input group-->
+                                                    <td>
+                                                        <!--begin::Wrapper-->
+                                                        <div class="d-flex">
+                                                            <!--begin::Checkbox-->
+                                                            <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input" type="checkbox" value="pricing view" {{ in_array('pricing view', $userPermissions) ? 'checked' : '' }} name="permissions[]"/>
+                                                                <span class="form-check-label">
+                                                                View
+                                                            </span>
+                                                            </label>
+                                                            <!--end::Checkbox-->
+
+                                                            <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input" type="checkbox" value="pricing create" {{ in_array('pricing create', $userPermissions) ? 'checked' : '' }} name="permissions[]"/>
+                                                                <span class="form-check-label">
+                                                                Create
+                                                            </span>
+                                                            </label>
+
+                                                            <!--begin::Checkbox-->
+                                                            <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input" type="checkbox" value="pricing update" {{ in_array('pricing update', $userPermissions) ? 'checked' : '' }} name="permissions[]"/>
+                                                                <span class="form-check-label">
+                                                                Update
+                                                            </span>
+                                                            </label>
+
+                                                            <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input" type="checkbox" value="pricing delete" {{ in_array('pricing delete', $userPermissions) ? 'checked' : '' }} name="permissions[]"/>
+                                                                <span class="form-check-label">
+                                                                Delete
+                                                            </span>
+                                                            </label>
+
+                                                        </div>
+                                                        <!--end::Wrapper-->
+                                                    </td>
+                                                    <!--end::Input group-->
+                                                </tr>
+
+                                                <tr>
+                                                    <!--begin::Label-->
+                                                    <td class="text-gray-800">Faq Management</td>
+                                                    <!--end::Label-->
+
+                                                    <!--begin::Input group-->
+                                                    <td>
+                                                        <!--begin::Wrapper-->
+                                                        <div class="d-flex">
+                                                            <!--begin::Checkbox-->
+                                                            <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input" type="checkbox" value="faq view" {{ in_array('faq view', $userPermissions) ? 'checked' : '' }} name="permissions[]"/>
+                                                                <span class="form-check-label">
+                                                                View
+                                                            </span>
+                                                            </label>
+                                                            <!--end::Checkbox-->
+
+                                                            <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input" type="checkbox" value="faq create" {{ in_array('faq create', $userPermissions) ? 'checked' : '' }} name="permissions[]"/>
+                                                                <span class="form-check-label">
+                                                                Create
+                                                            </span>
+                                                            </label>
+
+                                                            <!--begin::Checkbox-->
+                                                            <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input" type="checkbox" value="faq update" {{ in_array('faq update', $userPermissions) ? 'checked' : '' }} name="permissions[]"/>
+                                                                <span class="form-check-label">
+                                                                Update
+                                                            </span>
+                                                            </label>
+
+                                                            <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input" type="checkbox" value="faq delete" {{ in_array('faq delete', $userPermissions) ? 'checked' : '' }} name="permissions[]"/>
+                                                                <span class="form-check-label">
+                                                                Delete
+                                                            </span>
+                                                            </label>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
 
 
                                                 </tbody>
