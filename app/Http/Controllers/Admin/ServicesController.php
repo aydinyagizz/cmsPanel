@@ -27,22 +27,18 @@ class ServicesController extends Controller
 
     public function servicesAdd(Request $request, FlasherInterface $flasher)
     {
-//        $data = [
-//            'admin' => User::where('id', Session::get('adminId'))->first(),
-//            //'about_us' => AdminAboutUs::first(),
-//            'services' => DB::table('admin_services')->get(),
-//        ];
-
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'services_content' => 'required',
             'status' => 'required',
             'home_status' => 'required',
+            'selectedIcon' => 'required',
         ], [
             'title.required' => 'Title is required',
             'services_content.required' => 'Content is required',
             'status.required' => 'Status is required',
             'home_status.required' => 'home status is required',
+            'selectedIcon.required' => 'Icon is required',
         ]);
 
         if ($validator->fails()) {
@@ -58,6 +54,7 @@ class ServicesController extends Controller
         $services->content = $request->services_content;
         $services->status = $request->status;
         $services->home_status = $request->home_status;
+        $services->icon = $request->selectedIcon;
         $services->save();
         $flasher->addSuccess('Services Added Success');
 
@@ -72,11 +69,13 @@ class ServicesController extends Controller
             'services_content' => 'required',
             'home_status' => 'required',
             'status' => 'required',
+            'selectedIconUpdate' => 'required',
         ], [
             'title.required' => 'Title is required',
             'services_content.required' => 'Content is required',
             'home_status.required' => 'Category is required',
             'status.required' => 'Status is required',
+            'selectedIconUpdate.required' => 'Icon is required',
 
         ]);
 
@@ -95,6 +94,7 @@ class ServicesController extends Controller
         $services->content = $request->services_content;
         $services->home_status = $request->home_status;
         $services->status = $request->status;
+        $services->icon = $request->selectedIconUpdate;
         $services->save();
         $flasher->addSuccess('Services Updated Success');
         return Redirect::route('admin.services.list');

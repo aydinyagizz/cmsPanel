@@ -5,10 +5,59 @@
 @endsection
 
 @section('css')
+
     <script src="//cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
 @endsection
 
 @section('content')
+
+    <style>
+        .icon-list {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .icon-list-item {
+            flex-basis: 25%;
+            text-align: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .icon-list-item i {
+            font-size: 24px;
+        }
+        .icon-list-item.selected {
+            background-color: #00b2ff;
+        }
+    </style>
+
+{{--    <style>--}}
+{{--        .icon-list-update {--}}
+{{--            display: flex;--}}
+{{--            flex-wrap: wrap;--}}
+{{--            list-style: none;--}}
+{{--            padding: 0;--}}
+{{--            margin: 0;--}}
+{{--        }--}}
+
+{{--        .icon-list-update {--}}
+{{--            flex-basis: 25%;--}}
+{{--            text-align: center;--}}
+{{--            margin-bottom: 10px;--}}
+{{--            cursor: pointer;--}}
+{{--        }--}}
+
+{{--        .icon-list-update i {--}}
+{{--            font-size: 24px;--}}
+{{--        }--}}
+{{--        .icon-list-update .selected {--}}
+{{--            background-color: #00b2ff;--}}
+{{--        }--}}
+{{--    </style>--}}
 
     <div
         class="page-title d-flex flex-column align-items-start justify-content-center flex-wrap me-2 mb-5 mb-lg-0"
@@ -209,6 +258,7 @@
 
                             <th class="min-w-125px">Title</th>
                             <th class="min-w-125px">Content</th>
+                            <th class="min-w-125px">Icon</th>
                             <th class="min-w-125px">Status</th>
                             <th class="min-w-125px">Created At</th>
                             <th class="text-end min-w-100px">Actions</th>
@@ -256,6 +306,8 @@
                                     </div>
 
                                 </td>
+
+                                <td><i style="font-size: 24px; color: black" class="{{ $item->icon }}"></i></td>
 
 
                                 <td>
@@ -398,7 +450,7 @@
                                                     <label class="required fs-6 fw-semibold mb-2">Status</label>
 
                                                     <!--begin::Select2-->
-                                                    <select name="status" required
+                                                    <select name="status" required data-dropdown-parent="#blogCategoryEdit{{ $item->id }}"
                                                             class="form-select mb-2"
                                                             data-control="select2"
                                                             data-hide-search="true"
@@ -415,6 +467,77 @@
                                                     </select>
                                                     <!--end::Select2-->
                                                 </div>
+
+
+                                                <style>
+                                                    .icon-list-update{{ $item->id }} {
+                                                        display: flex;
+                                                        flex-wrap: wrap;
+                                                        list-style: none;
+                                                        padding: 0;
+                                                        margin: 0;
+                                                    }
+
+                                                    .icon-list-update{{ $item->id }} {
+                                                        flex-basis: 25%;
+                                                        text-align: center;
+                                                        margin-bottom: 10px;
+                                                        cursor: pointer;
+                                                    }
+
+                                                    .icon-list-update{{ $item->id }} i {
+                                                        font-size: 24px;
+                                                    }
+                                                    .icon-list-update{{ $item->id }} .selected {
+                                                        background-color: #00b2ff;
+                                                    }
+                                                </style>
+
+
+
+                                                <div class="fv-row mb-7">
+                                                    <label class="required fs-6 fw-semibold mb-2">Select icon</label>
+                                                    <ul class="icon-list-update{{ $item->id }}" id="iconList{{ $item->id }}"></ul>
+                                                    <input type="hidden" name="selectedIconUpdate" id="selectedIcon{{ $item->id }}" value="{{ $item->icon }}">
+                                                </div>
+
+
+
+
+
+                                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                                <script>
+                                                    $(document).ready(function () {
+                                                        var jsonUrl{{ $item->id }} = "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/metadata/icons.json";
+
+                                                        $.getJSON(jsonUrl{{ $item->id }}, function (data{{ $item->id }}) {
+                                                            var icons{{ $item->id }} = data{{ $item->id }};
+
+                                                            Object.keys(icons{{ $item->id }}).forEach(function (key) {
+                                                                var icon{{ $item->id }} = icons{{ $item->id }}[key];
+                                                                if (icon{{ $item->id }}.styles.includes("solid")) {
+                                                                    var listItem{{ $item->id }} = '<li class="icon-list-item" data-icon="fa fa-' + key + '"><i style="color: black!important;" class="fa fa-' + key + '"></i></li>';
+                                                                    $('#iconList{{ $item->id }}').append(listItem{{ $item->id }});
+                                                                }
+                                                            });
+
+                                                            // Hizmetin seçili ikonunu vurgula
+                                                            var selectedIcon{{ $item->id }} = $('#selectedIcon{{ $item->id }}').val();
+                                                            if (selectedIcon{{ $item->id }}) {
+                                                                $('.icon-list-update{{ $item->id }} li[data-icon="' + selectedIcon{{ $item->id }} + '"]').addClass('selected');
+                                                            }
+                                                        });
+
+                                                        $(document).on('click', '#iconList{{ $item->id }} li', function () {
+                                                            $(this).addClass('selected').siblings().removeClass('selected');
+                                                            var selectedIcon{{ $item->id }} = $(this).data('icon');
+                                                            $('#selectedIcon{{ $item->id }}').val(selectedIcon{{ $item->id }});
+                                                        });
+                                                    });
+
+                                                </script>
+
+
 
 
                                             </div>
@@ -597,7 +720,7 @@
                                     <label class="required fs-6 fw-semibold mb-2">Status</label>
 
                                     <!--begin::Select2-->
-                                    <select name="status" required
+                                    <select name="status" required data-dropdown-parent="#kt_modal_add_services"
                                             class="form-select mb-2"
                                             data-control="select2"
                                             data-hide-search="true"
@@ -610,6 +733,15 @@
                                     <!--end::Select2-->
                                 </div>
 
+
+
+
+
+                                <div class="fv-row mb-7">
+                                    <label class="required fs-6 fw-semibold mb-2">Select icon</label>
+                                    <ul class="icon-list" id="iconList"></ul>
+                                    <input type="hidden" name="selectedIcon" id="selectedIcon">
+                                </div>
 
                             </div>
                             <!--end::Scroll-->
@@ -661,6 +793,81 @@
 
     </script>
 
+
+{{--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--}}
+{{--    <script>--}}
+{{--        $(document).ready(function () {--}}
+{{--            var jsonUrl = "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/metadata/icons.json";--}}
+
+{{--            // $.getJSON(jsonUrl, function (data) {--}}
+{{--            //     var icons = data;--}}
+{{--            //--}}
+{{--            //     Object.keys(icons).forEach(function (key) {--}}
+{{--            //--}}
+{{--            //         var icon = icons[key];--}}
+{{--            //         console.log(icon)--}}
+{{--            //       //  var listItem = '<li value="' + key + '"><i class="' + icon.styles[0] + ' fa fa ' + icon.label + '"></i> ' + key + '</li>';--}}
+{{--            //         var listItem = '<li value="' + key + '"><i class="' + icon.styles[0] + ' fa fa-' + key + '"></i></li>';--}}
+{{--            //         $('#iconList').append(listItem);--}}
+{{--            //     });--}}
+{{--            // });--}}
+
+{{--            $.getJSON(jsonUrl, function (data) {--}}
+{{--                var icons = data;--}}
+
+{{--                Object.keys(icons).forEach(function (key) {--}}
+{{--                    var icon = icons[key];--}}
+{{--                    if (icon.styles.includes("solid")) {--}}
+{{--                        var listItem = '<li value="' + key + '"><i class="fa fa-' + key + '"></i></li>';--}}
+{{--                        $('#iconList').append(listItem);--}}
+{{--                    }--}}
+{{--                });--}}
+{{--                --}}
+{{--            });--}}
+{{--        });--}}
+
+{{--    </script>--}}
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var jsonUrl = "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/metadata/icons.json";
+
+            $.getJSON(jsonUrl, function (data) {
+                var icons = data;
+
+                Object.keys(icons).forEach(function (key) {
+                    var icon = icons[key];
+                    if (icon.styles.includes("solid")) {
+                        var listItem = '<li class="icon-list-item" data-icon="fa fa-' + key + '"><i style="color: black!important;" class="fa fa-' + key + '"></i></li>';
+                        $('#iconList').append(listItem);
+                    }
+                });
+
+                // Seçilen ikona vurgu yap
+                $('#iconList').on('click', 'li', function () {
+                    $(this).addClass('selected').siblings().removeClass('selected');
+                });
+            });
+
+            // Seçilen ikonun değerini al
+            // $(document).on('click', '#iconList li', function () {
+            //     var selectedIcon = $(this).data('icon');
+            //     alert(selectedIcon);
+            //     console.log(selectedIcon);
+            //     // Diğer işlemleri burada yapabilirsiniz
+            // });
+
+            $(document).on('click', '#iconList li', function () {
+                $(this).addClass('selected').siblings().removeClass('selected');
+                var selectedIcon = $(this).data('icon');
+                //alert(selectedIcon);
+                $('#selectedIcon').val(selectedIcon);
+                // Diğer işlemleri burada yapabilirsiniz
+            });
+        });
+    </script>
 @endsection
 
 @section('js')

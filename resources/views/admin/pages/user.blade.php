@@ -225,8 +225,10 @@
                                     <td class="d-flex align-items-center">
                                         <!--begin:: Avatar -->
                                         <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                            <a href="#" data-id="{{ $item->id }}" data-bs-toggle="modal"
-                                               data-bs-target="#userEdit{{ $item->id }}">
+                                            <a href="{{ route('admin.user.detail',[$item->id]) }}" data-id="{{ $item->id }}"
+{{--                                               data-bs-toggle="modal"--}}
+{{--                                               data-bs-target="#userEdit{{ $item->id }}"--}}
+                                            >
                                                 @if($item->user_image)
                                                     <div class="symbol-label">
                                                         <img
@@ -246,8 +248,9 @@
 
                                         <!--begin::User details-->
                                         <div class="d-flex flex-column">
-                                            <a href="#" data-bs-toggle="modal"
-                                               data-bs-target="#userEdit{{ $item->id }}"
+                                            <a href="{{ route('admin.user.detail',[$item->id]) }}"
+{{--                                               data-bs-toggle="modal"--}}
+{{--                                               data-bs-target="#userEdit{{ $item->id }}"--}}
                                                class="text-gray-800 text-hover-primary mb-1">{{ $item->name }}</a>
                                             <span>{{ $item->email }}</span>
                                         </div>

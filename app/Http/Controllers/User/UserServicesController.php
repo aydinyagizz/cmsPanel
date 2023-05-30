@@ -32,10 +32,12 @@ class UserServicesController extends Controller
             'title' => 'required',
             'services_content' => 'required',
             'status' => 'required',
+            'selectedIcon' => 'required',
         ], [
             'title.required' => 'Title is required',
             'services_content.required' => 'Content is required',
             'status.required' => 'Status is required',
+            'selectedIcon.required' => 'Icon is required',
         ]);
 
         if ($validator->fails()) {
@@ -50,6 +52,7 @@ class UserServicesController extends Controller
         $services->user_id = Session::get('userId');
         $services->title = $request->title;
         $services->content = $request->services_content;
+        $services->icon = $request->selectedIcon;
         $services->status = $request->status;
         $services->save();
         $flasher->addSuccess('Services Added Success');
@@ -64,10 +67,12 @@ class UserServicesController extends Controller
             'title' => 'required',
             'services_content' => 'required',
             'status' => 'required',
+            'selectedIconUpdate' => 'required',
         ], [
             'title.required' => 'Title is required',
             'services_content.required' => 'Content is required',
             'status.required' => 'Status is required',
+            'selectedIconUpdate.required' => 'Icon is required',
 
         ]);
 
@@ -85,6 +90,7 @@ class UserServicesController extends Controller
         $services->title = $request->title;
         $services->content = $request->services_content;
         $services->status = $request->status;
+        $services->icon = $request->selectedIconUpdate;
         $services->save();
         $flasher->addSuccess('Services Updated Success');
         return Redirect::route('user.services.list');
