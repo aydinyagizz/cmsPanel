@@ -55,7 +55,9 @@ var KTServicesList = function () {
             'columnDefs': [
                 { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
                 // TODO: tabloda sayısını eklediğimiz değere göre düzelt
-                { orderable: false, targets: 5 }, // Disable ordering on column 6 (actions)
+                { orderable: false, targets: 6 }, // Disable ordering on column 6 (actions)
+                { orderable: false, targets: 2 }, // Disable ordering on column 6 (actions)
+                { orderable: false, targets: 3 }, // Disable ordering on column 6 (actions)
             ],
            // columns: [
            //      { data: 'content', name: 'content',   width: '30%',
