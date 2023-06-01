@@ -84,7 +84,7 @@ Route::prefix('/user')->middleware(['is_user', 'role:User'])->group(function () 
     Route::post( '/config/template', [\App\Http\Controllers\User\UserConfigController::class, 'userConfigTemplate'])->name('user.config.template');
 
     Route::get( '/aboutUs', [\App\Http\Controllers\User\UserAboutUsController::class, 'aboutUsList'])->name('user.about.us.list')->middleware(['permission:about us view']);
-    Route::post( '/aboutUsUpdate', [\App\Http\Controllers\User\UserAboutUsController::class, 'aboutUsUpdate'])->name('user.about.us.update')->middleware('permission:about us view || about us update');
+    Route::post( '/aboutUsUpdate', [\App\Http\Controllers\User\UserAboutUsController::class, 'aboutUsUpdate'])->name('user.about.us.update')->middleware('permission:about us update');
 
     Route::get( '/services', [\App\Http\Controllers\User\UserServicesController::class, 'servicesList'])->name('user.services.list')->middleware(['permission:services view']);
     Route::post( '/servicesAdd', [\App\Http\Controllers\User\UserServicesController::class, 'servicesAdd'])->name('user.services.add')->middleware('permission:services create');
@@ -100,7 +100,7 @@ Route::prefix('/user')->middleware(['is_user', 'role:User'])->group(function () 
     //middleware(['permission:faq view', 'permission:faq create'])
     Route::post( '/faqAdd', [\App\Http\Controllers\User\UserFaqController::class, 'faqAdd'])->name('user.faq.add')->middleware('permission:faq create');
     Route::post( '/faqDelete', [\App\Http\Controllers\User\UserFaqController::class, 'faqDelete'])->name('user.faq.delete')->middleware('permission:faq delete');
-    Route::post( '/faqUpdate/{id}', [\App\Http\Controllers\User\UserFaqController::class, 'faqUpdate'])->name('user.faq.update')->middleware('permission:faq view || faq update');
+    Route::post( '/faqUpdate/{id}', [\App\Http\Controllers\User\UserFaqController::class, 'faqUpdate'])->name('user.faq.update')->middleware('permission:faq update');
 
 
 });

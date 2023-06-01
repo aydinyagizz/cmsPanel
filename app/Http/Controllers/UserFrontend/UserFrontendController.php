@@ -4,24 +4,38 @@ namespace App\Http\Controllers\UserFrontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserAboutUs;
+use App\Models\UserFaq;
+use App\Models\UserPricing;
+use App\Models\UserServices;
+use Flasher\Prime\FlasherInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class UserFrontendController extends Controller
 {
-    public function userFrontendIndex (Request $request, $slug)
+    public function userFrontendIndex (Request $request, $slug, FlasherInterface $flasher)
     {
-//        $user = array();
-//        if (Session::has('userId')){
-//            $user = User::where('id', Session::get('userId'))->first();
-//        }
+        $user = User::where('slug', $slug)->first();
+
+        if (!$user) {
+            //            TODO: burayı admin frontend'e yönlendireceğiz.
+            $flasher->addError('Page Not Found');
+            return view('welcome');
+        }
+
         $data = [
             'user' => User::where('slug', $slug)->first(),
+            'about_us' => UserAboutUs::where('user_id', $user->id)->first(),
+            'services' => UserServices::where('user_id', $user->id)->where('status', 1)->get(),
+            'pricing' => UserPricing::where('user_id', $user->id)->where('status', 1)->get(),
+            'faq' => UserFaq::where('user_id', $user->id)->where('status', 1)->get(),
         ];
 
         if ($data['user']->status == 0){
 //            TODO: burayı admin frontend'e yönlendireceğiz.
+            $flasher->addError('Page Not Found');
             return view('welcome');
         }
 

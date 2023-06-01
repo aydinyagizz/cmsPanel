@@ -323,6 +323,7 @@
 {{--                    </div>--}}
 {{--                </section>--}}
 
+        @if($about_us)
         <!-- ======= About Us Section ======= -->
         <section id="about" class="about">
             <div class="container" data-aos="fade-up">
@@ -332,98 +333,103 @@
                 </div>
 
                 <div class="row content">
-                     $frontend->about_us_content ? $frontend->about_us_content : ''
+                    {!! $about_us ? $about_us->content : '' !!}
+
                 </div>
 
             </div>
-        </section><!-- End About Us Section -->
+        </section>
+        <!-- End About Us Section -->
+        @endif
 
 
+        @if(count($services) > 0)
         <!-- ======= Services Section ======= -->
-        <section id="services" class="services section-bg">
+        <section id="services" class="services section-bg tex">
 
             <div class="container" data-aos="fade-up">
 
 
                 <div class="section-title">
                     <h2>Services</h2>
-                    <h4> $service_area['name']</h4>
                 </div>
 
-                <div class="row">
+                <div class="row justify-content-center">
 
-{{--                    @foreach($sub_service_area as $sub_service_area)--}}
+                    @foreach($services as $item)
                         <div class="col-xl-3  align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
                              data-aos-delay="400">
                             <div class="icon-box mt-4">
-                                <div class="icon"><i class="bx bx-layer"></i></div>
-                                <h2> $sub_service_area['name'] </h2>
-                                <p> $sub_service_area['content'] </p>
+                                <div class="icon"><i class="{{ $item->icon }}"></i></div>
+                                <h2> {{ $item->title }} </h2>
+                                <p> {!! $item->content !!} </p>
                             </div>
                         </div>
-{{--                    @endforeach--}}
+                    @endforeach
 
                 </div>
 
             </div>
-        </section><!-- End Services Section -->
+        </section>
+            <!-- End Services Section -->
+        @endif
 
 
+        @if(count($pricing) > 0)
         <!-- ======= Pricing Section ======= -->
         <section id="pricing" class="pricing">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
                     <h2>Pricing</h2>
-                     $frontend->pricing_description ? $frontend->pricing_description : ''
                 </div>
 
-                <div class="row mt-4">
-{{--                    @foreach($pricing as $item)--}}
+                <div class="row mt-4 justify-content-center">
+                    @foreach($pricing as $item)
                         <div style="margin-top: 10px; margin-bottom: 10px;" class="col-lg-4 mt-4 mb-4 mt-lg-0"
                              data-aos="fade-up" data-aos-delay="200">
                             <div class="box featured">
-                                <h3> $item->pricing_title </h3>
-                                <h4><sup>$</sup> $item->pricing_price <span> $item->price_suffix </span></h4>
+                                <h3>{{ $item->title }}</h3>
+                                <h4><sup>$</sup>{{ $item->price }}<span>{{ $item->price_suffix }} </span></h4>
 
-                                 $item->pricing_content
+                                 {!! $item->content !!}
 
                                 <a href="#contact" class="buy-btn">Get Started</a>
                             </div>
                         </div>
-{{--                    @endforeach--}}
+                    @endforeach
 
                 </div>
 
             </div>
         </section><!-- End Pricing Section -->
+        @endif
 
 
+        @if(count($faq) > 0)
         <!-- ======= Frequently Asked Questions Section ======= -->
         <section id="faq" class="faq section-bg">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
                     <h2>Frequently Asked Questions</h2>
-                     $frontend->faq_description
                 </div>
 
                 <div class="faq-list">
                     <ul>
-{{--                        @foreach($faq as $item)--}}
+                        @foreach($faq as $item)
                             <li data-aos="fade-up" data-aos-delay="200">
                                 <i class="bx bx-help-circle icon-help"></i>
-                                <a data-bs-toggle="collapse" data-bs-target="#faq-list-$item->id" class="collapsed">
-                                     $item->faq_title
+                                <a data-bs-toggle="collapse" data-bs-target="#faq-list-{{$item->id}}" class="collapsed">
+                                    {{ $item->title }}
                                     <i class="bx bx-chevron-down icon-show"></i><i
                                         class="bx bx-chevron-up icon-close"></i></a>
-                                <div id="faq-list-$item->id" class="collapse" data-bs-parent=".faq-list">
-                                     $item->faq_content
-                                     $item->faq_content
+                                <div id="faq-list-{{$item->id}}" class="collapse" data-bs-parent=".faq-list">
+                                     {!! $item->content !!}
                                 </div>
                             </li>
 
-{{--                        @endforeach--}}
+                        @endforeach
 
 
                     </ul>
@@ -431,6 +437,8 @@
 
             </div>
         </section><!-- End Frequently Asked Questions Section -->
+
+        @endif
 
         <!-- ======= Contact Section ======= -->
         <section id="contact" class="contact">

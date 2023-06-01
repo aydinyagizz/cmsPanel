@@ -47,6 +47,10 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+          integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
     @yield('css')
 
 
@@ -220,10 +224,10 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto active " href="#hero">Home</a></li>
-                <li><a class="nav-link scrollto " href="#about">About</a></li>
-                <li><a class="nav-link scrollto " href="#services">Services</a></li>
-                <li><a class="nav-link scrollto " href="#pricing">Pricing</a></li>
-                <li><a class="nav-link scrollto " href="#faq">FAQ</a></li>
+                @if($about_us)<li><a class="nav-link scrollto " href="#about">About</a></li>@endif
+                @if(count($services)>0)<li><a class="nav-link scrollto " href="#services">Services</a></li>@endif
+                @if(count($pricing)>0)<li><a class="nav-link scrollto " href="#pricing">Pricing</a></li>@endif
+                @if(count($faq)>0) <li><a class="nav-link scrollto " href="#faq">FAQ</a></li>@endif
 
                 <li><a class="nav-link scrollto " href="#contact">Contact</a></li>
 

@@ -33,6 +33,10 @@
 
     @yield('css')
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+              integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+              crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
     <!-- =======================================================
     * Template Name: Impact
     * Updated: Mar 10 2023 with Bootstrap v5.2.3
@@ -55,7 +59,7 @@
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
             <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
         </div>
     </div>
 </section><!-- End Top Bar -->
@@ -71,10 +75,10 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#faq">Faq</a></li>
+               @if($about_us) <li><a href="#about">About</a></li>@endif
+                @if(count($services)>0)<li><a href="#services">Services</a></li>@endif
+                @if(count($pricing)>0)<li><a href="#pricing">Pricing</a></li>@endif
+                @if(count($faq)>0)<li><a href="#faq">Faq</a></li>@endif
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav><!-- .navbar -->
