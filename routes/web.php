@@ -102,6 +102,10 @@ Route::prefix('/user')->middleware(['is_user', 'role:User'])->group(function () 
     Route::post( '/faqDelete', [\App\Http\Controllers\User\UserFaqController::class, 'faqDelete'])->name('user.faq.delete')->middleware('permission:faq delete');
     Route::post( '/faqUpdate/{id}', [\App\Http\Controllers\User\UserFaqController::class, 'faqUpdate'])->name('user.faq.update')->middleware('permission:faq update');
 
+    Route::get( '/socialMedia', [\App\Http\Controllers\User\UserSocialMediaController::class, 'socialMediaList'])->name('user.social.media.list');
+    Route::post( '/socialMediaAdd', [\App\Http\Controllers\User\UserSocialMediaController::class, 'socialMediaAdd'])->name('user.social.media.add');
+    Route::post( '/socialMediaDelete', [\App\Http\Controllers\User\UserSocialMediaController::class, 'socialMediaDelete'])->name('user.social.media.delete');
+    Route::post( '/socialMediaUpdate/{id}', [\App\Http\Controllers\User\UserSocialMediaController::class, 'socialMediaUpdate'])->name('user.social.media.update');
 
 });
 

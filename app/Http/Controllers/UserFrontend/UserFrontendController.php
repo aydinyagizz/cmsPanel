@@ -8,6 +8,7 @@ use App\Models\UserAboutUs;
 use App\Models\UserFaq;
 use App\Models\UserPricing;
 use App\Models\UserServices;
+use App\Models\UserSocialMedia;
 use Flasher\Prime\FlasherInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -31,6 +32,7 @@ class UserFrontendController extends Controller
             'services' => UserServices::where('user_id', $user->id)->where('status', 1)->get(),
             'pricing' => UserPricing::where('user_id', $user->id)->where('status', 1)->get(),
             'faq' => UserFaq::where('user_id', $user->id)->where('status', 1)->get(),
+            'social_media' => UserSocialMedia::where('user_id', $user->id)->where('status', 1)->get(),
         ];
 
         if ($data['user']->status == 0){

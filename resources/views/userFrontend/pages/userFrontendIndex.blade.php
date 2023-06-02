@@ -21,7 +21,6 @@
                          data-aos="fade-up" data-aos-delay="200">
                         <h1>Better Solutions For Your Business</h1>
 
-                        <h1>fdgfd</h1>
                         <h2>We are team of talented designers making websites with Bootstrap</h2>
                         <div class="d-flex justify-content-center justify-content-lg-start">
                             <a href="#about" class="btn-get-started scrollto">Get Started</a>
@@ -446,7 +445,6 @@
 
                 <div class="section-title">
                     <h2>Contact</h2>
-                     $frontend->contact_description
                 </div>
 
                 <div class="row">
@@ -456,20 +454,20 @@
                             <div class="address">
                                 <i class="bi bi-geo-alt"></i>
                                 <h4>Location:</h4>
-                                <p> $frontend->contact_address </p>
+                                <p> {!! $user->address !!} </p>
                             </div>
 
                             <div class="email">
                                 <i class="bi bi-envelope"></i>
                                 <h4>Email:</h4>
-                                <a href="mailto: $frontend->contact_email "><p> $frontend->contact_email </p>
+                                <a href="mailto: {{ $user->email }} "><p> {{ $user->email }} </p>
                                 </a>
                             </div>
 
                             <div class="phone">
                                 <i class="bi bi-phone"></i>
                                 <h4>Call:</h4>
-                                <a href="tel:$frontend->contact_phone"><p> $frontend->contact_phone </p></a>
+                                <a href="tel:{{ $user->phone }}"><p> {{ $user->phone }} </p></a>
                             </div>
 
                             {{--                            <iframe--}}

@@ -60,142 +60,141 @@
 
 
     {{--    <style>--}}
-{{--        /*.modal-open .modal{*/--}}
-{{--        /*    overflow-x : auto;*/--}}
-{{--        /*    overflow-y : auto;*/--}}
-{{--        /*}*/--}}
-{{--        .modal-backdrop.show body {--}}
+    {{--        /*.modal-open .modal{*/--}}
+    {{--        /*    overflow-x : auto;*/--}}
+    {{--        /*    overflow-y : auto;*/--}}
+    {{--        /*}*/--}}
+    {{--        .modal-backdrop.show body {--}}
 
-{{--            /*opacity: 1 !important;*/--}}
+    {{--            /*opacity: 1 !important;*/--}}
 
-{{--            background-color: #000000 !important;--}}
-{{--            opacity: 0.2 !important;--}}
-{{--            filter: alpha(opacity=60) !important;--}}
+    {{--            background-color: #000000 !important;--}}
+    {{--            opacity: 0.2 !important;--}}
+    {{--            filter: alpha(opacity=60) !important;--}}
 
-{{--        }--}}
-
-
-{{--        /*.contact .php-email-form{*/--}}
-{{--        /*    background-color:#000000 !important;*/--}}
-{{--        /*    opacity:0.3 !important;*/--}}
-{{--        /*    filter:alpha(opacity=60) !important;*/--}}
-{{--        /*}*/--}}
-
-{{--        .modal-open {--}}
-{{--            overflow: auto !important;--}}
-
-{{--        }--}}
-
-{{--        .modal-backdrop {--}}
-{{--            z-index: -1 !important;--}}
-{{--            background-color: #000000 !important;--}}
-{{--            opacity: 0.2 !important;--}}
-{{--            filter: alpha(opacity=60) !important;--}}
-{{--        }--}}
-
-{{--        .modal {--}}
-{{--            /*overflow-x: auto !important;*/--}}
-{{--            /*overflow-y: auto !important;*/--}}
-{{--            height: auto !important;--}}
-{{--            overflow: auto !important;--}}
-{{--            /*display: block !important;*/--}}
-
-{{--        }--}}
-
-{{--        /* Important part */--}}
-{{--        .modal-dialog {--}}
-{{--            overflow-y: auto !important;--}}
-
-{{--            /*overflow-y: initial !important;*/--}}
-{{--        }--}}
-
-{{--        .modal-body {--}}
-{{--            /*height: 80vh;*/--}}
-{{--            /*overflow-y: auto;*/--}}
-{{--            max-height: calc(100vh - 200px);--}}
-{{--            overflow-y: auto;--}}
-{{--        }--}}
-
-{{--        .whatsapp-icon {--}}
-{{--            position: fixed;--}}
-{{--            bottom: 10px;--}}
-{{--            left: 10px;--}}
-{{--            /*right: 20px; !* İkonun sağdan 20 piksel mesafede kalmasını sağlar *!*/--}}
-{{--            z-index: 9999; /* İkonun sayfada en üstte kalmasını sağlar */--}}
-
-{{--        }--}}
-
-{{--        /*bu eklendi*/--}}
-{{--        /*.fixed-top{*/--}}
-{{--        /*    background-color: white;*/--}}
-{{--        /*}*/--}}
-
-{{--        /*.navbar a, .navbar a:focus {*/--}}
-{{--        /*    color: #37517E;*/--}}
-{{--        /*}*/--}}
-{{--        /*.navbar .getstarted{*/--}}
-{{--        /*    color: #37517E;*/--}}
-{{--        /*}*/--}}
-
-{{--        /*.header-scrolled .navbar a {*/--}}
-{{--        /*     color: white;*/--}}
-
-{{--        /*}*/--}}
-
-{{--        /*#header .logo a {*/--}}
-{{--        /*    color:#47b2e4;*/--}}
-{{--        /*}*/--}}
-
-{{--        /*@media only screen and (max-width: 600px) {*/--}}
-{{--        /*    .fixed-top .mobile-nav-toggle {*/--}}
-{{--        /*        color: #47b2e4;*/--}}
-{{--        /*     }*/--}}
-
-{{--        /*    .header-scrolled .navbar a {*/--}}
-{{--        /*        color: #302626;*/--}}
-{{--        /*    }*/--}}
-
-{{--        /*}*/--}}
+    {{--        }--}}
 
 
-{{--        .fixed-top {--}}
-{{--            background-color: white;--}}
-{{--        }--}}
+    {{--        /*.contact .php-email-form{*/--}}
+    {{--        /*    background-color:#000000 !important;*/--}}
+    {{--        /*    opacity:0.3 !important;*/--}}
+    {{--        /*    filter:alpha(opacity=60) !important;*/--}}
+    {{--        /*}*/--}}
 
-{{--        #header.header-scrolled, #header.header-inner-pages {--}}
-{{--            background: white;--}}
-{{--        }--}}
+    {{--        .modal-open {--}}
+    {{--            overflow: auto !important;--}}
 
-{{--        .navbar a, .navbar a:focus {--}}
-{{--            color: #37517E;;--}}
-{{--        }--}}
+    {{--        }--}}
 
-{{--        .navbar-brand{--}}
-{{--            color: #37517E;;--}}
-{{--        }--}}
+    {{--        .modal-backdrop {--}}
+    {{--            z-index: -1 !important;--}}
+    {{--            background-color: #000000 !important;--}}
+    {{--            opacity: 0.2 !important;--}}
+    {{--            filter: alpha(opacity=60) !important;--}}
+    {{--        }--}}
 
-{{--        .navbar-brand:hover{--}}
-{{--            color: #37517E;--}}
-{{--        }--}}
+    {{--        .modal {--}}
+    {{--            /*overflow-x: auto !important;*/--}}
+    {{--            /*overflow-y: auto !important;*/--}}
+    {{--            height: auto !important;--}}
+    {{--            overflow: auto !important;--}}
+    {{--            /*display: block !important;*/--}}
 
-{{--        @media only screen and (max-width: 600px) {--}}
-{{--            .fixed-top .mobile-nav-toggle {--}}
-{{--                color: #37517E;--}}
-{{--            }--}}
+    {{--        }--}}
 
-{{--            /*.header-scrolled .navbar a {*/--}}
-{{--            /*    color: #302626;*/--}}
-{{--            /*}*/--}}
+    {{--        /* Important part */--}}
+    {{--        .modal-dialog {--}}
+    {{--            overflow-y: auto !important;--}}
 
-{{--            .navbar-mobile .bi-x{--}}
-{{--                color: white;--}}
-{{--            }--}}
+    {{--            /*overflow-y: initial !important;*/--}}
+    {{--        }--}}
+
+    {{--        .modal-body {--}}
+    {{--            /*height: 80vh;*/--}}
+    {{--            /*overflow-y: auto;*/--}}
+    {{--            max-height: calc(100vh - 200px);--}}
+    {{--            overflow-y: auto;--}}
+    {{--        }--}}
+
+    {{--        .whatsapp-icon {--}}
+    {{--            position: fixed;--}}
+    {{--            bottom: 10px;--}}
+    {{--            left: 10px;--}}
+    {{--            /*right: 20px; !* İkonun sağdan 20 piksel mesafede kalmasını sağlar *!*/--}}
+    {{--            z-index: 9999; /* İkonun sayfada en üstte kalmasını sağlar */--}}
+
+    {{--        }--}}
+
+    {{--        /*bu eklendi*/--}}
+    {{--        /*.fixed-top{*/--}}
+    {{--        /*    background-color: white;*/--}}
+    {{--        /*}*/--}}
+
+    {{--        /*.navbar a, .navbar a:focus {*/--}}
+    {{--        /*    color: #37517E;*/--}}
+    {{--        /*}*/--}}
+    {{--        /*.navbar .getstarted{*/--}}
+    {{--        /*    color: #37517E;*/--}}
+    {{--        /*}*/--}}
+
+    {{--        /*.header-scrolled .navbar a {*/--}}
+    {{--        /*     color: white;*/--}}
+
+    {{--        /*}*/--}}
+
+    {{--        /*#header .logo a {*/--}}
+    {{--        /*    color:#47b2e4;*/--}}
+    {{--        /*}*/--}}
+
+    {{--        /*@media only screen and (max-width: 600px) {*/--}}
+    {{--        /*    .fixed-top .mobile-nav-toggle {*/--}}
+    {{--        /*        color: #47b2e4;*/--}}
+    {{--        /*     }*/--}}
+
+    {{--        /*    .header-scrolled .navbar a {*/--}}
+    {{--        /*        color: #302626;*/--}}
+    {{--        /*    }*/--}}
+
+    {{--        /*}*/--}}
 
 
-{{--        }--}}
+    {{--        .fixed-top {--}}
+    {{--            background-color: white;--}}
+    {{--        }--}}
 
-{{--    </style>--}}
+    {{--        #header.header-scrolled, #header.header-inner-pages {--}}
+    {{--            background: white;--}}
+    {{--        }--}}
 
+    {{--        .navbar a, .navbar a:focus {--}}
+    {{--            color: #37517E;;--}}
+    {{--        }--}}
+
+    {{--        .navbar-brand{--}}
+    {{--            color: #37517E;;--}}
+    {{--        }--}}
+
+    {{--        .navbar-brand:hover{--}}
+    {{--            color: #37517E;--}}
+    {{--        }--}}
+
+    {{--        @media only screen and (max-width: 600px) {--}}
+    {{--            .fixed-top .mobile-nav-toggle {--}}
+    {{--                color: #37517E;--}}
+    {{--            }--}}
+
+    {{--            /*.header-scrolled .navbar a {*/--}}
+    {{--            /*    color: #302626;*/--}}
+    {{--            /*}*/--}}
+
+    {{--            .navbar-mobile .bi-x{--}}
+    {{--                color: white;--}}
+    {{--            }--}}
+
+
+    {{--        }--}}
+
+    {{--    </style>--}}
 
 
 </head>
@@ -224,25 +223,32 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto active " href="#hero">Home</a></li>
-                @if($about_us)<li><a class="nav-link scrollto " href="#about">About</a></li>@endif
-                @if(count($services)>0)<li><a class="nav-link scrollto " href="#services">Services</a></li>@endif
-                @if(count($pricing)>0)<li><a class="nav-link scrollto " href="#pricing">Pricing</a></li>@endif
-                @if(count($faq)>0) <li><a class="nav-link scrollto " href="#faq">FAQ</a></li>@endif
+                @if($about_us)
+                    <li><a class="nav-link scrollto " href="#about">About</a></li>
+                @endif
+                @if(count($services)>0)
+                    <li><a class="nav-link scrollto " href="#services">Services</a></li>
+                @endif
+                @if(count($pricing)>0)
+                    <li><a class="nav-link scrollto " href="#pricing">Pricing</a></li>
+                @endif
+                @if(count($faq)>0)
+                    <li><a class="nav-link scrollto " href="#faq">FAQ</a></li>
+                @endif
 
                 <li><a class="nav-link scrollto " href="#contact">Contact</a></li>
 
 
-                <li class="dropdown "><a style="border: 2px solid #37517E; color: #37517E; background-color: white" class="getstarted scrollto"
-                                         href="javascript:void(0);"><span>Sign In/Sign Up</span> <i
-                            class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a href="">Employer Sign In/Sign Up</a></li>
+                {{--                <li class="dropdown "><a style="border: 2px solid #37517E; color: #37517E; background-color: white" class="getstarted scrollto"--}}
+                {{--                                         href="javascript:void(0);"><span>Sign In/Sign Up</span> <i--}}
+                {{--                            class="bi bi-chevron-down"></i></a>--}}
+                {{--                    <ul>--}}
+                {{--                        <li><a href="">Employer Sign In/Sign Up</a></li>--}}
 
 
-                        <li><a href="">Professional Sign In/Sign Up</a></li>
-                    </ul>
-                </li>
-
+                {{--                        <li><a href="">Professional Sign In/Sign Up</a></li>--}}
+                {{--                    </ul>--}}
+                {{--                </li>--}}
 
 
             </ul>
@@ -277,9 +283,9 @@
                 <div class="col-lg-3 col-md-6 footer-contact">
                     {{--                    <h3>{{ $user->company_name}}</h3>--}}
                     <p>
-                         $frontend->contact_address
-                        <strong>Phone:</strong>  $frontend->contact_phone <br>
-                        <strong>Email:</strong>  $frontend->contact_email <br>
+                        {!! $user->address !!} <br>
+                        <strong>Phone:</strong> {{ $user->phone }} <br>
+                        <strong>Email:</strong> {{ $user->email }} <br>
                     </p>
                 </div>
 
@@ -307,14 +313,36 @@
                     <h4>Our Social Networks</h4>
 
                     <div class="social-links mt-3">
-                        <a href="" target="_blank" class="twitter"><i
-                                class="bx bxl-twitter"></i></a>
-                        <a href="" target="_blank" class="facebook"><i
-                                class="bx bxl-facebook"></i></a>
-                        <a href="" target="_blank" class="instagram"><i
-                                class="bx bxl-instagram"></i></a>
-                        <a href="" target="_blank" class="linkedin"><i
-                                class="bx bxl-linkedin"></i></a>
+                        @foreach($social_media as $item)
+                            @if($item->icon == 'fa-facebook')
+                                <a href="{!! $item->link !!}" target="_blank" class="facebook"><i
+                                        class="bx bxl-facebook"></i></a>
+                            @elseif($item->icon == 'fa-instagram')
+                                <a href="{!! $item->link !!}" target="_blank" class="instagram"><i
+                                        class="bx bxl-instagram"></i></a>
+                            @elseif($item->icon == 'fa-twitter')
+                                <a href="{!! $item->link !!}" target="_blank" class="twitter"><i
+                                        class="bx bxl-twitter"></i></a>
+                            @elseif($item->icon == 'fa-linkedin')
+                                <a href="{!! $item->link !!}" target="_blank" class="linkedin"><i
+                                        class="bx bxl-linkedin"></i></a>
+                            @elseif($item->icon == 'fa-youtube')
+                                <a href="{!! $item->link !!}" target="_blank" class="youtube"><i
+                                        class="bx bxl-youtube"></i></a>
+                            @else
+                            @endif
+                        @endforeach
+
+{{--                        <a href="" target="_blank" class="twitter"><i--}}
+{{--                                class="bx bxl-twitter"></i></a>--}}
+{{--                        <a href="" target="_blank" class="facebook"><i--}}
+{{--                                class="bx bxl-facebook"></i></a>--}}
+{{--                        <a href="" target="_blank" class="instagram"><i--}}
+{{--                                class="bx bxl-instagram"></i></a>--}}
+{{--                        <a href="" target="_blank" class="linkedin"><i--}}
+{{--                                class="bx bxl-linkedin"></i></a>--}}
+{{--                            <a href="" target="_blank" class="youtube"><i--}}
+{{--                                    class="bx bxl-youtube"></i></a>--}}
                     </div>
                 </div>
 
@@ -334,10 +362,6 @@
         {{--        </div>--}}
     </div>
 </footer><!-- End Footer -->
-
-
-
-
 
 
 <div id="preloader"></div>

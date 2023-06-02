@@ -257,6 +257,24 @@
                         </a>
                         @endcan
 
+
+                        <a href="{{ route('user.social.media.list') }}">
+                            <div
+                                class="menu-item   {{ Route::is('user.social.media.list') ? 'show' : '' }} menu-accordion mb-1">
+                            <span class="menu-link"><span class="menu-icon">
+
+                                    <i style="font-size: 17px!important;" class="fa fa-plus" aria-hidden="true"></i>
+
+                                 </span>
+                                <span class="menu-title">Social Media
+                                </span>
+                                <span class=""></span></span>
+
+
+                            </div>
+                        </a>
+
+
                         <a href="{{ route('user.config') }}">
                             <div
                                 class="menu-item   {{ Route::is('user.config') ? 'show' : '' }} menu-accordion mb-1">
@@ -7530,6 +7548,9 @@
 
 <script src="{{ asset('public/user/assets/js/signin-methods.js') }}"></script>
 <script src="{{ asset('public/user/assets/js/profile-details.js') }}"></script>
+
+<script src="{{ asset('public/user/assets/js/social-media-add.js') }}"></script>
+<script src="{{ asset('public/user/assets/js/social-media-list.js') }}"></script>
 
 
 <script src="../../cdn.amcharts.com/lib/5/index.js"></script>
