@@ -11,30 +11,40 @@
 
 @section('content')
 
+    <section id="hero" class="d-flex align-items-center"
+             style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}">
 
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+                     data-aos="fade-up" data-aos-delay="200">
+                    <h1>{!! ($home && $home->title) ? $home->title : 'Better Solutions For Your Business' !!}</h1>
 
-        <section id="hero" class="d-flex align-items-center">
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
-                         data-aos="fade-up" data-aos-delay="200">
-                        <h1>Better Solutions For Your Business</h1>
-
-                        <h2>We are team of talented designers making websites with Bootstrap</h2>
-                        <div class="d-flex justify-content-center justify-content-lg-start">
-                            <a href="#about" class="btn-get-started scrollto">Get Started</a>
-                                                <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i
-                                                        class="bi bi-play-circle"></i><span>Watch Video</span></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-                                        <img src="{{ asset('userFrontend/assets/img/hero-img.png') }}" class="img-fluid animated" alt="">
+                    <h2>{!! ($home && $home->description) ? $home->description : 'We are team of talented designers making websites with Bootstrap' !!}</h2>
+                    <div class="d-flex justify-content-center justify-content-lg-start">
+                        <a href="#contact" class="btn-get-started scrollto">Get Started</a>
+                        @if($home && $home->video)
+                            <a href="{!! $home->video !!}" class="glightbox btn-watch-video"><i
+                                    class="bi bi-play-circle"></i><span>Watch Video</span></a>
+                        @endif
                     </div>
                 </div>
-            </div>
+                <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+                    @if($home && $home->image)
 
-        </section>
+                        <img
+                            src="data:image/jpeg;base64,{{ $home->image }}"
+                            alt="{{ $home->image }}" class="img-fluid animated"/>
+
+                    @else
+                        <img src="{{ asset('userFrontend/assets/img/hero-img.png') }}" class="img-fluid animated"
+                             alt="">
+                    @endif
+                </div>
+            </div>
+        </div>
+
+    </section>
 
 
 
@@ -60,223 +70,223 @@
     {{--    </div>--}}
     {{--</div>--}}
 
-{{--    <style>--}}
+    {{--    <style>--}}
 
 
-{{--        .bottom-left {--}}
-{{--            position: absolute;--}}
-{{--            bottom: 8px;--}}
-{{--            left: 16px;--}}
-{{--        }--}}
+    {{--        .bottom-left {--}}
+    {{--            position: absolute;--}}
+    {{--            bottom: 8px;--}}
+    {{--            left: 16px;--}}
+    {{--        }--}}
 
-{{--        .top-left {--}}
-{{--            position: absolute;--}}
-{{--            top: 8px;--}}
-{{--            left: 16px;--}}
-{{--        }--}}
+    {{--        .top-left {--}}
+    {{--            position: absolute;--}}
+    {{--            top: 8px;--}}
+    {{--            left: 16px;--}}
+    {{--        }--}}
 
-{{--        .top-right {--}}
-{{--            position: absolute;--}}
-{{--            top: 8px;--}}
-{{--            right: 16px;--}}
-{{--        }--}}
+    {{--        .top-right {--}}
+    {{--            position: absolute;--}}
+    {{--            top: 8px;--}}
+    {{--            right: 16px;--}}
+    {{--        }--}}
 
-{{--        .bottom-right {--}}
-{{--            position: absolute;--}}
-{{--            bottom: 8px;--}}
-{{--            right: 16px;--}}
-{{--        }--}}
+    {{--        .bottom-right {--}}
+    {{--            position: absolute;--}}
+    {{--            bottom: 8px;--}}
+    {{--            right: 16px;--}}
+    {{--        }--}}
 
-{{--        .centered {--}}
-{{--            position: absolute;--}}
-{{--            top: 50%;--}}
-{{--            left: 50%;--}}
-{{--            transform: translate(-50%, -50%);--}}
-{{--        }--}}
-{{--    </style>--}}
+    {{--        .centered {--}}
+    {{--            position: absolute;--}}
+    {{--            top: 50%;--}}
+    {{--            left: 50%;--}}
+    {{--            transform: translate(-50%, -50%);--}}
+    {{--        }--}}
+    {{--    </style>--}}
 
-{{--    <style>--}}
+    {{--    <style>--}}
 
-{{--        .video-background-holder {--}}
-{{--            position: relative;--}}
+    {{--        .video-background-holder {--}}
+    {{--            position: relative;--}}
 
-{{--            /*height: calc(100vh - 72px);*/--}}
+    {{--            /*height: calc(100vh - 72px);*/--}}
 
-{{--            width: 100%;--}}
-{{--            overflow: hidden;--}}
-{{--        }--}}
+    {{--            width: 100%;--}}
+    {{--            overflow: hidden;--}}
+    {{--        }--}}
 
-{{--        .video-background-holder video {--}}
-{{--            color: red;--}}
-{{--            position: absolute;--}}
-{{--            top: 50%;--}}
+    {{--        .video-background-holder video {--}}
+    {{--            color: red;--}}
+    {{--            position: absolute;--}}
+    {{--            top: 50%;--}}
 
-{{--            left: 50%;--}}
-{{--            max-width: 100%!important;--}}
-{{--            /*max-height: 100%!important;*/--}}
+    {{--            left: 50%;--}}
+    {{--            max-width: 100%!important;--}}
+    {{--            /*max-height: 100%!important;*/--}}
 
-{{--            height: auto;--}}
-{{--            z-index: 0;--}}
-{{--            -ms-transform: translateX(-50%) translateY(-50%);--}}
-{{--            -moz-transform: translateX(-50%) translateY(-50%);--}}
-{{--            -webkit-transform: translateX(-50%) translateY(-50%);--}}
-{{--            transform: translateX(-50%) translateY(-50%);--}}
-{{--        }--}}
+    {{--            height: auto;--}}
+    {{--            z-index: 0;--}}
+    {{--            -ms-transform: translateX(-50%) translateY(-50%);--}}
+    {{--            -moz-transform: translateX(-50%) translateY(-50%);--}}
+    {{--            -webkit-transform: translateX(-50%) translateY(-50%);--}}
+    {{--            transform: translateX(-50%) translateY(-50%);--}}
+    {{--        }--}}
 
-{{--        @media (max-width: 991px){--}}
-{{--            #hero {--}}
-{{--                height: 360px!important;--}}
-{{--            }--}}
-{{--        }--}}
+    {{--        @media (max-width: 991px){--}}
+    {{--            #hero {--}}
+    {{--                height: 360px!important;--}}
+    {{--            }--}}
+    {{--        }--}}
 
-{{--        @media only screen and (max-width: 600px) {--}}
-
-
-
-
-{{--            .video-background-holder video {--}}
-
-{{--                /*color: red;*/--}}
-{{--                position: absolute;--}}
-
-{{--                top: 58%;--}}
-{{--                left: 50%;--}}
-{{--                /*min-width: 100%;*/--}}
-{{--                /*min-height: 99%;*/--}}
-{{--                /*width: auto;*/--}}
-{{--                /*height: auto;*/--}}
-{{--                z-index: 0;--}}
-{{--                -ms-transform: translateX(-50%) translateY(-50%);--}}
-{{--                -moz-transform: translateX(-50%) translateY(-50%);--}}
-{{--                -webkit-transform: translateX(-50%) translateY(-50%);--}}
-{{--                transform: translateX(-50%) translateY(-50%);--}}
-{{--            }--}}
-
-{{--            .video-background-holder {--}}
-{{--                position: relative;--}}
-
-{{--                overflow: hidden;--}}
-{{--            }--}}
-
-{{--            .slider-active{--}}
-{{--                /*height: 250px!important;*/--}}
-{{--            }--}}
-{{--        }--}}
-
-{{--        .video-background-content {--}}
-{{--            position: relative;--}}
-{{--            z-index: 2;--}}
-{{--        }--}}
-
-{{--        .video-background-overlay {--}}
-{{--            position: absolute;--}}
-{{--            top: 0;--}}
-{{--            left: 0;--}}
-{{--            /*height: 100%;*/--}}
-{{--            /*width: 100%;*/--}}
-
-{{--            opacity: 0.5;--}}
-{{--            z-index: 1;--}}
-{{--        }--}}
+    {{--        @media only screen and (max-width: 600px) {--}}
 
 
 
-{{--        code {--}}
-{{--            padding: 0 0.15rem;--}}
-{{--            /*background: #f5f5f5;*/--}}
-{{--            border-radius: 0.2rem;--}}
-{{--        }--}}
 
-{{--        .scroll-down {--}}
-{{--            /*height: 60px;*/--}}
-{{--            /*width: 30px;*/--}}
-{{--            /*border: 2px solid black;*/--}}
-{{--            position: absolute;--}}
-{{--            left: 50%;--}}
-{{--            /*bottom: 40px;*/--}}
-{{--            border-radius: 50px;--}}
-{{--            cursor: pointer;--}}
-{{--        }--}}
+    {{--            .video-background-holder video {--}}
 
-{{--        .scroll-down::before,--}}
-{{--        .scroll-down::after {--}}
-{{--            content: "";--}}
-{{--            position: absolute;--}}
-{{--            /*top: 20%;*/--}}
-{{--            /*left: 50%;*/--}}
-{{--            /*height: 10px;*/--}}
-{{--            /*width: 10px;*/--}}
-{{--            transform: translate(-50%, -100%) rotate(45deg);--}}
-{{--            border: 2px solid white;--}}
-{{--            border-top: transparent;--}}
-{{--            border-left: transparent;--}}
-{{--            animation: scroll-down 1s ease-in-out infinite;--}}
-{{--        }--}}
+    {{--                /*color: red;*/--}}
+    {{--                position: absolute;--}}
 
-{{--        .scroll-down::before {--}}
-{{--            top: 30%;--}}
-{{--            animation-delay: 0.3s;--}}
+    {{--                top: 58%;--}}
+    {{--                left: 50%;--}}
+    {{--                /*min-width: 100%;*/--}}
+    {{--                /*min-height: 99%;*/--}}
+    {{--                /*width: auto;*/--}}
+    {{--                /*height: auto;*/--}}
+    {{--                z-index: 0;--}}
+    {{--                -ms-transform: translateX(-50%) translateY(-50%);--}}
+    {{--                -moz-transform: translateX(-50%) translateY(-50%);--}}
+    {{--                -webkit-transform: translateX(-50%) translateY(-50%);--}}
+    {{--                transform: translateX(-50%) translateY(-50%);--}}
+    {{--            }--}}
 
-{{--        }--}}
+    {{--            .video-background-holder {--}}
+    {{--                position: relative;--}}
 
-{{--        @keyframes scroll-down {--}}
-{{--            0% {--}}
+    {{--                overflow: hidden;--}}
+    {{--            }--}}
 
-{{--                opacity: 0;--}}
-{{--            }--}}
-{{--            30% {--}}
-{{--                opacity: 1;--}}
-{{--            }--}}
-{{--            60% {--}}
-{{--                opacity: 1;--}}
-{{--            }--}}
-{{--            100% {--}}
-{{--                top: 90%;--}}
-{{--                opacity: 0;--}}
-{{--            }--}}
-{{--        }--}}
+    {{--            .slider-active{--}}
+    {{--                /*height: 250px!important;*/--}}
+    {{--            }--}}
+    {{--        }--}}
 
-{{--        #hero{--}}
-{{--            height: 100vh;--}}
-{{--        }--}}
+    {{--        .video-background-content {--}}
+    {{--            position: relative;--}}
+    {{--            z-index: 2;--}}
+    {{--        }--}}
 
-{{--        #detach-button-host{--}}
-{{--            display: none!important;--}}
-{{--        }--}}
+    {{--        .video-background-overlay {--}}
+    {{--            position: absolute;--}}
+    {{--            top: 0;--}}
+    {{--            left: 0;--}}
+    {{--            /*height: 100%;*/--}}
+    {{--            /*width: 100%;*/--}}
 
-{{--    </style>--}}
+    {{--            opacity: 0.5;--}}
+    {{--            z-index: 1;--}}
+    {{--        }--}}
 
-{{--    <div class="" >--}}
-{{--        @if($frontend->slider_image)--}}
 
-{{--            <div class="slider-area " >--}}
-{{--                <div class="slider-active">--}}
-{{--                    <div class="video-background-holder" id="hero">--}}
-{{--                        <div class="video-background-overlay"></div>--}}
-{{--                        <video style="width: 1110px!important;  margin-top: 45px" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">--}}
-{{--                            <source src="{{ asset('public/acente/slider/'.$frontend->slider_image) }}"--}}
-{{--                                    type="video/mp4">--}}
-{{--                        </video>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
 
-{{--        @else--}}
-{{--            --}}
-{{--            <div class="slider-area " >--}}
-{{--                <div class="slider-active">--}}
-{{--                    <div class="video-background-holder" id="hero">--}}
-{{--                        <div class="video-background-overlay"></div>--}}
-{{--                        <video style="width: 1110px!important;  margin-top: 45px" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">--}}
-{{--                            <source src="{{ asset('public/acente/slider/default.mp4') }}"--}}
-{{--                                    type="video/mp4">--}}
-{{--                        </video>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        @endif--}}
-{{--        --}}
-{{--    </div>--}}
+    {{--        code {--}}
+    {{--            padding: 0 0.15rem;--}}
+    {{--            /*background: #f5f5f5;*/--}}
+    {{--            border-radius: 0.2rem;--}}
+    {{--        }--}}
+
+    {{--        .scroll-down {--}}
+    {{--            /*height: 60px;*/--}}
+    {{--            /*width: 30px;*/--}}
+    {{--            /*border: 2px solid black;*/--}}
+    {{--            position: absolute;--}}
+    {{--            left: 50%;--}}
+    {{--            /*bottom: 40px;*/--}}
+    {{--            border-radius: 50px;--}}
+    {{--            cursor: pointer;--}}
+    {{--        }--}}
+
+    {{--        .scroll-down::before,--}}
+    {{--        .scroll-down::after {--}}
+    {{--            content: "";--}}
+    {{--            position: absolute;--}}
+    {{--            /*top: 20%;*/--}}
+    {{--            /*left: 50%;*/--}}
+    {{--            /*height: 10px;*/--}}
+    {{--            /*width: 10px;*/--}}
+    {{--            transform: translate(-50%, -100%) rotate(45deg);--}}
+    {{--            border: 2px solid white;--}}
+    {{--            border-top: transparent;--}}
+    {{--            border-left: transparent;--}}
+    {{--            animation: scroll-down 1s ease-in-out infinite;--}}
+    {{--        }--}}
+
+    {{--        .scroll-down::before {--}}
+    {{--            top: 30%;--}}
+    {{--            animation-delay: 0.3s;--}}
+
+    {{--        }--}}
+
+    {{--        @keyframes scroll-down {--}}
+    {{--            0% {--}}
+
+    {{--                opacity: 0;--}}
+    {{--            }--}}
+    {{--            30% {--}}
+    {{--                opacity: 1;--}}
+    {{--            }--}}
+    {{--            60% {--}}
+    {{--                opacity: 1;--}}
+    {{--            }--}}
+    {{--            100% {--}}
+    {{--                top: 90%;--}}
+    {{--                opacity: 0;--}}
+    {{--            }--}}
+    {{--        }--}}
+
+    {{--        #hero{--}}
+    {{--            height: 100vh;--}}
+    {{--        }--}}
+
+    {{--        #detach-button-host{--}}
+    {{--            display: none!important;--}}
+    {{--        }--}}
+
+    {{--    </style>--}}
+
+    {{--    <div class="" >--}}
+    {{--        @if($frontend->slider_image)--}}
+
+    {{--            <div class="slider-area " >--}}
+    {{--                <div class="slider-active">--}}
+    {{--                    <div class="video-background-holder" id="hero">--}}
+    {{--                        <div class="video-background-overlay"></div>--}}
+    {{--                        <video style="width: 1110px!important;  margin-top: 45px" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">--}}
+    {{--                            <source src="{{ asset('public/acente/slider/'.$frontend->slider_image) }}"--}}
+    {{--                                    type="video/mp4">--}}
+    {{--                        </video>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+
+    {{--        @else--}}
+    {{--            --}}
+    {{--            <div class="slider-area " >--}}
+    {{--                <div class="slider-active">--}}
+    {{--                    <div class="video-background-holder" id="hero">--}}
+    {{--                        <div class="video-background-overlay"></div>--}}
+    {{--                        <video style="width: 1110px!important;  margin-top: 45px" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">--}}
+    {{--                            <source src="{{ asset('public/acente/slider/default.mp4') }}"--}}
+    {{--                                    type="video/mp4">--}}
+    {{--                        </video>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        @endif--}}
+    {{--        --}}
+    {{--    </div>--}}
 
 
 
@@ -288,154 +298,155 @@
 
     <main id="main">
 
-{{--                <section id="clients" class="clients section-bg">--}}
-{{--                    <div class="container">--}}
+        {{--                <section id="clients" class="clients section-bg">--}}
+        {{--                    <div class="container">--}}
 
-{{--                        <div class="row" data-aos="zoom-in">--}}
+        {{--                        <div class="row" data-aos="zoom-in">--}}
 
-{{--                            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">--}}
-{{--                                <img src="{{ asset('public/userFrontend/assets/img/clients/client-1.png') }}" class="img-fluid" alt="">--}}
-{{--                            </div>--}}
+        {{--                            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">--}}
+        {{--                                <img src="{{ asset('public/userFrontend/assets/img/clients/client-1.png') }}" class="img-fluid" alt="">--}}
+        {{--                            </div>--}}
 
-{{--                            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">--}}
-{{--                                <img src="{{ asset('public/userFrontend/assets/img/clients/client-2.png') }}" class="img-fluid" alt="">--}}
-{{--                            </div>--}}
+        {{--                            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">--}}
+        {{--                                <img src="{{ asset('public/userFrontend/assets/img/clients/client-2.png') }}" class="img-fluid" alt="">--}}
+        {{--                            </div>--}}
 
-{{--                            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">--}}
-{{--                                <img src="{{ asset('public/userFrontend/assets/img/clients/client-3.png') }}" class="img-fluid" alt="">--}}
-{{--                            </div>--}}
+        {{--                            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">--}}
+        {{--                                <img src="{{ asset('public/userFrontend/assets/img/clients/client-3.png') }}" class="img-fluid" alt="">--}}
+        {{--                            </div>--}}
 
-{{--                            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">--}}
-{{--                                <img src="{{ asset('public/userFrontend/assets/img/clients/client-4.png') }}" class="img-fluid" alt="">--}}
-{{--                            </div>--}}
+        {{--                            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">--}}
+        {{--                                <img src="{{ asset('public/userFrontend/assets/img/clients/client-4.png') }}" class="img-fluid" alt="">--}}
+        {{--                            </div>--}}
 
-{{--                            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">--}}
-{{--                                <img src="{{ asset('public/userFrontend/assets/img/clients/client-5.png') }}" class="img-fluid" alt="">--}}
-{{--                            </div>--}}
+        {{--                            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">--}}
+        {{--                                <img src="{{ asset('public/userFrontend/assets/img/clients/client-5.png') }}" class="img-fluid" alt="">--}}
+        {{--                            </div>--}}
 
-{{--                            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">--}}
-{{--                                <img src="{{ asset('public/userFrontend/assets/img/clients/client-6.png') }}" class="img-fluid" alt="">--}}
-{{--                            </div>--}}
+        {{--                            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">--}}
+        {{--                                <img src="{{ asset('public/userFrontend/assets/img/clients/client-6.png') }}" class="img-fluid" alt="">--}}
+        {{--                            </div>--}}
 
-{{--                        </div>--}}
+        {{--                        </div>--}}
 
-{{--                    </div>--}}
-{{--                </section>--}}
+        {{--                    </div>--}}
+        {{--                </section>--}}
 
         @if($about_us)
-        <!-- ======= About Us Section ======= -->
-        <section id="about" class="about">
-            <div class="container" data-aos="fade-up">
+            <!-- ======= About Us Section ======= -->
+            <section id="about" class="about">
+                <div class="container" data-aos="fade-up">
 
-                <div class="section-title">
-                    <h2>About Us</h2>
+                    <div class="section-title">
+                        <h2>About Us</h2>
+                    </div>
+
+                    <div class="row content">
+                        {!! $about_us ? $about_us->content : '' !!}
+
+                    </div>
+
                 </div>
-
-                <div class="row content">
-                    {!! $about_us ? $about_us->content : '' !!}
-
-                </div>
-
-            </div>
-        </section>
-        <!-- End About Us Section -->
+            </section>
+            <!-- End About Us Section -->
         @endif
 
 
         @if(count($services) > 0)
-        <!-- ======= Services Section ======= -->
-        <section id="services" class="services section-bg tex">
+            <!-- ======= Services Section ======= -->
+            <section id="services" class="services section-bg tex">
 
-            <div class="container" data-aos="fade-up">
+                <div class="container" data-aos="fade-up">
 
 
-                <div class="section-title">
-                    <h2>Services</h2>
-                </div>
+                    <div class="section-title">
+                        <h2>Services</h2>
+                    </div>
 
-                <div class="row justify-content-center">
+                    <div class="row justify-content-center">
 
-                    @foreach($services as $item)
-                        <div class="col-xl-3  align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
-                             data-aos-delay="400">
-                            <div class="icon-box mt-4">
-                                <div class="icon"><i class="{{ $item->icon }}"></i></div>
-                                <h2> {{ $item->title }} </h2>
-                                <p> {!! $item->content !!} </p>
+                        @foreach($services as $item)
+                            <div class="col-xl-3  align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
+                                 data-aos-delay="400">
+                                <div class="icon-box mt-4">
+                                    <div class="icon"><i class="{{ $item->icon }}"></i></div>
+                                    <h2> {{ $item->title }} </h2>
+                                    <p> {!! $item->content !!} </p>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+
+                    </div>
 
                 </div>
-
-            </div>
-        </section>
+            </section>
             <!-- End Services Section -->
         @endif
 
 
         @if(count($pricing) > 0)
-        <!-- ======= Pricing Section ======= -->
-        <section id="pricing" class="pricing">
-            <div class="container" data-aos="fade-up">
+            <!-- ======= Pricing Section ======= -->
+            <section id="pricing" class="pricing">
+                <div class="container" data-aos="fade-up">
 
-                <div class="section-title">
-                    <h2>Pricing</h2>
-                </div>
+                    <div class="section-title">
+                        <h2>Pricing</h2>
+                    </div>
 
-                <div class="row mt-4 justify-content-center">
-                    @foreach($pricing as $item)
-                        <div style="margin-top: 10px; margin-bottom: 10px;" class="col-lg-4 mt-4 mb-4 mt-lg-0"
-                             data-aos="fade-up" data-aos-delay="200">
-                            <div class="box featured">
-                                <h3>{{ $item->title }}</h3>
-                                <h4><sup>$</sup>{{ $item->price }}<span>{{ $item->price_suffix }} </span></h4>
+                    <div class="row mt-4 justify-content-center">
+                        @foreach($pricing as $item)
+                            <div style="margin-top: 10px; margin-bottom: 10px;" class="col-lg-4 mt-4 mb-4 mt-lg-0"
+                                 data-aos="fade-up" data-aos-delay="200">
+                                <div class="box featured">
+                                    <h3>{{ $item->title }}</h3>
+                                    <h4><sup>$</sup>{{ $item->price }}<span>{{ $item->price_suffix }} </span></h4>
 
-                                 {!! $item->content !!}
+                                    {!! $item->content !!}
 
-                                <a href="#contact" class="buy-btn">Get Started</a>
+                                    <a href="#contact" class="buy-btn">Get Started</a>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+
+                    </div>
 
                 </div>
-
-            </div>
-        </section><!-- End Pricing Section -->
+            </section><!-- End Pricing Section -->
         @endif
 
 
         @if(count($faq) > 0)
-        <!-- ======= Frequently Asked Questions Section ======= -->
-        <section id="faq" class="faq section-bg">
-            <div class="container" data-aos="fade-up">
+            <!-- ======= Frequently Asked Questions Section ======= -->
+            <section id="faq" class="faq section-bg">
+                <div class="container" data-aos="fade-up">
 
-                <div class="section-title">
-                    <h2>Frequently Asked Questions</h2>
+                    <div class="section-title">
+                        <h2>Frequently Asked Questions</h2>
+                    </div>
+
+                    <div class="faq-list">
+                        <ul>
+                            @foreach($faq as $item)
+                                <li data-aos="fade-up" data-aos-delay="200">
+                                    <i class="bx bx-help-circle icon-help"></i>
+                                    <a data-bs-toggle="collapse" data-bs-target="#faq-list-{{$item->id}}"
+                                       class="collapsed">
+                                        {{ $item->title }}
+                                        <i class="bx bx-chevron-down icon-show"></i><i
+                                            class="bx bx-chevron-up icon-close"></i></a>
+                                    <div id="faq-list-{{$item->id}}" class="collapse" data-bs-parent=".faq-list">
+                                        {!! $item->content !!}
+                                    </div>
+                                </li>
+
+                            @endforeach
+
+
+                        </ul>
+                    </div>
+
                 </div>
-
-                <div class="faq-list">
-                    <ul>
-                        @foreach($faq as $item)
-                            <li data-aos="fade-up" data-aos-delay="200">
-                                <i class="bx bx-help-circle icon-help"></i>
-                                <a data-bs-toggle="collapse" data-bs-target="#faq-list-{{$item->id}}" class="collapsed">
-                                    {{ $item->title }}
-                                    <i class="bx bx-chevron-down icon-show"></i><i
-                                        class="bx bx-chevron-up icon-close"></i></a>
-                                <div id="faq-list-{{$item->id}}" class="collapse" data-bs-parent=".faq-list">
-                                     {!! $item->content !!}
-                                </div>
-                            </li>
-
-                        @endforeach
-
-
-                    </ul>
-                </div>
-
-            </div>
-        </section><!-- End Frequently Asked Questions Section -->
+            </section><!-- End Frequently Asked Questions Section -->
 
         @endif
 
@@ -507,7 +518,8 @@
                             </div>
 
                             <div class="form-group text-center">
-                                <div class="cf-turnstile" data-sitekey="0x4AAAAAAAEVsNnQi_gRAdmM" data-callback="javascriptCallback"></div>
+                                <div class="cf-turnstile" data-sitekey="0x4AAAAAAAEVsNnQi_gRAdmM"
+                                     data-callback="javascriptCallback"></div>
                             </div>
 
 
@@ -526,7 +538,7 @@
             window.onloadTurnstileCallback = function () {
                 turnstile.render('.econtact_form', {
                     sitekey: '0x4AAAAAAAEVsNnQi_gRAdmM',
-                    callback: function(token) {
+                    callback: function (token) {
                         console.log(`Challenge Success ${token}`);
                     },
                 });
@@ -535,7 +547,6 @@
 
 
     </main><!-- End #main -->
-
 
 @endsection
 

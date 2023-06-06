@@ -11,6 +11,7 @@ use App\Models\UserServices;
 use App\Models\UserSocialMedia;
 use Flasher\Prime\FlasherInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -33,6 +34,7 @@ class UserFrontendController extends Controller
             'pricing' => UserPricing::where('user_id', $user->id)->where('status', 1)->get(),
             'faq' => UserFaq::where('user_id', $user->id)->where('status', 1)->get(),
             'social_media' => UserSocialMedia::where('user_id', $user->id)->where('status', 1)->get(),
+            'home' => DB::table('user_homes')->where('user_id', $user->id)->first(),
         ];
 
         if ($data['user']->status == 0){

@@ -1,4 +1,4 @@
-@extends('userFrontend_3.layout.userFrontent3Layout')
+@extends('userFrontend_3.layout.userFrontend3Layout')
 
 @section('title')
 @endsection
@@ -170,15 +170,17 @@
                                     <div class="accordion-item">
                                         <h3 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#faq-content-{{$item->id}}">
-                                                <span class="num"> <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#faq-content-{{$item->id}}">
+                                                <span class="num"> <i class="fa fa-question-circle"
+                                                                      aria-hidden="true"></i></span>
                                                 {{ $item->title }}
                                             </button>
                                         </h3>
                                         <div id="faq-content-{{$item->id}}" class="accordion-collapse collapse"
                                              data-bs-parent="#faqlist">
                                             <div class="accordion-body">
-                                               {!! $item->content !!}
+                                                {!! $item->content !!}
                                             </div>
                                         </div>
                                     </div><!-- # Faq item-->
@@ -232,13 +234,13 @@
                                 </div>
                             </div><!-- End Info Item -->
 
-{{--                            <div class="info-item d-flex">--}}
-{{--                                <i class="bi bi-clock flex-shrink-0"></i>--}}
-{{--                                <div>--}}
-{{--                                    <h4>Open Hours:</h4>--}}
-{{--                                    <p>Mon-Sat: 11AM - 23PM</p>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            {{--                            <div class="info-item d-flex">--}}
+                            {{--                                <i class="bi bi-clock flex-shrink-0"></i>--}}
+                            {{--                                <div>--}}
+                            {{--                                    <h4>Open Hours:</h4>--}}
+                            {{--                                    <p>Mon-Sat: 11AM - 23PM</p>--}}
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
                             <!-- End Info Item -->
                         </div>
 

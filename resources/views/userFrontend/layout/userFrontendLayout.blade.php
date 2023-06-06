@@ -202,15 +202,22 @@
 <body>
 
 <!-- ======= Header ======= -->
-<header id="header" class="fixed-top ">
+<header id="header" class="fixed-top " style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}">
     <div class="container d-flex align-items-center">
 
-        <h1 class="logo me-auto"><a href="">
+        <h1 class="logo me-auto"><a href="#">
+                @if($home && $home->logo)
 
+                    <img
+                        src="data:image/jpeg;base64,{{ $home->logo }}"
+                        alt="{{ $home->logo }}" class="img-fluid animated"/>
 
-                <img
-                    src=""
-                    alt="">
+                @else
+                @endif
+
+{{--                <img--}}
+{{--                    src=""--}}
+{{--                    alt="">--}}
 
                 {{--                <div class="col-md-4" style="font-size: 16px">{{ $user->company_name }}</div>--}}
 
@@ -273,7 +280,7 @@
 {{--@endif--}}
 
 <!-- ======= Footer ======= -->
-<footer id="footer">
+<footer id="footer" style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}">
 
 
     <div class="footer-top">
@@ -350,8 +357,8 @@
         </div>
     </div>
 
-    <div class="container footer-bottom clearfix">
-        <div class="copyright">
+    <div class="container footer-bottom clearfix" >
+        <div class="copyright" >
             © Copyright <a
                 href="https://ayas.ca/index2.html" target="_blank">Ayas Technology Consulting
                 Inc.</a> All Rights Reserved. | Powered By Aytemp
@@ -364,7 +371,7 @@
 </footer><!-- End Footer -->
 
 
-<div id="preloader"></div>
+<div id="preloader" style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}"></div>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
 

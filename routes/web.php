@@ -107,6 +107,9 @@ Route::prefix('/user')->middleware(['is_user', 'role:User'])->group(function () 
     Route::post( '/socialMediaDelete', [\App\Http\Controllers\User\UserSocialMediaController::class, 'socialMediaDelete'])->name('user.social.media.delete');
     Route::post( '/socialMediaUpdate/{id}', [\App\Http\Controllers\User\UserSocialMediaController::class, 'socialMediaUpdate'])->name('user.social.media.update');
 
+
+    Route::get( '/frontendHome', [\App\Http\Controllers\User\UserHomeController::class, 'homeList'])->name('user.home.list');
+    Route::post( '/homeUpdate', [\App\Http\Controllers\User\UserHomeController::class, 'homeUpdate'])->name('user.home.update');
 });
 
 

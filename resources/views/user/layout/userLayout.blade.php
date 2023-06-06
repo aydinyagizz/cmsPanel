@@ -184,6 +184,23 @@
                         </a>
 
 
+                        <a href="{{ route('user.home.list') }}">
+                            <div
+                                class="menu-item   {{ Route::is('user.home.list') ? 'show' : '' }} menu-accordion mb-1">
+                            <span class="menu-link"><span class="menu-icon">
+
+                                 <i style="font-size: 17px!important;" class="fa fa-home" aria-hidden="true"></i>
+
+                                 </span>
+                                <span class="menu-title">Home
+                                </span>
+                                <span class=""></span></span>
+
+
+                            </div>
+                        </a>
+
+
                         @can('about us view')
                         <a href="{{ route('user.about.us.list') }}">
                             <div
@@ -7551,6 +7568,8 @@
 
 <script src="{{ asset('public/user/assets/js/social-media-add.js') }}"></script>
 <script src="{{ asset('public/user/assets/js/social-media-list.js') }}"></script>
+
+{{--<script src="{{ asset('public/user/assets/js/frontend-home.js') }}"></script>--}}
 
 
 <script src="../../cdn.amcharts.com/lib/5/index.js"></script>
