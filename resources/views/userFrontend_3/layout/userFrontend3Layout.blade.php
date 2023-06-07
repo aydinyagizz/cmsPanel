@@ -13,8 +13,11 @@
     <title>@yield("title")</title>
 
     <!-- Favicons -->
-    <link href="{{ asset('public/userFrontend_3/assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('public/userFrontend_3/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    @if($home && $home->logo)
+        <link rel="icon" type="image/x-icon" href="data:image/jpeg;base64,{{ $home->logo }}"/>
+    @endif
+{{--    <link href="{{ asset('public/userFrontend_3/assets/img/favicon.png') }}" rel="icon">--}}
+{{--    <link href="{{ asset('public/userFrontend_3/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">--}}
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +52,7 @@
 <body>
 
 <!-- ======= Header ======= -->
-<section id="topbar" class="topbar d-flex align-items-center">
+<section id="topbar" class="topbar d-flex align-items-center" style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}">
     <div class="container d-flex justify-content-center justify-content-md-between">
         <div class="contact-info d-flex align-items-center">
             <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">{{ $user->email }}</a></i>
@@ -78,13 +81,26 @@
     </div>
 </section><!-- End Top Bar -->
 
-<header id="header" class="header d-flex align-items-center">
+<header id="header" class="header d-flex align-items-center" style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}">
 
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="{{ route('user.frontend.index', [$user->slug]) }}" class="logo d-flex align-items-center">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <!-- <img src="assets/img/logo.png" alt=""> -->
-            <h1>Impact<span>.</span></h1>
+
+            @if($home && $home->logo)
+{{--                <a href="{{ route('user.frontend.index', [$user->slug]) }}" class="logo me-auto me-lg-0">--}}
+                    <img
+                        src="data:image/jpeg;base64,{{ $home->logo }}"
+                        alt="{{ $home->logo }}" class="img-fluid animated"/>
+{{--                </a>--}}
+
+            @else
+                <h1><span></span></h1>
+            @endif
+
+
+
         </a>
         <nav id="navbar" class="navbar">
             <ul>
@@ -111,14 +127,11 @@
 
 
 <!-- ======= Footer ======= -->
-<footer id="footer" class="footer">
+<footer id="footer" class="footer" style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}">
 
     <div class="container">
         <div class="row gy-4">
             <div class="col-lg-3 col-md-12 footer-info">
-                <a href="index.html" class="logo d-flex align-items-center">
-                    <span>Impact</span>
-                </a>
 
                 <h4>Our Social Networks</h4>
                 <div class="social-links d-flex mt-4">
@@ -193,7 +206,7 @@
 
 <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-<div id="preloader"></div>
+<div id="preloader" style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}"></div>
 
 <!-- Vendor JS Files -->
 <script src="{{ asset('public/userFrontend_3/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

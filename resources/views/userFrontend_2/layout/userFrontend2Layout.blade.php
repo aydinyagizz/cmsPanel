@@ -13,16 +13,22 @@
     <title>@yield("title")</title>
 
     <!-- Favicons -->
-    <link href="{{ asset('public/userFrontend_2/assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('public/userFrontend_2/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    @if($home && $home->logo)
+        <link rel="icon" type="image/x-icon" href="data:image/jpeg;base64,{{ $home->logo }}"/>
+    @endif
+{{--    <link href="{{ asset('public/userFrontend_2/assets/img/favicon.png') }}" rel="icon">--}}
+{{--    <link href="{{ asset('public/userFrontend_2/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">--}}
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('public/userFrontend_2/assets/vendor/aos/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('public/userFrontend_2/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/userFrontend_2/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/userFrontend_2/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}"
+          rel="stylesheet">
     <link href="{{ asset('public/userFrontend_2/assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('public/userFrontend_2/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('public/userFrontend_2/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
@@ -30,10 +36,6 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('public/userFrontend_2/assets/css/style.css') }}" rel="stylesheet">
-
-
-
-
 
 
     @yield('css')
@@ -45,28 +47,63 @@
             crossorigin="anonymous"></script>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha512-I5TkutApDjnWuX+smLIPZNhw+LhTd8WrQhdCKsxCFRSvhFx2km8ZfEpNIhF9nq04msHhOkE8BMOBj5QE07yhMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha512-I5TkutApDjnWuX+smLIPZNhw+LhTd8WrQhdCKsxCFRSvhFx2km8ZfEpNIhF9nq04msHhOkE8BMOBj5QE07yhMA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"--}}
-{{--          integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="--}}
-{{--          crossorigin="anonymous" referrerpolicy="no-referrer"/>--}}
+    {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"--}}
+    {{--          integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="--}}
+    {{--          crossorigin="anonymous" referrerpolicy="no-referrer"/>--}}
+
+    @if($home && $home->image)
+        <style>
+            #hero {
+                background: url(data:image/jpeg;base64,{{ $home->image }}) top center;
+                width: 100%;
+                height: 100vh;
+                background-size: cover;
+                position: relative;
+
+
+            }
+
+            @media (min-width: 1024px) {
+                #hero {
+                    background-attachment: fixed;
+                }
+            }
+
+        </style>
+    @else
+        <style>
+            /*#hero {*/
+            /*    background: url('../img/hero-bg.jpg') top center;*/
+            /*}*/
+        </style>
+    @endif
+
 
     <style>
-        .pricing-content{position:relative;}
-        .pricing_design{
+        .pricing-content {
+            position: relative;
+        }
+
+        .pricing_design {
             position: relative;
             margin: 0px 15px;
         }
-        .pricing_design .single-pricing{
-            background:#554c86;
+
+        .pricing_design .single-pricing {
+            background: #554c86;
             padding: 60px 40px;
-            border-radius:30px;
-            box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
+            border-radius: 30px;
+            box-shadow: 0 10px 40px -10px rgba(0, 64, 128, .2);
             position: relative;
             z-index: 1;
         }
-        .pricing_design .single-pricing:before{
+
+        .pricing_design .single-pricing:before {
             content: "";
             background-color: #fff;
             width: 100%;
@@ -78,23 +115,34 @@
             right: 0;
             z-index: -1;
         }
-        .price-head{}
+
+        .price-head {
+        }
+
         .price-head h2 {
             margin-bottom: 20px;
             font-size: 26px;
             font-weight: 600;
         }
+
         .price-head h1 {
             font-weight: 600;
             margin-top: 30px;
             margin-bottom: 5px;
         }
-        .price-head span{}
 
-        .single-pricing ul{list-style:none;margin-top: 30px;}
+        .price-head span {
+        }
+
+        .single-pricing ul {
+            list-style: none;
+            margin-top: 30px;
+        }
+
         .single-pricing ul li {
             line-height: 36px;
         }
+
         .single-pricing ul li i {
             background: #554c86;
             color: #fff;
@@ -106,7 +154,9 @@
             line-height: 20px;
             margin-right: 6px;
         }
-        .pricing-price{}
+
+        .pricing-price {
+        }
 
         .price_btn {
             background: #554c86;
@@ -118,16 +168,21 @@
             -webkit-transition: 0.3s;
             transition: 0.3s;
         }
-        .price_btn:hover{background:#0aa1d6;}
-        a{
-            text-decoration:none;
+
+        .price_btn:hover {
+            background: #0aa1d6;
+        }
+
+        a {
+            text-decoration: none;
         }
 
         .section-title {
             margin-bottom: 60px;
         }
+
         .text-center {
-            text-align: center!important;
+            text-align: center !important;
         }
 
         .section-title h2 {
@@ -140,13 +195,13 @@
     </style>
 
 
-
     {{--    style faq start--}}
     <style>
         .section_padding_130 {
             /*padding-top: 130px;*/
             /*padding-bottom: 130px;*/
         }
+
         .faq_area {
             position: relative;
             z-index: 1;
@@ -157,19 +212,23 @@
             position: relative;
             z-index: 1;
         }
+
         .faq-accordian .card {
             position: relative;
             z-index: 1;
             margin-bottom: 1.5rem;
         }
+
         .faq-accordian .card:last-child {
             margin-bottom: 0;
         }
+
         .faq-accordian .card .card-header {
             background-color: #f5f5ff;
             padding: 0;
             border-bottom-color: #ebebeb;
         }
+
         .faq-accordian .card .card-header h6 {
             cursor: pointer;
             padding: 1.75rem 2rem;
@@ -185,19 +244,24 @@
             -ms-flex-pack: justify;
             justify-content: space-between;
         }
+
         .faq-accordian .card .card-header h6 span {
             font-size: 1.5rem;
         }
+
         .faq-accordian .card .card-header h6.collapsed {
             color: #070a57;
         }
+
         .faq-accordian .card .card-header h6.collapsed span {
             -webkit-transform: rotate(-180deg);
             transform: rotate(-180deg);
         }
+
         .faq-accordian .card .card-body {
             padding: 1.75rem 2rem;
         }
+
         .faq-accordian .card .card-body p:last-child {
             margin-bottom: 0;
         }
@@ -212,6 +276,7 @@
             color: #3f43fd;
             font-size: 1.25rem;
         }
+
         @media only screen and (max-width: 575px) {
             .support-button i {
                 font-size: 1rem;
@@ -222,6 +287,7 @@
             text-transform: capitalize;
             color: #2ecc71;
         }
+
         @media only screen and (max-width: 575px) {
             .support-button a {
                 font-size: 13px;
@@ -233,20 +299,43 @@
 <body>
 
 <!-- ======= Header ======= -->
-<header id="header" class="fixed-top ">
+<header id="header" class="fixed-top "
+        style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}">
     <div class="container d-flex align-items-center justify-content-lg-between">
 
-        <h1 class="logo me-auto me-lg-0"><a href="index.html">Gp<span>.</span></a></h1>
+        {{--        <h1 class="logo me-auto me-lg-0"><a href="index.html">Gp<span>.</span></a></h1>--}}
         <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        @if($home && $home->logo)
+            {{--         <a href="index.html" class="logo me-auto me-lg-0">--}}
+            {{--        <img src="assets/img/logo.png" alt="" class="img-fluid"></a>--}}
+
+            <a href="{{ route('user.frontend.index', [$user->slug]) }}" class="logo me-auto me-lg-0">
+                <img
+                    src="data:image/jpeg;base64,{{ $home->logo }}"
+                    alt="{{ $home->logo }}" class="img-fluid animated"/>
+            </a>
+
+        @else
+            <h1 class="logo me-auto me-lg-0"><a
+                    href="{{ route('user.frontend.index', [$user->slug]) }}"><span></span></a></h1>
+        @endif
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
                 <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-               @if($about_us) <li><a class="nav-link scrollto" href="#about">About</a></li>@endif
-                @if(count($services)>0)<li><a class="nav-link scrollto" href="#services">Services</a></li>@endif
-                @if(count($pricing)>0)<li><a class="nav-link scrollto " href="#pricing">Pricing</a></li>@endif
-                @if(count($faq)>0)<li><a class="nav-link scrollto " href="#faq">FAQ</a></li>@endif
+                @if($about_us)
+                    <li><a class="nav-link scrollto" href="#about">About</a></li>
+                @endif
+                @if(count($services)>0)
+                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
+                @endif
+                @if(count($pricing)>0)
+                    <li><a class="nav-link scrollto " href="#pricing">Pricing</a></li>
+                @endif
+                @if(count($faq)>0)
+                    <li><a class="nav-link scrollto " href="#faq">FAQ</a></li>
+                @endif
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
@@ -257,9 +346,6 @@
     </div>
 
 
-
-
-
 </header><!-- End Header -->
 
 
@@ -268,14 +354,15 @@
 
 
 <!-- ======= Footer ======= -->
-<footer id="footer">
-    <div class="footer-top">
+<footer id="footer" style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}">
+    <div class="footer-top" style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}">
         <div class="container">
             <div class="row">
 
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-info">
-                        <h3>Gp<span>.</span></h3>
+
+
                         <p>
                             {!! $user->address !!}
                             <br>
@@ -313,19 +400,23 @@
 
                         @foreach($social_media as $item)
                             @if($item->icon == 'fa-facebook')
-                                <a href="{!! $item->link !!}" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+                                <a href="{!! $item->link !!}" target="_blank" class="facebook"><i
+                                        class="bx bxl-facebook"></i></a>
                             @elseif($item->icon == 'fa-instagram')
-                                <a href="{!! $item->link !!}" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                                <a href="{!! $item->link !!}" target="_blank" class="instagram"><i
+                                        class="bx bxl-instagram"></i></a>
                             @elseif($item->icon == 'fa-twitter')
-                                <a href="{!! $item->link !!}" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                                <a href="{!! $item->link !!}" target="_blank" class="twitter"><i
+                                        class="bx bxl-twitter"></i></a>
                             @elseif($item->icon == 'fa-linkedin')
-                                <a href="{!! $item->link !!}" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                                <a href="{!! $item->link !!}" target="_blank" class="linkedin"><i
+                                        class="bx bxl-linkedin"></i></a>
                             @elseif($item->icon == 'fa-youtube')
-                                <a href="{!! $item->link !!}" target="_blank" class="youtube"><i class="bx bxl-youtube"></i></a>
+                                <a href="{!! $item->link !!}" target="_blank" class="youtube"><i
+                                        class="bx bxl-youtube"></i></a>
                             @else
                             @endif
                         @endforeach
-
 
 
                     </div>
@@ -350,8 +441,9 @@
     </div>
 </footer><!-- End Footer -->
 
-<div id="preloader"></div>
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<div id="preloader" style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="{{ asset('public/userFrontend_2/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
@@ -361,7 +453,6 @@
 <script src="{{ asset('public/userFrontend_2/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
 <script src="{{ asset('public/userFrontend_2/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
 <script src="{{ asset('public/userFrontend_2/assets/vendor/php-email-form/validate.js') }}"></script>
-
 
 
 <!-- Template Main JS File -->

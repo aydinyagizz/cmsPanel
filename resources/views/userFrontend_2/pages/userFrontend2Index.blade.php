@@ -13,10 +13,27 @@
 
             <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
                 <div class="col-xl-6 col-lg-8">
-                    <h1>Powerful Digital Solutions With Gp<span>.</span></h1>
-                    <h2>We are team of talented digital marketers</h2>
+                    <h1>{!! ($home && $home->title) ? $home->title : 'Powerful Digital Solutions With Gp' !!}</h1>
+                    <h2>{!! ($home && $home->description) ? $home->description : 'We are team of talented digital marketers' !!}</h2>
                 </div>
+
             </div>
+
+
+            {{--            <div class="d-flex justify-content-center justify-content-lg-start">--}}
+            {{--                <a href="#contact" class="btn-get-started scrollto">Get Started</a>--}}
+            {{--                <a href="https://www.youtube.com/watch?v=pHyXozlH5tc&amp;list=RDpHyXozlH5tc&amp;start_radio=1" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>--}}
+            {{--            </div>--}}
+
+            @if($home && $home->video)
+                <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
+                    <div class="col-xl-2 col-md-4">
+                        <a href="{!! $home->video !!}" target="_blank" class="get-started-btn scrollto"><i
+                                class="bi bi-play-circle"></i>&nbsp; &nbsp;Watch Video</a>
+                    </div>
+
+                </div>
+            @endif
 
 
         </div>

@@ -13,7 +13,9 @@
     <!-- Favicons -->
     {{--    <link href="{{ asset('frontend/acenteFrontend/assets/img/favicon.png') }}" rel="icon">--}}
     {{--    <link href="{{ asset('frontend/acenteFrontend/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">--}}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favico.png') }}"/>
+    @if($home && $home->logo)
+    <link rel="icon" type="image/x-icon" href="data:image/jpeg;base64,{{ $home->logo }}"/>
+    @endif
 
 
     <!-- Google Fonts -->

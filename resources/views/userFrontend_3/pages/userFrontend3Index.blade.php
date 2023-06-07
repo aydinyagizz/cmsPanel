@@ -9,23 +9,42 @@
 @section('content')
 
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="hero">
+    <section id="hero" class="hero"
+             style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}">
         <div class="container position-relative">
             <div class="row gy-5" data-aos="fade-in">
                 <div
                     class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
-                    <h2>Welcome to <span>Impact</span></h2>
-                    <p>Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque
-                        eum quaerat.</p>
+                    <h2>{!! ($home && $home->title) ? $home->title : 'Welcome to Impact' !!}</h2>
+                    <p>{!! ($home && $home->description) ? $home->description : 'Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.' !!}</p>
                     <div class="d-flex justify-content-center justify-content-lg-start">
                         <a href="#contact" class="btn-get-started">Get Started</a>
-                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
-                           class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+
+
+                        @if($home && $home->video)
+                            <a href="{!! $home->video !!}"
+                               class="glightbox btn-watch-video d-flex align-items-center"><i
+                                    class="bi bi-play-circle"></i><span>Watch Video</span></a>
+                        @endif
+
+
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2">
-                    <img src="{{ asset('public/userFrontend_3/assets/img/hero-img.svg') }}" class="img-fluid" alt=""
-                         data-aos="zoom-out" data-aos-delay="100">
+
+                    @if($home && $home->image)
+
+                        <img
+                            src="data:image/jpeg;base64,{{ $home->image }}"
+                            alt="{{ $home->image }}" class="img-fluid"  data-aos="zoom-out" data-aos-delay="100" alt=""/>
+
+                    @else
+                        <img src="{{ asset('public/userFrontend_3/assets/img/hero-img.svg') }}" class="img-fluid" alt=""
+                             data-aos="zoom-out" data-aos-delay="100">
+                    @endif
+
+
+
                 </div>
             </div>
         </div>
@@ -209,8 +228,10 @@
 
                     <div class="col-lg-4">
 
-                        <div class="info-container d-flex flex-column align-items-center justify-content-center">
-                            <div class="info-item d-flex">
+                        <div class="info-container d-flex flex-column align-items-center justify-content-center"
+                             style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}">
+                            <div class="info-item d-flex"
+                                 style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}">
                                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                                 <div>
                                     <h4>Location:</h4>
@@ -218,7 +239,8 @@
                                 </div>
                             </div><!-- End Info Item -->
 
-                            <div class="info-item d-flex">
+                            <div class="info-item d-flex"
+                                 style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}">
                                 <i class="bi bi-envelope flex-shrink-0"></i>
                                 <div>
                                     <h4>Email:</h4>
@@ -226,7 +248,8 @@
                                 </div>
                             </div><!-- End Info Item -->
 
-                            <div class="info-item d-flex">
+                            <div class="info-item d-flex"
+                                 style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}">
                                 <i class="bi bi-phone flex-shrink-0"></i>
                                 <div>
                                     <h4>Call:</h4>
@@ -272,7 +295,10 @@
                                 <div class="sent-message">Your message has been sent. Thank you!</div>
                             </div>
                             <div class="text-center">
-                                <button type="submit">Send Message</button>
+                                <button type="submit"
+                                        style="background: {!! ($home && $home->backgroundColor) ? $home->backgroundColor : '' !!}">
+                                    Send Message
+                                </button>
                             </div>
                         </form>
                     </div><!-- End Contact Form -->
